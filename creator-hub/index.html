@@ -15,18 +15,30 @@ tailwind.config = { theme: { extend: {
 }}}
 </script>
 <style>
-  body{background:#171216;color:#F4EBE8}
-  .wm-pattern{position:fixed;inset:0;z-index:70;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Ctext x='40' y='280' font-family='Georgia,serif' font-size='44' font-weight='bold' fill='%23F4EBE8' fill-opacity='0.05' transform='rotate(-24 260 260)'%3EDEMO — B&amp;Z%3C/text%3E%3C/svg%3E")}
-  .wm-badge{position:fixed;left:18px;bottom:18px;z-index:71;background:rgba(23,18,22,.9);color:#F4EBE8;font-size:12.5px;letter-spacing:.04em;padding:9px 16px;border-radius:999px;border:1px solid rgba(217,165,179,.35)}
-  .wm-badge b{color:#D9A5B3;font-weight:600}
-  .link-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:16px 22px;border:1px solid rgba(244,235,232,.16);border-radius:14px;background:#211A20;transition:border-color .25s ease, transform .25s ease}
-  .link-btn:hover{border-color:#D9A5B3;transform:translateY(-1px)}
+  body{background:#171216;color:#F4EBE8;overflow-x:hidden}
+  .bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+    radial-gradient(560px 420px at 15% 8%, rgba(217,165,179,.16), transparent 65%),
+    radial-gradient(640px 480px at 88% 30%, rgba(150,90,120,.13), transparent 65%),
+    radial-gradient(700px 520px at 50% 95%, rgba(217,165,179,.10), transparent 65%);
+    animation:drift 16s ease-in-out infinite alternate}
+  @keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-24px,18px,0) scale(1.06)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .anim{opacity:0;animation:fadeUp .7s cubic-bezier(.22,.8,.32,1) forwards}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  .avatar{animation:floaty 5s ease-in-out infinite}
+  .link-btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;width:100%;padding:16px 22px;border:1px solid rgba(244,235,232,.16);border-radius:14px;background:#211A20;transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease}
+  .link-btn:hover{border-color:#D9A5B3;transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.35)}
+  .link-btn:active{transform:scale(.985)}
+  .cta-main::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);animation:shine 2.8s ease-in-out infinite}
+  @keyframes shine{0%{left:-80%}55%{left:130%}100%{left:130%}}
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
   #agegate{transition:opacity .5s ease}
+  main{position:relative;z-index:1}
 </style>
 </head>
 <body class="antialiased font-light">
-<div class="wm-pattern" aria-hidden="true"></div>
-<div class="wm-badge">DEMO · <b>B&amp;Z Web Studio</b> · @bz_devweb</div>
+<div class="bg-glow" aria-hidden="true"></div>
 
 <!-- AGE GATE -->
 <div id="agegate" class="fixed inset-0 z-[80] bg-noir/95 backdrop-blur-sm flex items-center justify-center px-6">
@@ -43,7 +55,7 @@ tailwind.config = { theme: { extend: {
 
   <!-- PROFILE -->
   <div class="text-center">
-    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80&auto=format&fit=crop" alt="Mia Velvet portrait" class="w-28 h-28 rounded-full object-cover mx-auto border-2 border-rose/60">
+    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80&auto=format&fit=crop" alt="Mia Velvet portrait" class="avatar w-28 h-28 rounded-full object-cover mx-auto border-2 border-rose/60 anim">
     <h1 class="font-serif text-4xl mt-6">Mia Velvet</h1>
     <p class="text-rose text-sm tracking-[0.2em] uppercase mt-2">Content Creator · Los Angeles</p>
     <p class="text-mute mt-4 leading-relaxed text-[15px]">New posts every day. Customs open weekly.<br>All of my official links live here — nowhere else.</p>
@@ -56,19 +68,19 @@ tailwind.config = { theme: { extend: {
 
   <!-- MAIN LINKS -->
   <div class="mt-12 space-y-3.5">
-    <a href="#" class="link-btn !bg-rose !border-rose text-noir">
+    <a href="https://onlyfans.com" target="_blank" rel="noopener" class="link-btn cta-main !bg-rose !border-rose text-noir anim" style="animation-delay:.05s">
       <span class="font-medium">OnlyFans — Subscribe</span><span class="text-sm">50% off this week</span>
     </a>
-    <a href="#" class="link-btn"><span>Fansly</span><span class="text-mute text-sm">mirror page</span></a>
-    <a href="#" class="link-btn"><span>Telegram — Free Channel</span><span class="text-mute text-sm">teasers & polls</span></a>
-    <a href="#" class="link-btn"><span>X / Twitter</span><span class="text-mute text-sm">@miavelvet</span></a>
-    <a href="#" class="link-btn"><span>Instagram</span><span class="text-mute text-sm">SFW only</span></a>
-    <a href="#" class="link-btn"><span>Wishlist — Throne</span><span class="text-mute text-sm">spoil me</span></a>
-    <a href="#" class="link-btn"><span>Send a Tip</span><span class="text-mute text-sm">tips get priority replies</span></a>
+    <a href="https://fansly.com" target="_blank" rel="noopener" class="link-btn anim" style="animation-delay:.12s"><span>Fansly</span><span class="text-mute text-sm">mirror page</span></a>
+    <a href="https://telegram.org" target="_blank" rel="noopener" class="link-btn anim" style="animation-delay:.19s"><span>Telegram — Free Channel</span><span class="text-mute text-sm">teasers & polls</span></a>
+    <a href="https://x.com" target="_blank" rel="noopener" class="link-btn anim" style="animation-delay:.26s"><span>X / Twitter</span><span class="text-mute text-sm">@miavelvet</span></a>
+    <a href="https://instagram.com" target="_blank" rel="noopener" class="link-btn anim" style="animation-delay:.33s"><span>Instagram</span><span class="text-mute text-sm">SFW only</span></a>
+    <a href="https://throne.com" target="_blank" rel="noopener" class="link-btn anim" style="animation-delay:.40s"><span>Wishlist — Throne</span><span class="text-mute text-sm">spoil me</span></a>
+    <a href="https://onlyfans.com" target="_blank" rel="noopener" class="link-btn anim" style="animation-delay:.47s"><span>Send a Tip</span><span class="text-mute text-sm">tips get priority replies</span></a>
   </div>
 
   <!-- TIP MENU -->
-  <section class="mt-16">
+  <section class="mt-16 reveal">
     <p class="text-sm tracking-[0.25em] uppercase text-rose text-center">Tip Menu</p>
     <h2 class="font-serif text-3xl text-center mt-3">Prices, upfront. No DM guessing.</h2>
     <dl class="mt-9 text-[15px]">
@@ -78,12 +90,12 @@ tailwind.config = { theme: { extend: {
       <div class="flex items-baseline justify-between py-4 border-b border-cream/10"><dt>GFE texting — full day<span class="block text-mute text-sm mt-1">Good-morning to good-night, pics included</span></dt><dd class="font-medium whitespace-nowrap ml-6">$40</dd></div>
       <div class="flex items-baseline justify-between py-4"><dt>Honest rating<span class="block text-mute text-sm mt-1">Written, kind, and private</span></dt><dd class="font-medium whitespace-nowrap ml-6">$15</dd></div>
     </dl>
-    <a href="#" class="link-btn mt-8"><span class="font-medium">Request a Custom</span><span class="text-mute text-sm">opens Telegram</span></a>
+    <a href="https://telegram.org" target="_blank" rel="noopener" class="link-btn mt-8"><span class="font-medium">Request a Custom</span><span class="text-mute text-sm">opens Telegram</span></a>
     <p class="text-mute text-sm text-center mt-4 leading-relaxed">Customs open every Monday, 5 slots per week.<br>First come, first served — slots are confirmed by tip, not by chat.</p>
   </section>
 
   <!-- NOTE -->
-  <section class="mt-16 border border-cream/10 rounded-2xl p-8 bg-noir2">
+  <section class="mt-16 border border-cream/10 rounded-2xl p-8 bg-noir2 reveal">
     <h2 class="font-serif text-2xl">A quick note</h2>
     <p class="text-mute text-[15px] leading-relaxed mt-3">I don't sell content anywhere except the links on this page. If someone messages you pretending to be me from another account, it's a scam — report and block. Business and collab inquiries: use the Telegram link above.</p>
   </section>
@@ -101,6 +113,10 @@ function enterSite(){
   g.style.opacity = '0';
   setTimeout(function(){ g.style.display = 'none'; }, 500);
 }
+</script>
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
