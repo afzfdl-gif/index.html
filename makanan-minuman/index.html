@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARUNIKA — Kopi & Dapur Nusantara, Dago Bandung</title>
+<meta name="description" content="Arunika Kopi & Dapur — makanan Nusantara dan kopi aren di Dago, Bandung. Menu dan harga transparan, pesan langsung via WhatsApp.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { cream:'#FAF5EC', ink:'#28211A', clay:'#B4552D', clayd:'#96431F', sand:'#EFE6D6', mute:'#7A6E5F' },
+  fontFamily: { serif:['Fraunces','Georgia','serif'], sans:['"Plus Jakarta Sans"','system-ui','sans-serif'] }
+}}}
+</script>
+<style>
+  html{scroll-behavior:smooth}
+  body{background:#FAF5EC;color:#28211A}
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  a.u-line{background-image:linear-gradient(currentColor,currentColor);background-size:0% 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .35s ease}
+  a.u-line:hover{background-size:100% 1px}
+  .wm-pattern{position:fixed;inset:0;z-index:60;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Ctext x='40' y='280' font-family='Georgia,serif' font-size='44' font-weight='bold' fill='%2328211A' fill-opacity='0.055' transform='rotate(-24 260 260)'%3EDEMO — B&amp;Z%3C/text%3E%3C/svg%3E")}
+  .wm-badge{position:fixed;left:18px;bottom:18px;z-index:61;background:rgba(40,33,26,.88);color:#FAF5EC;font-size:12.5px;letter-spacing:.04em;padding:9px 16px;border-radius:999px;backdrop-filter:blur(4px)}
+  .wm-badge b{color:#F0B48C;font-weight:600}
+</style>
+</head>
+<body class="antialiased font-light">
+<div class="wm-pattern" aria-hidden="true"></div>
+<div class="wm-badge">DEMO · <b>B&amp;Z Web Studio</b> · @bz_devweb</div>
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-50 bg-cream/85 backdrop-blur border-b border-ink/10">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#" class="font-serif text-xl tracking-wide">ARUNIKA</a>
+    <nav class="hidden md:flex gap-8 text-sm text-ink/70">
+      <a href="#makanan" class="u-line">Makanan</a>
+      <a href="#minuman" class="u-line">Minuman & Paket</a>
+      <a href="#kunjungi" class="u-line">Kunjungi Kami</a>
+    </nav>
+    <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan" target="_blank" rel="noopener" class="bg-clay hover:bg-clayd text-cream text-sm px-5 py-2.5 rounded-full transition-colors">Pesan Sekarang</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative min-h-screen flex items-end">
+  <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80&auto=format&fit=crop" alt="Hidangan Nusantara di meja kayu Arunika" class="absolute inset-0 w-full h-full object-cover">
+  <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/25 to-ink/10"></div>
+  <div class="relative max-w-6xl mx-auto px-6 pb-24 pt-40 w-full text-cream">
+    <p class="text-sm tracking-[0.25em] uppercase text-cream/80 mb-5 reveal">Kopi & Dapur Nusantara — Dago, Bandung</p>
+    <h1 class="font-serif text-5xl md:text-7xl leading-[1.05] max-w-3xl reveal">Makan enak nggak harus antre.</h1>
+    <p class="mt-6 text-lg text-cream/85 max-w-xl reveal">Menu dan harga tampil semua di sini. Pilih, klik, pesan lewat WhatsApp — makananmu disiapkan sebelum kamu sampai.</p>
+    <div class="mt-9 flex flex-wrap gap-4 reveal">
+      <a href="#makanan" class="bg-cream text-ink px-7 py-3.5 rounded-full text-sm font-medium hover:bg-white transition-colors">Lihat Menu</a>
+      <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20untuk%20hari%20ini" target="_blank" rel="noopener" class="border border-cream/60 text-cream px-7 py-3.5 rounded-full text-sm hover:bg-cream/10 transition-colors">Pesan via WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- CERITA -->
+<section class="min-h-[70vh] flex items-center">
+  <div class="max-w-6xl mx-auto px-6 py-28 grid md:grid-cols-2 gap-14 items-center w-full">
+    <div class="reveal">
+      <p class="text-sm tracking-[0.25em] uppercase text-clay mb-5">Tentang Arunika</p>
+      <h2 class="font-serif text-4xl md:text-5xl leading-tight">Resep rumahan, disajikan seperti di rumah sendiri.</h2>
+      <p class="mt-6 text-ink/70 leading-relaxed">Arunika mulai dari dapur kecil di Dago tahun 2019. Rendang dimasak 6 jam, sambal diulek setiap pagi, kopi diseduh dari biji Garut dan Gayo. Nggak ada yang instan — kecuali cara kamu memesannya.</p>
+      <p class="mt-4 text-ink/70 leading-relaxed">Buka setiap hari 08.00–22.00. Bisa makan di tempat, bungkus, atau pesan untuk acara kantoran.</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80&auto=format&fit=crop" alt="Suasana ruang makan Arunika" class="w-full h-[420px] object-cover reveal">
+  </div>
+</section>
+
+<!-- MAKANAN -->
+<section id="makanan" class="bg-sand/60">
+  <div class="max-w-6xl mx-auto px-6 py-28">
+    <p class="text-sm tracking-[0.25em] uppercase text-clay mb-5 reveal">Menu Makanan</p>
+    <h2 class="font-serif text-4xl md:text-5xl leading-tight max-w-2xl reveal">Tiga yang paling dicari, harga apa adanya.</h2>
+
+    <div class="mt-16 space-y-20">
+      <article class="grid md:grid-cols-2 gap-10 items-center reveal">
+        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=1200&q=80&auto=format&fit=crop" alt="Nasi Rendang Sapi Arunika" class="w-full h-80 object-cover">
+        <div>
+          <p class="font-serif text-clay text-lg">01</p>
+          <h3 class="font-serif text-3xl mt-2">Nasi Rendang Sapi</h3>
+          <p class="mt-4 text-ink/70 leading-relaxed">Rendang sapi dimasak 6 jam sampai bumbu meresap, disajikan dengan nasi pulen, sambal ijo, dan lalapan. Yang ini yang paling sering habis duluan.</p>
+          <p class="mt-5 text-lg">Rp 38rb <span class="text-mute line-through text-base ml-2">Rp 48rb</span></p>
+          <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Nasi%20Rendang%20Sapi" target="_blank" rel="noopener" class="inline-block mt-5 border border-ink px-6 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors">Pesan Ini</a>
+        </div>
+      </article>
+
+      <article class="grid md:grid-cols-2 gap-10 items-center reveal">
+        <div class="md:order-1 order-2">
+          <p class="font-serif text-clay text-lg">02</p>
+          <h3 class="font-serif text-3xl mt-2">Mie Godog Jawa</h3>
+          <p class="mt-4 text-ink/70 leading-relaxed">Mie telur dimasak di atas arang dengan kuah kaldu ayam kampung, telur bebek, dan ebi. Dimasak satu-satu per pesanan, seperti di angkringan aslinya.</p>
+          <p class="mt-5 text-lg">Rp 29rb <span class="text-mute line-through text-base ml-2">Rp 36rb</span></p>
+          <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Mie%20Godog%20Jawa" target="_blank" rel="noopener" class="inline-block mt-5 border border-ink px-6 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors">Pesan Ini</a>
+        </div>
+        <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=1200&q=80&auto=format&fit=crop" alt="Mie Godog Jawa Arunika" class="w-full h-80 object-cover md:order-2 order-1">
+      </article>
+
+      <article class="grid md:grid-cols-2 gap-10 items-center reveal">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80&auto=format&fit=crop" alt="Ayam Bakar Madu Arunika" class="w-full h-80 object-cover">
+        <div>
+          <p class="font-serif text-clay text-lg">03</p>
+          <h3 class="font-serif text-3xl mt-2">Ayam Bakar Madu</h3>
+          <p class="mt-4 text-ink/70 leading-relaxed">Ayam kampung diungkep bumbu kuning, dibakar dengan olesan madu hutan, disajikan dengan sambal terasi dan nasi liwet. Manisnya pas, pedasnya sopan.</p>
+          <p class="mt-5 text-lg">Rp 35rb <span class="text-mute line-through text-base ml-2">Rp 44rb</span></p>
+          <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Ayam%20Bakar%20Madu" target="_blank" rel="noopener" class="inline-block mt-5 border border-ink px-6 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors">Pesan Ini</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MINUMAN & PAKET -->
+<section id="minuman">
+  <div class="max-w-6xl mx-auto px-6 py-28 grid md:grid-cols-2 gap-16">
+    <div class="reveal">
+      <p class="text-sm tracking-[0.25em] uppercase text-clay mb-5">Minuman</p>
+      <h2 class="font-serif text-4xl leading-tight">Pendampingnya.</h2>
+      <dl class="mt-10 space-y-0 text-[15px]">
+        <div class="flex items-baseline justify-between py-4 border-b border-ink/10"><dt>Kopi Tubruk Gula Aren<span class="block text-mute text-sm mt-1">Biji Garut, diseduh pekat, aren asli</span></dt><dd class="font-medium whitespace-nowrap ml-6">Rp 18rb</dd></div>
+        <div class="flex items-baseline justify-between py-4 border-b border-ink/10"><dt>Es Kopi Susu Arunika<span class="block text-mute text-sm mt-1">Double shot, susu segar, aren</span></dt><dd class="font-medium whitespace-nowrap ml-6">Rp 22rb</dd></div>
+        <div class="flex items-baseline justify-between py-4 border-b border-ink/10"><dt>Es Teh Rempah<span class="block text-mute text-sm mt-1">Teh melati, serai, dan jahe bakar</span></dt><dd class="font-medium whitespace-nowrap ml-6">Rp 12rb</dd></div>
+        <div class="flex items-baseline justify-between py-4"><dt>Jus Alpukat Cokelat<span class="block text-mute text-sm mt-1">Alpukat mentega, tanpa pemanis buatan</span></dt><dd class="font-medium whitespace-nowrap ml-6">Rp 22rb</dd></div>
+      </dl>
+    </div>
+    <div class="reveal">
+      <p class="text-sm tracking-[0.25em] uppercase text-clay mb-5">Paket Hemat</p>
+      <h2 class="font-serif text-4xl leading-tight">Buat rame-rame.</h2>
+      <div class="mt-10 space-y-8">
+        <div class="border border-ink/15 p-7">
+          <div class="flex items-baseline justify-between"><h3 class="font-serif text-2xl">Paket Berdua</h3><p class="text-lg">Rp 79rb <span class="text-mute line-through text-sm ml-1">Rp 96rb</span></p></div>
+          <p class="mt-3 text-ink/70 text-[15px] leading-relaxed">2 makanan utama + 2 es teh rempah. Buat makan berdua tanpa mikir.</p>
+          <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Paket%20Berdua" target="_blank" rel="noopener" class="inline-block mt-4 text-clay u-line text-sm font-medium">Pesan Paket Ini</a>
+        </div>
+        <div class="border border-ink/15 p-7">
+          <div class="flex items-baseline justify-between"><h3 class="font-serif text-2xl">Paket Keluarga</h3><p class="text-lg">Rp 149rb <span class="text-mute line-through text-sm ml-1">Rp 185rb</span></p></div>
+          <p class="mt-3 text-ink/70 text-[15px] leading-relaxed">4 makanan utama + 4 minuman + kerupuk & sambal ekstra. Untuk 4–5 orang.</p>
+          <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Paket%20Keluarga" target="_blank" rel="noopener" class="inline-block mt-4 text-clay u-line text-sm font-medium">Pesan Paket Ini</a>
+        </div>
+        <div class="border border-ink/15 p-7">
+          <div class="flex items-baseline justify-between"><h3 class="font-serif text-2xl">Paket Kantoran</h3><p class="text-lg">Rp 349rb <span class="text-mute line-through text-sm ml-1">Rp 420rb</span></p></div>
+          <p class="mt-3 text-ink/70 text-[15px] leading-relaxed">10 nasi kotak (rendang/ayam bakar) + 10 es teh. Pesan H-1, kami antar ke kantormu area Bandung.</p>
+          <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Paket%20Kantoran" target="_blank" rel="noopener" class="inline-block mt-4 text-clay u-line text-sm font-medium">Pesan Paket Ini</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<section class="bg-ink text-cream">
+  <div class="max-w-6xl mx-auto px-6 py-28">
+    <p class="text-sm tracking-[0.25em] uppercase text-cream/60 mb-12 reveal">Kata Mereka</p>
+    <div class="grid md:grid-cols-2 gap-14">
+      <blockquote class="reveal">
+        <p class="font-serif text-2xl leading-snug">"Rendangnya beneran kayak masakan ibu di rumah. Sekarang tiap Jumat kantor kami pesan Paket Kantoran — tinggal klik dari website, nggak pakai antre chat."</p>
+        <footer class="mt-6 text-cream/60 text-sm">Sari Wulandari — Admin kantor, Dago</footer>
+      </blockquote>
+      <blockquote class="reveal">
+        <p class="font-serif text-2xl leading-snug">"Saya nemu Arunika dari Google, lihat menu dan harganya jelas, langsung pesan. Mie godognya juara — kuahnya kerasa kaldu beneran."</p>
+        <footer class="mt-6 text-cream/60 text-sm">Bimo Prasetyo — Pelanggan baru via Google</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- KUNJUNGI -->
+<section id="kunjungi">
+  <div class="max-w-6xl mx-auto px-6 py-28 grid md:grid-cols-2 gap-14">
+    <div class="reveal">
+      <p class="text-sm tracking-[0.25em] uppercase text-clay mb-5">Kunjungi Kami</p>
+      <h2 class="font-serif text-4xl leading-tight">Di Dago, dekat Simpang.</h2>
+      <dl class="mt-10 space-y-5 text-[15px]">
+        <div><dt class="text-mute text-sm">Alamat</dt><dd class="mt-1">Jl. Ir. H. Juanda No. 88, Dago, Bandung</dd></div>
+        <div><dt class="text-mute text-sm">Jam buka</dt><dd class="mt-1">Setiap hari 08.00–22.00 WIB (dapur tutup 21.30)</dd></div>
+        <div><dt class="text-mute text-sm">Pesan & reservasi</dt><dd class="mt-1">WhatsApp 0821-1748-8321</dd></div>
+      </dl>
+    </div>
+    <div class="reveal flex flex-col justify-center">
+      <p class="text-ink/70 leading-relaxed">Untuk acara di atas 20 orang atau pesanan kantoran rutin, ceritakan kebutuhanmu lewat WhatsApp — kami susun menu dan harganya khusus, tanpa biaya konsultasi.</p>
+      <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20tanya%20pesanan%20acara%2Fkantoran" target="_blank" rel="noopener" class="mt-7 self-start bg-clay hover:bg-clayd text-cream px-7 py-3.5 rounded-full text-sm font-medium transition-colors">Chat untuk Acara & Kantoran</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-ink/10">
+  <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-4 text-sm text-mute">
+    <p>ARUNIKA — Kopi & Dapur Nusantara, Bandung</p>
+    <p>Foto: Unsplash (1555396273, 1517248135467, 1565557623262, 1585032226651, 1504674900247)</p>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
