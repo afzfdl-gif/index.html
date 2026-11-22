@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Paid First — US & UK Freelancer Late-Payment Calculator | B&Z</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body {
+    background-color: #09090b;
+    background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.15), transparent);
+    color: #fafafa;
+  }
+  /* Custom Range Slider (shadcn style) */
+  input[type=range] {
+    -webkit-appearance: none;
+    background: transparent;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 999px;
+    background: #27272a;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: #10b981;
+    border: 2px solid #09090b;
+    box-shadow: 0 0 0 2px #10b981;
+    margin-top: -6px;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+  input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+  /* Magic UI Shimmer Button */
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .btn-shimmer {
+    background: linear-gradient(110deg, #059669 45%, #34d399 50%, #059669 55%);
+    background-size: 200% 100%;
+    animation: shimmer 3.5s infinite linear;
+  }
+</style>
+</head>
+<body class="min-h-screen antialiased selection:bg-emerald-500/30 selection:text-emerald-200 flex flex-col items-center justify-center p-4 sm:p-6">
+
+  <main class="w-full max-w-3xl">
+    <!-- Top Pill Badge -->
+    <div class="flex justify-center mb-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/90 border border-zinc-800 text-xs font-medium text-zinc-300 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>FREE B2B ENFORCEMENT TOOL • US &amp; UK</span>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div class="text-center mb-7">
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
+        Get Paid <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">First</span>
+      </h1>
+      <p id="modeDesc" class="text-sm text-zinc-400 max-w-xl mx-auto leading-relaxed">
+        UK B2B Statutory Calculator: 8% + Bank of England base rate + fixed debt recovery compensation (£40–£100) under the Late Payment of Commercial Debts Act 1998.
+      </p>
+    </div>
+
+    <!-- Main Bento Card -->
+    <div class="bg-zinc-950/80 backdrop-blur-xl border border-zinc-800/90 rounded-2xl shadow-2xl overflow-hidden">
+      
+      <!-- Region Switcher Bar -->
+      <div class="p-4 sm:px-6 border-b border-zinc-800/80 bg-zinc-900/40 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span class="text-xs font-semibold uppercase tracking-wider text-zinc-400">Select Jurisdiction</span>
+        <div class="grid grid-cols-2 p-1 bg-zinc-900 border border-zinc-800 rounded-xl w-full sm:w-auto">
+          <button id="btnUK" onclick="setRegion('UK')" class="px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-emerald-600 text-white shadow">
+            🇬🇧 UK — GBP (£)
+          </button>
+          <button id="btnUS" onclick="setRegion('US')" class="px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-zinc-400 hover:text-white">
+            🇺🇸 US — USD ($)
+          </button>
+        </div>
+      </div>
+
+      <!-- Calculator Grid -->
+      <div class="p-5 sm:p-7 grid grid-cols-1 md:grid-cols-12 gap-6">
+        
+        <!-- Left Controls (7 cols) -->
+        <div class="md:col-span-7 space-y-5">
+          <!-- Invoice Total -->
+          <div>
+            <div class="flex justify-between items-center mb-1.5">
+              <label for="amount" class="text-xs font-semibold uppercase tracking-wider text-zinc-400">Project / Invoice Total</label>
+              <span class="text-xs font-mono text-zinc-500" id="currCode">GBP</span>
+            </div>
+            <div class="relative">
+              <span id="currSymbol" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-400 font-mono font-bold">£</span>
+              <input id="amount" type="number" min="0" step="100" value="2500" oninput="calc()"
+                class="w-full pl-8 pr-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-white font-mono text-lg font-bold focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition">
+            </div>
+          </div>
+
+          <!-- Upfront Deposit Slider -->
+          <div class="bg-zinc-900/50 border border-zinc-800/70 rounded-xl p-3.5">
+            <div class="flex justify-between items-center mb-2">
+              <label for="deposit" class="text-xs font-semibold uppercase tracking-wider text-zinc-400">Upfront Deposit %</label>
+              <span id="depBadge" class="px-2 py-0.5 text-xs font-mono font-bold rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">50%</span>
+            </div>
+            <input id="deposit" type="range" min="0" max="100" step="5" value="50" oninput="calc()" class="w-full">
+            <div class="flex justify-between text-[10px] font-mono text-zinc-500 mt-1">
+              <span>0% (High Risk)</span>
+              <span>50% (Standard)</span>
+              <span>100%</span>
+            </div>
+          </div>
+
+          <!-- Days Overdue Slider -->
+          <div class="bg-zinc-900/50 border border-zinc-800/70 rounded-xl p-3.5">
+            <div class="flex justify-between items-center mb-2">
+              <label for="days" class="text-xs font-semibold uppercase tracking-wider text-zinc-400">Days Overdue (Balance)</label>
+              <span id="daysBadge" class="px-2 py-0.5 text-xs font-mono font-bold rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">30 Days</span>
+            </div>
+            <input id="days" type="range" min="0" max="90" step="1" value="30" oninput="calc()" class="w-full">
+            <div class="flex justify-between text-[10px] font-mono text-zinc-500 mt-1">
+              <span>0d (Pre-start)</span>
+              <span>14d</span>
+              <span>30d</span>
+              <span>60d</span>
+              <span>90d</span>
+            </div>
+          </div>
+
+          <!-- UK BoE Base Rate -->
+          <div id="baseWrap" class="flex items-center justify-between bg-zinc-900/50 border border-zinc-800/70 rounded-xl p-3.5">
+            <div>
+              <label for="base" class="text-xs font-semibold uppercase tracking-wider text-zinc-300 block">UK BoE Base Rate %</label>
+              <span class="text-[11px] text-zinc-500">Added on top of 8% statutory rate</span>
+            </div>
+            <input id="base" type="number" min="0" step="0.25" value="3.75" oninput="calc()"
+              class="w-24 px-3 py-1.5 bg-zinc-950 border border-zinc-800 rounded-lg text-right font-mono text-sm font-bold text-white focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+
+        <!-- Right Output Summary (5 cols) -->
+        <div class="md:col-span-5 flex flex-col justify-between bg-zinc-900/70 border border-zinc-800 rounded-xl p-5">
+          <div>
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Enforcement Breakdown</span>
+            <div class="mt-4 space-y-3 text-sm">
+              <div class="flex justify-between items-center">
+                <span class="text-zinc-400">Upfront Deposit</span>
+                <span id="outDeposit" class="font-mono font-semibold text-emerald-400">£1,250.00</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-zinc-400">Balance at Risk</span>
+                <span id="outBalance" class="font-mono font-semibold text-zinc-200">£1,250.00</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span id="feeLabel" class="text-zinc-400">Statutory Interest</span>
+                <span id="outFee" class="font-mono font-semibold text-amber-400">+£12.07</span>
+              </div>
+              <div id="compRow" class="flex justify-between items-center">
+                <span class="text-zinc-400">Fixed Compensation</span>
+                <span id="outComp" class="font-mono font-semibold text-amber-400">+£70.00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-zinc-800">
+            <span class="text-xs text-zinc-400 block mb-1">Total Legally Owed Now</span>
+            <div id="outTotal" class="text-3xl font-extrabold font-mono tracking-tight text-white">£1,332.07</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Stage Alert -->
+      <div class="px-5 sm:px-7 pb-5">
+        <div id="stageBox" class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-start gap-3">
+          <span class="text-amber-400 text-base leading-none mt-0.5">⚡</span>
+          <p id="stage" class="text-xs sm:text-sm font-medium text-amber-200 leading-snug"></p>
+        </div>
+      </div>
+
+      <!-- 1-Click Copy Clause Box -->
+      <div class="px-5 sm:px-7 pb-6">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-zinc-400">1-Click Invoice Payment Term</span>
+            <button id="copyBtn" onclick="copyFooter()" class="px-3 py-1 rounded-lg bg-zinc-800 hover:bg-emerald-600 text-zinc-200 hover:text-white text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer">
+              <span>Copy Clause</span>
+            </button>
+          </div>
+          <p id="invFooter" class="text-xs font-mono text-zinc-300 leading-relaxed bg-zinc-950/70 p-3 rounded-lg border border-zinc-800/80"></p>
+        </div>
+      </div>
+
+      <!-- Primary Gumroad CTA -->
+      <div class="px-5 sm:px-7 pb-7">
+        <a href="https://bangzrul.gumroad.com/l/getpaidfirst" target="_blank" rel="noopener"
+          class="btn-shimmer block w-full text-center py-3.5 px-5 rounded-xl font-bold text-sm sm:text-base text-white shadow-lg shadow-emerald-950/50 hover:opacity-95 transition">
+          Unlock Pro Enforcement Kit ($49) — 7 Escalation Emails + 15 Clauses →
+        </a>
+        <p id="legalNote" class="text-[11px] text-zinc-500 text-center mt-3"></p>
+      </div>
+    </div>
+
+    <!-- Footer Brand -->
+    <footer class="mt-6 text-center text-xs text-zinc-500">
+      Built by <strong class="text-zinc-300">B&amp;Z</strong> • Support: <a href="mailto:zruldek@gmail.com" class="text-emerald-400 hover:underline">zruldek@gmail.com</a> • IG: <a href="https://instagram.com/fzrlprtm" target="_blank" rel="noopener" class="text-emerald-400 hover:underline">@fzrlprtm</a>
+    </footer>
+  </main>
+
+<script>
+let region = 'UK';
+
+function setRegion(r) {
+  region = r;
+  const btnUK = document.getElementById('btnUK');
+  const btnUS = document.getElementById('btnUS');
+  if (r === 'UK') {
+    btnUK.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-emerald-600 text-white shadow';
+    btnUS.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-zinc-400 hover:text-white';
+    document.getElementById('currSymbol').textContent = '£';
+    document.getElementById('currCode').textContent = 'GBP';
+    document.getElementById('baseWrap').style.display = 'flex';
+    document.getElementById('compRow').style.display = 'flex';
+    document.getElementById('modeDesc').textContent = 'UK B2B Statutory Calculator: 8% + Bank of England base rate + fixed debt recovery compensation (£40–£100) under the Late Payment of Commercial Debts Act 1998.';
+  } else {
+    btnUS.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-emerald-600 text-white shadow';
+    btnUK.className = 'px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-zinc-400 hover:text-white';
+    document.getElementById('currSymbol').textContent = '$';
+    document.getElementById('currCode').textContent = 'USD';
+    document.getElementById('baseWrap').style.display = 'none';
+    document.getElementById('compRow').style.display = 'none';
+    document.getElementById('modeDesc').textContent = 'US Commercial Mode: Enforces 50% upfront deposit milestone and standard 1.5%/month (18%/yr) contractual late fee on overdue balances after Net 14.';
+  }
+  calc();
+}
+
+function fmt(n) {
+  const c = region === 'UK' ? '£' : '$';
+  return c + n.toLocaleString(region === 'UK' ? 'en-GB' : 'en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function calc() {
+  const amt  = parseFloat(document.getElementById('amount').value)  || 0;
+  const depP = parseFloat(document.getElementById('deposit').value) || 0;
+  const days = parseFloat(document.getElementById('days').value)    || 0;
+  const base = parseFloat(document.getElementById('base').value)    || 0;
+
+  document.getElementById('depBadge').textContent = depP + '%';
+  document.getElementById('daysBadge').textContent = days + (days === 1 ? ' Day' : ' Days');
+
+  const deposit = amt * depP / 100;
+  const balance = amt - deposit;
+  let fee = 0, comp = 0;
+
+  if (region === 'UK') {
+    const annual = 8 + base;
+    fee = balance * (annual / 100) / 365 * days;
+    comp = balance <= 0 ? 0 : (balance < 1000 ? 40 : (balance < 10000 ? 70 : 100));
+    document.getElementById('feeLabel').textContent = `Interest (${annual.toFixed(2)}%/yr)`;
+    document.getElementById('outComp').textContent = '+' + fmt(comp);
+    document.getElementById('invFooter').textContent =
+      `"Payment due Net 14. Overdue commercial invoices incur statutory interest at ${annual.toFixed(2)}% per annum (8% + BoE base rate) plus £${comp || 40} fixed debt recovery compensation under the Late Payment of Commercial Debts (Interest) Act 1998. Source files release upon full payment."`;
+    document.getElementById('legalNote').textContent =
+      'Applies to UK B2B commercial transactions where no custom rate is set. Estimate only — not formal legal advice.';
+  } else {
+    fee = balance * 0.015 * (days / 30);
+    document.getElementById('feeLabel').textContent = 'Late Fee (1.5%/mo)';
+    document.getElementById('invFooter').textContent =
+      '"Payment due Net 14. A 1.5% monthly late fee applies to overdue balances, and all work pauses automatically at 7 days past due. Final source files and IP transfer only upon cleared payment in full."';
+    document.getElementById('legalNote').textContent =
+      'Standard 1.5%/mo commercial rate — verify your state statutory cap before enforcing. Estimate only — not formal legal advice.';
+  }
+
+  const total = balance + fee + comp;
+  document.getElementById('outDeposit').textContent = fmt(deposit);
+  document.getElementById('outBalance').textContent = fmt(balance);
+  document.getElementById('outFee').textContent = '+' + fmt(fee);
+  document.getElementById('outTotal').textContent = fmt(total);
+
+  document.getElementById('stage').textContent =
+    days <= 0  ? `STAGE 0 — Hold all work. Collect the ${fmt(deposit)} deposit before opening files.` :
+    days <= 7  ? 'STAGE 1 (Day 1–7) — Send Email #1 (Friendly Reminder) with invoice attached.' :
+    days <= 14 ? 'STAGE 2 (Day 8–14) — Send Email #2/#3 (Formal Notice & Pause All Work).' :
+    days <= 30 ? 'STAGE 3 (Day 15–30) — Send Email #4/#5 (Final Demand + Enforce Late Fee).' :
+                 'STAGE 4 (Day 31+) — Send Email #7 (Letter Before Action / Small Claims).';
+}
+
+function copyFooter() {
+  const txt = document.getElementById('invFooter').textContent.replace(/^"|"$/g, '');
+  navigator.clipboard.writeText(txt);
+  const btn = document.getElementById('copyBtn');
+  btn.innerHTML = '<span>✓ Copied!</span>';
+  btn.classList.add('bg-emerald-600', 'text-white');
+  setTimeout(() => {
+    btn.innerHTML = '<span>Copy Clause</span>';
+    btn.classList.remove('bg-emerald-600', 'text-white');
+  }, 1800);
+}
+
+calc();
+</script>
+</body>
+</html>
