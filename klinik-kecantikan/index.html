@@ -28,9 +28,14 @@ tailwind.config = { theme: { extend: {
   .faq-i{transition:transform .3s}
   a.u-line{background-image:linear-gradient(currentColor,currentColor);background-size:0% 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .3s ease}
   a.u-line:hover{background-size:100% 1px}
+  .wm-pattern{position:fixed;inset:0;z-index:60;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Ctext x='40' y='280' font-family='Georgia,serif' font-size='44' font-weight='bold' fill='%23211D19' fill-opacity='0.055' transform='rotate(-24 260 260)'%3EDEMO — B&amp;Z%3C/text%3E%3C/svg%3E")}
+  .wm-badge{position:fixed;left:18px;bottom:18px;z-index:61;background:rgba(33,29,25,.88);color:#F6F2EC;font-size:12.5px;letter-spacing:.04em;padding:9px 16px;border-radius:999px;backdrop-filter:blur(4px)}
+  .wm-badge b{color:#E8BEA0;font-weight:600}
 </style>
 </head>
 <body class="antialiased font-light">
+<div class="wm-pattern" aria-hidden="true"></div>
+<div class="wm-badge">DEMO · <b>B&amp;Z Web Studio</b> · @bz_devweb</div>
 
 <!-- ═══ NAV ═══ -->
 <header class="fixed top-0 inset-x-0 z-50 bg-bone/90 backdrop-blur-sm">
