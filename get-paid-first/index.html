@@ -1,212 +1,911 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get Paid First — 30-Sec Contract & Fee Engine</title>
-<meta name="description" content="Free 30-second contract & fee engine for US & UK freelancers: deposit, statutory interest / late fee, fixed compensation, total legally owed — plus a ready-to-send payment-protection contract.">
-<meta property="og:title" content="Get Paid First — 30-Sec Contract & Fee Engine">
-<meta property="og:description" content="Never start a project at $0. Generate the contract, see what a late client legally owes you, export as PDF.">
-<meta property="og:type" content="website">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get Paid First — US & UK Freelance Contract & Payment Protection Generator</title>
+<meta name="description" content="Generate a freelance contract with deposit, revision cap, IP retention and statutory late-fee clauses in 30 seconds. Free for US and UK freelancers.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+          serif: ['Newsreader', 'Georgia', 'serif'],
+        }
+      }
+    }
+  }
+</script>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  :root{--bg:#0b0f17;--card:#101827;--tile:#0d1420;--line:#22304a;--ink:#e8edf5;--mut:#8fa1b8;--teal:#2dd4bf;--emer:#10b981;--amber:#fbbf24}
-  body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;display:flex;justify-content:center;padding:28px 16px 44px}
-  .wrap{max-width:980px;width:100%}
-  .brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-  .mark{width:34px;height:34px;border-radius:9px;background:var(--emer);display:flex;align-items:center;justify-content:center;font-weight:900;color:#04120c;font-size:18px}
-  .brand b{letter-spacing:.14em;font-size:13px}
-  .brand span{color:var(--mut);font-size:12px;display:block}
-  h1{font-size:33px;line-height:1.12;font-weight:850;letter-spacing:-.01em}
-  h1 em{font-style:normal;color:var(--teal)}
-  .sub{color:var(--mut);font-size:14px;line-height:1.65;margin:10px 0 22px;max-width:720px}
-  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
-  @media(max-width:760px){.cols{grid-template-columns:1fr}}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
-  .card h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-bottom:16px}
-  .toggle{display:flex;gap:8px;margin-bottom:18px}
-  .toggle button{flex:1;padding:11px;border-radius:11px;border:1px solid var(--line);background:var(--tile);color:#cbd5e1;font-weight:700;cursor:pointer;font-size:14px}
-  .toggle button.active{background:#0d9488;border-color:#0d9488;color:#fff}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  @media(max-width:520px){.grid{grid-template-columns:1fr}}
-  label{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.07em;font-weight:700;display:block}
-  input{width:100%;margin-top:6px;padding:12px;background:var(--tile);border:1px solid var(--line);border-radius:11px;color:#fff;font-size:16px}
-  input:focus{outline:2px solid #0d9488;border-color:transparent}
-  .mt{margin-top:12px}
-  .bento{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .tile{background:var(--tile);border:1px solid var(--line);border-radius:13px;padding:14px 16px}
-  .tile small{display:block;color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:5px}
-  .tile b{font-size:19px;font-variant-numeric:tabular-nums}
-  .tile.total{grid-column:1/-1;background:linear-gradient(135deg,#0d2b23,#0d1f2a);border-color:#14532d}
-  .tile.total b{font-size:34px;color:var(--teal)}
-  .stage{margin-top:12px;padding:12px 14px;border-radius:11px;font-weight:700;font-size:13.5px;line-height:1.55;border:1px solid var(--line);background:#16202f;color:var(--amber)}
-  .rec{margin-top:10px;padding:12px 14px;border-radius:11px;background:#0d1a16;border:1px solid #14532d;color:#a7f3d0;font-size:13.5px;line-height:1.55}
-  .rec b{color:#fff}
-  .contract{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
-  .contract h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-bottom:12px}
-  .ctext{background:var(--tile);border:1px dashed #33507a;border-radius:12px;padding:16px 18px;font-size:13.5px;line-height:1.75;color:#dbe6f3;white-space:pre-wrap}
-  .btnrow{display:flex;gap:10px;margin-top:12px}
-  @media(max-width:520px){.btnrow{flex-direction:column}}
-  .btn{flex:1;padding:13px;border:none;border-radius:11px;font-weight:800;font-size:14.5px;cursor:pointer;text-align:center}
-  .btn.copy{background:#2563eb;color:#fff}
-  .btn.pdf{background:#1e293b;color:#e8edf5;border:1px solid var(--line)}
-  .btn.done{background:var(--emer);color:#04120c}
-  .cta{display:block;text-align:center;margin-top:16px;background:var(--emer);color:#04120c;text-decoration:none;font-weight:850;padding:14px 16px;border-radius:12px;font-size:15px}
-  .cta small{display:block;font-weight:600;font-size:12px;opacity:.75;margin-top:2px}
-  .fine{color:#5b6b82;font-size:11.5px;line-height:1.6;margin-top:14px;text-align:center}
-  .hidden{display:none}
-  @media print{
-    body{background:#fff;padding:0;display:block}
-    .no-print{display:none!important}
-    .print-area{color:#111}
-    .contract{box-shadow:none;border:none;padding:0}
-    .ctext{border:1px solid #999;color:#111;background:#fff}
+  :root {
+    --bg: #070709;
+    --panel: rgba(17, 17, 22, 0.78);
+    --line: rgba(255, 255, 255, 0.08);
+    --emerald: #10b981;
+    --gold: #f5c451;
+  }
+
+  html, body {
+    background-color: var(--bg);
+    color: #f4f4f5;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Ambient Mesh & Grid Background */
+  .bg-grid {
+    background-size: 36px 36px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+    mask-image: radial-gradient(ellipse 85% 70% at 50% 0%, #000 55%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 0%, #000 55%, transparent 100%);
+  }
+
+  @keyframes floatGlow {
+    0%, 100% { transform: translate(-50%, 0px) scale(1); opacity: 0.45; }
+    50% { transform: translate(-48%, 18px) scale(1.06); opacity: 0.65; }
+  }
+  .ambient-orb {
+    animation: floatGlow 9s ease-in-out infinite;
+  }
+
+  /* Entrance Stagger Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .anim-enter {
+    opacity: 0;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .delay-1 { animation-delay: 0.08s; }
+  .delay-2 { animation-delay: 0.16s; }
+  .delay-3 { animation-delay: 0.24s; }
+
+  /* Spotlight Bento Card */
+  .bento-card {
+    position: relative;
+    background: var(--panel);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .bento-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 0%), rgba(16, 185, 129, 0.32), transparent 45%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .bento-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Inputs & Interactive Sliders */
+  .field {
+    width: 100%;
+    background: rgba(9, 9, 12, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 10px;
+    padding: 0.62rem 0.85rem;
+    color: #fafafa;
+    font-size: 0.9rem;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .field:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+  .field:focus {
+    outline: none;
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16);
+    background: #0c0c10;
+  }
+
+  /* Custom Range Slider with Dynamic Fill */
+  input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: #222229;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #10b981;
+    border: 2.5px solid #09090b;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.6), 0 4px 10px rgba(0,0,0,0.5);
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease;
+  }
+  input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.22);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.35), 0 4px 12px rgba(0,0,0,0.6);
+  }
+  input[type=range]:active::-webkit-slider-thumb {
+    transform: scale(1.1);
+  }
+
+  /* Sliding Segmented Pill */
+  .seg-wrap {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #0b0b0f;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 11px;
+    padding: 4px;
+  }
+  .seg-indicator {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(16, 185, 129, 0.35);
+    transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 0;
+  }
+  .seg-wrap[data-active="us"] .seg-indicator {
+    transform: translateX(100%);
+  }
+  .seg-btn {
+    position: relative;
+    z-index: 1;
+    padding: 0.52rem 0.6rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: #9ca3af;
+    transition: color 0.25s ease;
+    cursor: pointer;
+  }
+  .seg-btn[aria-pressed="true"] {
+    color: #ffffff;
+  }
+
+  /* Action Buttons & Gold Shimmer CTA */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.65rem 1rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(24, 24, 30, 0.9);
+    color: #f4f4f5;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-ghost:hover {
+    background: rgba(36, 36, 45, 0.95);
+    border-color: rgba(255, 255, 255, 0.22);
+    transform: translateY(-1px);
+  }
+  .btn-ghost:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.78rem 1.2rem;
+    border-radius: 11px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    background: linear-gradient(135deg, #f5c451 0%, #eab308 100%);
+    color: #181100;
+    box-shadow: 0 6px 24px -4px rgba(245, 196, 81, 0.38);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+  .btn-shimmer:hover {
+    transform: translateY(-1.5px);
+    box-shadow: 0 10px 28px -4px rgba(245, 196, 81, 0.52);
+  }
+  .btn-shimmer:active {
+    transform: translateY(0) scale(0.985);
+  }
+  .btn-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.65) 50%, transparent 70%);
+    transform: translateX(-100%);
+    animation: shimmerSweep 2.8s infinite;
+  }
+  @keyframes shimmerSweep {
+    100% { transform: translateX(100%); }
+  }
+
+  /* Live Highlight Flash on Contract Clause Update */
+  @keyframes clauseHighlight {
+    0% { background-color: rgba(16, 185, 129, 0.22); }
+    100% { background-color: transparent; }
+  }
+  .clause-flash {
+    animation: clauseHighlight 0.65s ease-out;
+    border-radius: 4px;
+  }
+
+  /* Realistic Legal Paper Sheet */
+  .paper-sheet {
+    position: relative;
+    background: #fcfcfb;
+    color: #18181b;
+    font-family: 'Newsreader', Georgia, serif;
+    line-height: 1.65;
+    border-radius: 12px;
+    padding: 2.5rem 2.75rem;
+    font-size: 0.96rem;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.2),
+      0 20px 50px -12px rgba(0,0,0,0.75),
+      0 0 0 1px rgba(255,255,255,0.12);
+    transition: transform 0.25s ease;
+  }
+  .paper-sheet h2 {
+    font-size: 1.42rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -0.01em;
+    color: #09090b;
+    margin-bottom: 0.15rem;
+  }
+  .paper-sheet .sub {
+    text-align: center;
+    color: #52525b;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding-bottom: 1.1rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1.5px solid #e4e4e7;
+  }
+  .paper-sheet h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #18181b;
+    margin: 1.15rem 0 0.3rem;
+    font-weight: 700;
+  }
+  .paper-sheet p {
+    color: #27272a;
+  }
+  .paper-sheet .dyn {
+    font-weight: 600;
+    color: #09090b;
+    border-bottom: 1px dashed #a1a1aa;
+    padding: 0 2px;
+  }
+  .paper-sheet .sig {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.25rem;
+    margin-top: 2.2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.76rem;
+    color: #52525b;
+  }
+  .paper-sheet .sig div {
+    border-top: 1px solid #3f3f46;
+    padding-top: 0.45rem;
+  }
+  .paper-sheet .foot {
+    margin-top: 1.6rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e4e4e7;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: #71717a;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Escalation Stage Bars */
+  .stage-bar {
+    height: 7px;
+    flex: 1;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .stage-bar.on-1 { background: #34d399; box-shadow: 0 0 10px rgba(52, 211, 153, 0.4); }
+  .stage-bar.on-2 { background: #fbbf24; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); }
+  .stage-bar.on-3 { background: #f97316; box-shadow: 0 0 10px rgba(249, 115, 22, 0.45); }
+  .stage-bar.on-4 { background: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.5); }
+
+  /* Animated Modal */
+  dialog {
+    background: #111116;
+    color: #f4f4f5;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    padding: 0;
+    max-width: 470px;
+    width: 92%;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
+  }
+  dialog[open] {
+    animation: modalPop 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes modalPop {
+    from { opacity: 0; transform: scale(0.94) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+  }
+
+  /* Toast Notification */
+  .toast {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    background: #10b981;
+    color: #042f2e;
+    font-weight: 700;
+    font-size: 0.84rem;
+    padding: 0.7rem 1.1rem;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(16, 185, 129, 0.35);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translateY(120%);
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 50;
+  }
+  .toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  @media print {
+    body * { visibility: hidden; }
+    #paper, #paper * { visibility: visible; }
+    #paper {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      box-shadow: none;
+      padding: 0;
+      background: #fff;
+    }
+    .paper-sheet .dyn { border-bottom: none; }
+    html, body { background: #fff; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ambient-orb, .btn-shimmer::after, .anim-enter { animation: none !important; opacity: 1 !important; }
   }
 </style>
 </head>
-<body>
-<div class="wrap">
-  <div class="brand no-print">
-    <div class="mark">✓</div>
-    <div><b>GET PAID FIRST</b><span>by B&amp;Z — payment protection for freelancers</span></div>
-  </div>
+<body class="min-h-screen relative">
 
-  <h1 class="no-print">The 30-second <em>Contract &amp; Fee Engine.</em></h1>
-  <p class="sub no-print">Fill in four numbers. Get a payment-protection contract you can send today — and see exactly what a late client legally owes you. US mode: contract late fee 1.5%/month. UK mode: statutory interest 8% + Bank of England base rate, plus fixed compensation under the Late Payment of Commercial Debts (Interest) Act 1998.</p>
+  <!-- Ambient Grid & Glowing Orb -->
+  <div class="fixed inset-0 bg-grid pointer-events-none z-0"></div>
+  <div class="fixed top-[-140px] left-1/2 w-[780px] h-[340px] rounded-full bg-emerald-500/20 blur-[120px] pointer-events-none ambient-orb z-0"></div>
 
-  <div class="cols">
-    <div class="card no-print">
-      <h2>Your numbers</h2>
-      <div class="toggle">
-        <button id="btnUS" onclick="setRegion('US')">🇺🇸 US — USD $</button>
-        <button id="btnUK" class="active" onclick="setRegion('UK')">🇬🇧 UK — GBP £</button>
+  <!-- Top Navigation -->
+  <header class="relative z-10 border-b border-white/[0.07] bg-black/40 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-zinc-950 font-extrabold text-sm shadow-lg shadow-emerald-500/20">
+          B&amp;Z
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-bold text-base sm:text-lg tracking-tight text-white">Get Paid First</h1>
+            <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              30-Sec Contract &amp; Fee Engine
+            </span>
+          </div>
+        </div>
       </div>
-      <div class="grid">
-        <label>Project / Invoice Total<input id="amount" type="number" min="0" step="50" value="2500" oninput="calc()"></label>
-        <label>Upfront Deposit %<input id="deposit" type="number" min="0" max="100" step="5" value="50" oninput="calc()"></label>
-        <label>Days Overdue (balance)<input id="days" type="number" min="0" step="1" value="30" oninput="calc()"></label>
-        <label id="baseWrap">UK Base Rate % (UK only)<input id="base" type="number" min="0" step="0.25" value="4.00" oninput="calc()"></label>
-      </div>
-      <label class="mt">Your Name / Business<input id="fname" type="text" placeholder="e.g. Alex Studio" oninput="calc()"></label>
-      <label class="mt">Client Name<input id="cname" type="text" placeholder="e.g. Client Ltd" oninput="calc()"></label>
-      <label class="mt">Project Description<input id="proj" type="text" placeholder="e.g. Brand identity design" oninput="calc()"></label>
-    </div>
 
-    <div class="card">
-      <h2>Live Enforcement Summary</h2>
-      <div class="bento">
-        <div class="tile total"><small>Total legally owed now</small><b id="outTotal">—</b></div>
-        <div class="tile"><small>Deposit secured upfront</small><b id="outDep">—</b></div>
-        <div class="tile"><small>Balance at risk</small><b id="outBal">—</b></div>
-        <div class="tile"><small id="feeLabel">Interest / late fee</small><b id="outFee">—</b></div>
-        <div class="tile" id="compTile"><small>Fixed compensation</small><b id="outComp">—</b></div>
-      </div>
-      <div class="stage" id="stage"></div>
-      <div class="rec no-print" id="rec"></div>
+      <a href="https://bangzrul.gumroad.com/l/getpaidfirst" target="_blank" rel="noopener" class="btn-shimmer text-xs sm:text-sm py-2 px-3.5">
+        <span>Unlock Pro Kit ($49)</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </a>
     </div>
-  </div>
+  </header>
 
-  <div class="contract print-area">
-    <h2 class="no-print">Your payment-protection contract — ready to send</h2>
-    <div class="ctext" id="contract"></div>
-    <div class="btnrow no-print">
-      <button class="btn copy" id="copyBtn" onclick="copyText()">Copy Text</button>
-      <button class="btn pdf" onclick="window.print()">Export PDF</button>
+  <!-- Main Workspace -->
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-6 grid lg:grid-cols-[415px_1fr] gap-6 items-start">
+
+    <!-- LEFT PANEL: INTERACTIVE CONTROLS -->
+    <section class="bento-card p-5 sm:p-6 space-y-5 lg:sticky lg:top-5 anim-enter delay-1" aria-label="Contract controls">
+      
+      <!-- Jurisdiction Switcher -->
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-semibold uppercase tracking-wider text-zinc-400">1. Legal Jurisdiction</span>
+          <span id="lawTag" class="text-[11px] font-mono text-emerald-400">UK Act 1998</span>
+        </div>
+        <div id="segWrap" class="seg-wrap" data-active="uk" role="group">
+          <div class="seg-indicator"></div>
+          <button id="jUK" class="seg-btn" aria-pressed="true" type="button">🇬🇧 UK — GBP (£)</button>
+          <button id="jUS" class="seg-btn" aria-pressed="false" type="button">🇺🇸 US — USD ($)</button>
+        </div>
+        <p id="jNote" class="text-xs text-zinc-400 mt-2.5 leading-relaxed"></p>
+      </div>
+
+      <!-- Parties & Scope -->
+      <div class="space-y-3 pt-1">
+        <span class="text-xs font-semibold uppercase tracking-wider text-zinc-400 block">2. Project &amp; Parties</span>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="fName" class="block text-[11px] text-zinc-400 mb-1">Your Studio / Name</label>
+            <input id="fName" class="field" placeholder="Acme Studio" autocomplete="organization">
+          </div>
+          <div>
+            <label for="cName" class="block text-[11px] text-zinc-400 mb-1">Client Name</label>
+            <input id="cName" class="field" placeholder="Client Ltd" autocomplete="off">
+          </div>
+        </div>
+        <div>
+          <label for="scope" class="block text-[11px] text-zinc-400 mb-1">Deliverables / Scope Title</label>
+          <input id="scope" class="field" placeholder="Brand identity &amp; website design">
+        </div>
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label for="fee" class="text-[11px] text-zinc-400">Total Project Fee</label>
+            <span id="curSym" class="text-xs font-mono font-bold text-emerald-400">(£)</span>
+          </div>
+          <input id="fee" type="number" min="0" step="100" value="3000" class="field font-mono font-bold text-base">
+        </div>
+      </div>
+
+      <!-- Protection Sliders -->
+      <div class="space-y-4 pt-2 border-t border-white/[0.07]">
+        <span class="text-xs font-semibold uppercase tracking-wider text-zinc-400 block">3. Payment &amp; Scope Guards</span>
+        
+        <div class="bg-zinc-950/60 border border-white/[0.06] rounded-xl p-3.5">
+          <div class="flex justify-between items-center mb-2">
+            <label for="dep" class="text-xs font-medium text-zinc-300">Upfront Deposit Lock</label>
+            <span id="depOut" class="px-2 py-0.5 rounded-md text-xs font-mono font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/25"></span>
+          </div>
+          <input id="dep" type="range" min="10" max="100" step="5" value="30">
+        </div>
+
+        <div class="bg-zinc-950/60 border border-white/[0.06] rounded-xl p-3.5">
+          <div class="flex justify-between items-center mb-2">
+            <label for="rev" class="text-xs font-medium text-zinc-300">Max Revision Rounds</label>
+            <span id="revOut" class="px-2 py-0.5 rounded-md text-xs font-mono font-bold bg-indigo-500/15 text-indigo-300 border border-indigo-500/25"></span>
+          </div>
+          <input id="rev" type="range" min="1" max="5" step="1" value="2">
+        </div>
+
+        <div id="baseWrap" class="bg-zinc-950/60 border border-white/[0.06] rounded-xl p-3.5">
+          <div class="flex justify-between items-center mb-1.5">
+            <label for="base" class="text-xs font-medium text-zinc-300">BoE Base Rate (%)</label>
+            <span class="text-[11px] font-mono text-zinc-500">+ 8% Statutory</span>
+          </div>
+          <input id="base" type="number" min="0" step="0.25" value="4.00" class="field font-mono text-sm">
+        </div>
+      </div>
+
+      <!-- Overdue Simulator -->
+      <div class="pt-3 border-t border-white/[0.07]">
+        <div class="bg-amber-500/[0.06] border border-amber-500/20 rounded-xl p-3.5">
+          <div class="flex justify-between items-center mb-2">
+            <label for="days" class="text-xs font-semibold text-amber-200">Late-Payment Simulator</label>
+            <span id="dayOut" class="px-2 py-0.5 rounded-md text-xs font-mono font-bold bg-amber-500/20 text-amber-300"></span>
+          </div>
+          <input id="days" type="range" min="0" max="90" step="1" value="0">
+          <div class="flex justify-between text-[10px] font-mono text-zinc-500 mt-1.5">
+            <span>0d (On Time)</span>
+            <span>14d</span>
+            <span>30d</span>
+            <span>60d</span>
+            <span>90d</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Export & Upgrade Buttons -->
+      <div class="space-y-2.5 pt-1">
+        <div class="grid grid-cols-2 gap-2.5">
+          <button id="copyBtn" class="btn-ghost" type="button">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <span id="copyBtnTxt">Copy Text</span>
+          </button>
+          <button id="printBtn" class="btn-ghost" type="button">
+            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span>Export PDF</span>
+          </button>
+        </div>
+
+        <a href="https://bangzrul.gumroad.com/l/getpaidfirst" target="_blank" rel="noopener" class="btn-shimmer w-full text-center">
+          <span>Unlock Word/Notion Contracts + 7 Collection Emails</span>
+        </a>
+        <p class="text-[11px] text-center text-zinc-500">
+          $20 Standard Kit &nbsp;•&nbsp; $49 Pro Kit (Includes Letter Before Action)
+        </p>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: LIVE ENFORCEMENT DASHBOARD & CONTRACT PAPER -->
+    <section class="space-y-5 anim-enter delay-2" aria-label="Live preview">
+      
+      <!-- Enforcement Summary Bento Card -->
+      <div class="bento-card p-5 sm:p-6" id="summary">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <h2 class="font-bold text-sm uppercase tracking-wider text-zinc-200">Live Enforcement Summary</h2>
+          </div>
+          <span id="stageName" class="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-zinc-900 border border-white/10 text-zinc-200"></span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3">
+          <div class="bg-zinc-950/70 border border-white/[0.06] rounded-xl p-3">
+            <div class="text-zinc-400 text-[11px]">Deposit Upfront</div>
+            <div id="sDep" class="font-mono font-bold text-emerald-400 text-base sm:text-lg mt-0.5"></div>
+          </div>
+          <div class="bg-zinc-950/70 border border-white/[0.06] rounded-xl p-3">
+            <div class="text-zinc-400 text-[11px]">Balance at Risk</div>
+            <div id="sBal" class="font-mono font-bold text-zinc-100 text-base sm:text-lg mt-0.5"></div>
+          </div>
+          <div class="bg-zinc-950/70 border border-white/[0.06] rounded-xl p-3">
+            <div class="text-zinc-400 text-[11px]" id="sIntLbl">Statutory Interest</div>
+            <div id="sInt" class="font-mono font-bold text-amber-300 text-base sm:text-lg mt-0.5"></div>
+          </div>
+          <div class="bg-zinc-950/70 border border-white/[0.06] rounded-xl p-3">
+            <div class="text-zinc-400 text-[11px]">Fixed Comp.</div>
+            <div id="sFix" class="font-mono font-bold text-amber-300 text-base sm:text-lg mt-0.5"></div>
+          </div>
+          <div class="col-span-2 sm:col-span-1 bg-gradient-to-br from-amber-500/15 to-amber-500/5 border border-amber-500/30 rounded-xl p-3">
+            <div class="text-amber-200/80 text-[11px] font-medium">Total Legally Owed</div>
+            <div id="sTot" class="font-mono font-extrabold text-lg sm:text-xl mt-0.5 text-[#f5c451]"></div>
+          </div>
+        </div>
+
+        <!-- Escalation Meter -->
+        <div class="mt-4 pt-3 border-t border-white/[0.06]">
+          <div class="flex gap-1.5" id="stages"></div>
+          <p id="stageHint" class="text-xs text-zinc-300 mt-2.5 flex items-center gap-2"></p>
+        </div>
+      </div>
+
+      <!-- Live Contract Document Sheet -->
+      <div class="anim-enter delay-3">
+        <div class="flex items-center justify-between px-1 mb-2 text-xs text-zinc-400">
+          <span class="font-mono uppercase tracking-wider text-[11px]">Live Contract Document Preview</span>
+          <span class="text-[11px] text-emerald-400/90">● Auto-updates as you type</span>
+        </div>
+        <article class="paper-sheet" id="paper" aria-label="Contract preview"></article>
+        <p class="text-[11px] text-zinc-500 mt-3 px-1">
+          Disclaimer: This generator provides a standardized commercial template and statutory estimate, not formal legal advice.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 border-t border-white/[0.07] mt-10 bg-black/30">
+    <div class="max-w-7xl mx-auto px-4 py-5 text-xs text-center text-zinc-500">
+      Built by <strong class="text-zinc-300">B&amp;Z</strong> &nbsp;•&nbsp; Support: <a class="text-emerald-400 hover:underline" href="mailto:zruldek@gmail.com">zruldek@gmail.com</a> &nbsp;•&nbsp; IG: <a class="text-emerald-400 hover:underline" href="https://instagram.com/fzrlprtm" target="_blank" rel="noopener">@fzrlprtm</a>
     </div>
-    <a class="cta no-print" href="https://bangzrul.gumroad.com/l/getpaidfirst">Get the Full Kit — $20 Standard / $49 Pro<small>15 contract clauses + 7 escalation emails (Day 1 → Letter Before Action)</small></a>
-    <p class="fine">Template for general use. Estimate only — not legal advice. Check your contract and local law before enforcing any fee.</p>
+  </footer>
+
+  <!-- Print / PDF Modal -->
+  <dialog id="modal">
+    <div class="p-6 space-y-4">
+      <div class="flex items-center gap-2.5">
+        <span class="w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">⚡</span>
+        <h3 class="text-lg font-bold text-white">Your contract is ready to export</h3>
+      </div>
+      <p class="text-sm text-zinc-400 leading-relaxed">
+        A strong contract stops 80% of payment delays—but when a client still stalls, the <strong class="text-zinc-200">Pro Enforcement Kit ($49)</strong> gives you the exact follow-up weapons:
+      </p>
+      <ul class="text-sm space-y-2 text-zinc-300 bg-zinc-950/70 border border-white/[0.07] rounded-xl p-4">
+        <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Editable Word &amp; Notion master contracts</li>
+        <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> 7 psychological debt-collection email scripts</li>
+        <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Formal Letter Before Action (Small Claims ready)</li>
+      </ul>
+      <a href="https://bangzrul.gumroad.com/l/getpaidfirst" target="_blank" rel="noopener" class="btn-shimmer w-full text-center">
+        Get the Pro Kit — $49 (Standard $20)
+      </a>
+      <button id="printGo" class="btn-ghost w-full text-zinc-400 hover:text-white" type="button">
+        Continue to Print / Save Free PDF →
+      </button>
+    </div>
+  </dialog>
+
+  <!-- Floating Toast -->
+  <div id="toast" class="toast">
+    <span>✓</span>
+    <span>Contract copied to clipboard!</span>
   </div>
-</div>
 
 <script>
-let region = 'UK';
-function setRegion(r){
-  region = r;
-  document.getElementById('btnUS').classList.toggle('active', r==='US');
-  document.getElementById('btnUK').classList.toggle('active', r==='UK');
-  document.getElementById('baseWrap').classList.toggle('hidden', r==='US');
-  document.getElementById('compTile').classList.toggle('hidden', r==='US');
-  calc();
-}
-function fmt(n){
-  const c = region==='UK' ? '£' : '$';
-  return c + n.toLocaleString(region==='UK' ? 'en-GB' : 'en-US',{minimumFractionDigits:2, maximumFractionDigits:2});
-}
-function val(id, fallback){
-  const v = (document.getElementById(id).value || '').trim();
-  return v === '' ? fallback : v;
-}
-function calc(){
-  const amt  = Math.max(0, parseFloat(document.getElementById('amount').value)  || 0);
-  const depP = Math.min(100, Math.max(0, parseFloat(document.getElementById('deposit').value) || 0));
-  const days = Math.max(0, parseFloat(document.getElementById('days').value)    || 0);
-  const base = parseFloat(document.getElementById('base').value)    || 0;
-
-  const deposit = amt * depP / 100;
-  const balance = amt - deposit;
-
-  let fee = 0, comp = 0, feeName = '', annual = 0;
-  if(region === 'UK'){
-    annual = 8 + base;
-    fee  = balance * (annual/100) / 365 * days;
-    comp = balance <= 0 ? 0 : (balance < 1000 ? 40 : (balance < 10000 ? 70 : 100));
-    feeName = 'Statutory interest (' + annual.toFixed(2) + '%/yr)';
-  } else {
-    fee = balance * 0.015 * (days/30);
-    feeName = 'Contract late fee (1.5%/mo)';
-  }
-  const total = balance + fee + comp;
-
-  document.getElementById('outTotal').textContent = fmt(total);
-  document.getElementById('outDep').textContent   = fmt(deposit);
-  document.getElementById('outBal').textContent   = fmt(balance);
-  document.getElementById('feeLabel').textContent = feeName;
-  document.getElementById('outFee').textContent   = fmt(fee);
-  document.getElementById('outComp').textContent  = fmt(comp);
-
-  document.getElementById('stage').textContent =
-    days <= 0  ? 'STAGE 0 — Do not start work. Collect the deposit first.' :
-    days <= 7  ? 'STAGE 1 (Day 1–7) — Friendly reminder. Invoice attached.' :
-    days <= 14 ? 'STAGE 2 (Day 8–14) — Formal notice. Pause all work.' :
-    days <= 30 ? 'STAGE 3 (Day 15–30) — Final notice. Enforce the late fee.' :
-                 'STAGE 4 (Day 31+) — Letter Before Action / small claims.';
-
-  const milestone = amt < 2500
-    ? depP + '% upfront / ' + (100 - depP) + '% on delivery'
-    : '40% upfront / 30% at milestone / 30% on delivery';
-  document.getElementById('rec').innerHTML =
-    'Recommended structure for a project this size: <b>' + (amt < 2500 ? '50% upfront / 50% on delivery' : '40% upfront / 30% at milestone / 30% on delivery') + '</b> — never let the unpaid balance exceed your deposit.';
-
-  const fname = val('fname', '[Your Name / Business]');
-  const cname = val('cname', '[Client Name]');
-  const proj  = val('proj', '[Project Description]');
-  const lateClause = region === 'UK'
-    ? '3. LATE PAYMENT. Overdue amounts accrue statutory interest at 8% above the Bank of England base rate (currently ' + annual.toFixed(2) + '% per year in total), plus fixed compensation of £40–£100 per invoice, under the Late Payment of Commercial Debts (Interest) Act 1998. The Freelancer may pause all work while any amount is more than 7 days overdue.'
-    : '3. LATE PAYMENT. Overdue balances accrue a late fee of 1.5% per month (18% per year). The Freelancer may pause all work while any amount is more than 7 days overdue.';
-
-  document.getElementById('contract').textContent =
-'PAYMENT PROTECTION AGREEMENT\n' +
-'Between: ' + fname + ' ("Freelancer") and ' + cname + ' ("Client")\n' +
-'Project: ' + proj + ' — total fee ' + fmt(amt) + '\n\n' +
-'1. DEPOSIT & SCHEDULE. The Client pays a deposit of ' + fmt(deposit) + ' (' + depP + '% of the total fee) before work begins. Payment structure: ' + milestone + '. No work starts before the deposit clears.\n\n' +
-'2. BALANCE. The remaining balance of ' + fmt(balance) + ' is due on delivery of the final work, payable within 7 days of invoice.\n\n' +
-lateClause + '\n\n' +
-'4. OWNERSHIP. All work product, files and usage rights transfer to the Client only upon full payment of all amounts due.\n\n' +
-'5. KILL FEE. If the Client cancels after work has begun, the deposit is non-refundable and work completed to date is billed pro-rata.\n\n' +
-'Agreed: Freelancer ____________________    Client ____________________    Date ____________';
-}
-function copyText(){
-  const btn = document.getElementById('copyBtn');
-  const txt = document.getElementById('contract').textContent;
-  const done = () => { btn.textContent = 'Copied ✓'; btn.classList.add('done'); setTimeout(() => { btn.textContent = 'Copy Text'; btn.classList.remove('done'); }, 1800); };
-  const fallback = () => {
-    const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
-    try { document.execCommand('copy'); done(); } catch(e) {}
-    document.body.removeChild(ta);
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var state = { j: 'uk', text: '' };
+  var CFG = {
+    uk: {
+      sym: '£', loc: 'en-GB', cur: 'GBP', dep: 30, tag: 'UK Act 1998',
+      note: 'Enforces UK Late Payment of Commercial Debts Act 1998: 8% statutory interest over BoE base rate plus £40–£100 fixed recovery compensation.'
+    },
+    us: {
+      sym: '$', loc: 'en-US', cur: 'USD', dep: 50, tag: 'US Commercial',
+      note: 'Enforces a 50% upfront deposit lock, strict revision caps, IP retention until full payment, and a 1.5%/month contractual late fee.'
+    }
   };
-  if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(txt).then(done).catch(fallback); } else { fallback(); }
-}
-calc();
+
+  var STAGES = [
+    ['Stage 0 — Protected', '🟢 Pre-work / Within Terms: Collect the upfront deposit before opening project files.'],
+    ['Stage 1 — Day 1–7 Overdue', '🟡 Friendly Reminder: Send polite payment nudge with invoice & contract attached.'],
+    ['Stage 2 — Day 8–29 Overdue', '🟠 Formal Demand: Work pauses automatically. State accrued interest & set 7-day deadline.'],
+    ['Stage 3 — Day 30–59 Overdue', '🔴 Final Notice: Issue Final Demand + Letter Before Action warning.'],
+    ['Stage 4 — Day 60+ Overdue', '🚨 Legal Escalation: Proceed with Small Claims court filing or commercial debt recovery.']
+  ];
+
+  // Mouse spotlight tracking on bento cards
+  document.querySelectorAll('.bento-card').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+    });
+  });
+
+  // Dynamic slider track fill
+  function updateSliderFill(el) {
+    var min = parseFloat(el.min) || 0;
+    var max = parseFloat(el.max) || 100;
+    var val = parseFloat(el.value) || 0;
+    var pct = ((val - min) / (max - min)) * 100;
+    var color = el.id === 'days' ? '#f59e0b' : (el.id === 'rev' ? '#818cf8' : '#10b981');
+    el.style.background = 'linear-gradient(to right, ' + color + ' 0%, ' + color + ' ' + pct + '%, #222229 ' + pct + '%, #222229 100%)';
+  }
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function money(n){
+    var c = CFG[state.j];
+    return new Intl.NumberFormat(c.loc, { style: 'currency', currency: c.cur }).format(n);
+  }
+
+  function num(id){
+    var v = parseFloat($(id).value);
+    return isFinite(v) && v > 0 ? v : 0;
+  }
+
+  // Smooth number pop animation when value changes
+  function setAnimatedText(id, newVal) {
+    var el = $(id);
+    if (el.textContent !== newVal) {
+      el.textContent = newVal;
+      el.animate([
+        { transform: 'translateY(-3px)', opacity: 0.6 },
+        { transform: 'translateY(0)', opacity: 1 }
+      ], { duration: 200, easing: 'ease-out' });
+    }
+  }
+
+  function calc(){
+    var fee = num('fee'), pct = +$('dep').value, days = +$('days').value;
+    var deposit = Math.round(fee * pct) / 100;
+    var bal = fee - deposit;
+    var interest = 0, fixed = 0;
+
+    if (state.j === 'uk') {
+      var rate = (8 + num('base')) / 100;
+      interest = bal * rate * days / 365;
+      if (days > 0 && bal > 0) fixed = bal < 1000 ? 40 : (bal < 10000 ? 70 : 100);
+    } else {
+      interest = bal * 0.015 * days / 30;
+    }
+    interest = Math.round(interest * 100) / 100;
+    var stage = days === 0 ? 0 : days <= 7 ? 1 : days < 30 ? 2 : days < 60 ? 3 : 4;
+    return { fee: fee, pct: pct, days: days, deposit: deposit, bal: bal, interest: interest, fixed: fixed, total: bal + interest + fixed, stage: stage };
+  }
+
+  function buildClauses(c){
+    var f = $('fName').value.trim() || '[Freelancer / Studio Name]';
+    var cl = $('cName').value.trim() || '[Client Name]';
+    var sc = $('scope').value.trim() || '[Project Scope Title]';
+    var rev = +$('rev').value;
+    var uk = state.j === 'uk';
+    var today = new Date().toLocaleDateString(CFG[state.j].loc, { year: 'numeric', month: 'long', day: 'numeric' });
+
+    var lateHTML = uk
+      ? 'Late payment is governed by the <strong>Late Payment of Commercial Debts (Interest) Act 1998</strong>. Interest accrues daily on any overdue sum at <span class="dyn">8% per year above the Bank of England base rate (' + num('base') + '%, combined ' + (8 + num('base')).toFixed(2) + '%/yr)</span> from the due date until cleared payment in full, plus statutory fixed compensation (<span class="dyn">£40 / £70 / £100</span> per invoice) and reasonable recovery costs.'
+      : 'Any invoice unpaid after its Net 14 due date accrues a contractual late fee of <span class="dyn">1.5% per month (18% per year)</span>, or the maximum rate permitted by applicable state law if lower, prorated daily until paid in full, plus reasonable collection and legal recovery costs.';
+
+    var latePlain = lateHTML.replace(/<[^>]+>/g, '');
+
+    var list = [
+      {
+        title: 'Parties & Effective Date',
+        html: 'This Service &amp; Payment Agreement is entered into on <span class="dyn">' + esc(today) + '</span> between <span class="dyn">' + esc(f) + '</span> (“Freelancer”) and <span class="dyn">' + esc(cl) + '</span> (“Client”).'
+      },
+      {
+        title: '1. Scope of Work',
+        html: 'The Freelancer agrees to deliver the following work: <span class="dyn">' + esc(sc) + '</span>. Any deliverables, features, or requests outside this defined scope require a separate written change order and additional fee approval.'
+      },
+      {
+        title: '2. Fees, Deposit & Milestone Lock',
+        html: 'The total project fee is <span class="dyn">' + esc(money(c.fee)) + '</span>. A non-refundable upfront deposit of <span class="dyn">' + c.pct + '% (' + esc(money(c.deposit)) + ')</span> is required before work commences. The remaining balance of <span class="dyn">' + esc(money(c.bal)) + '</span> is due within <strong>14 days (Net 14)</strong> of final delivery. All active work pauses automatically if any payment is overdue.'
+      },
+      {
+        title: '3. Revisions & Scope-Creep Protection',
+        html: 'This fee includes up to <span class="dyn">' + rev + ' consolidated round' + (rev > 1 ? 's' : '') + '</span> of revisions. Additional revision rounds or directional changes after initial approval will be billed at the Freelancer’s standard hourly rate.'
+      },
+      {
+        title: '4. Intellectual Property Retention',
+        html: 'Full ownership and copyright of all drafts, source files, and final deliverables remain strictly with the Freelancer until <strong>100% of the project fee</strong> and any accrued late fees are received in cleared funds. Upon full payment, all agreed usage rights transfer to the Client.'
+      },
+      {
+        title: uk ? '5. Late Payment Enforcement (UK Statutory)' : '5. Late Payment Enforcement (US Commercial)',
+        html: lateHTML
+      },
+      {
+        title: '6. Binding Acceptance',
+        html: 'By signing below or remitting the upfront deposit of <span class="dyn">' + esc(money(c.deposit)) + '</span>, the Client accepts and agrees to be bound by all terms in this Agreement.'
+      }
+    ];
+
+    list.forEach(function(item){
+      item.plain = item.html.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&');
+    });
+    return list;
+  }
+
+  function toText(cl){
+    var t = 'SERVICE & PAYMENT AGREEMENT\n====================================\n\n';
+    cl.forEach(function(x){ t += x.title.toUpperCase() + '\n' + x.plain + '\n\n'; });
+    t += 'Freelancer Signature: ______________________   Date: ____________\n';
+    t += 'Client Signature:     ______________________   Date: ____________\n\n';
+    t += '---\nGenerated via Get Paid First — getpaidfirst-bz.netlify.app';
+    return t;
+  }
+
+  function render(){
+    var cfg = CFG[state.j], c = calc(), cl = buildClauses(c), uk = state.j === 'uk';
+
+    ['dep', 'rev', 'days'].forEach(function(id){ updateSliderFill($(id)); });
+
+    $('curSym').textContent = '(' + cfg.sym + ')';
+    $('lawTag').textContent = cfg.tag;
+    $('depOut').textContent = c.pct + '% (' + money(c.deposit) + ')';
+    $('revOut').textContent = $('rev').value + ' round' + (+$('rev').value > 1 ? 's' : '');
+    $('dayOut').textContent = c.days + ' day' + (c.days === 1 ? '' : 's') + ' late';
+    $('jNote').textContent = cfg.note;
+    $('baseWrap').style.display = uk ? 'block' : 'none';
+    $('sIntLbl').textContent = uk ? 'Statutory Interest' : 'Late Fee (1.5%/mo)';
+
+    setAnimatedText('sDep', money(c.deposit));
+    setAnimatedText('sBal', money(c.bal));
+    setAnimatedText('sInt', money(c.interest));
+    setAnimatedText('sFix', uk ? money(c.fixed) : 'N/A');
+    setAnimatedText('sTot', money(c.total));
+
+    $('stageName').textContent = STAGES[c.stage][0];
+    $('stageHint').textContent = STAGES[c.stage][1];
+
+    var bars = '';
+    for (var i = 1; i <= 4; i++) {
+      var cls = c.stage >= i ? ' on-' + c.stage : '';
+      bars += '<div class="stage-bar' + cls + '"></div>';
+    }
+    $('stages').innerHTML = bars;
+
+    var h = '<h2>Service &amp; Payment Agreement</h2>';
+    h += '<div class="sub">Jurisdiction: ' + (uk ? 'England &amp; Wales (UK B2B)' : 'United States Commercial') + '</div>';
+    cl.forEach(function(x){
+      h += '<h3>' + esc(x.title) + '</h3><p>' + x.html + '</p>';
+    });
+    h += '<div class="sig"><div>Freelancer Signature &amp; Date</div><div>Client Signature &amp; Date</div></div>';
+    h += '<div class="foot"><span>ID: GPF-' + Math.floor(100000 + (c.fee % 899999)) + '</span><span>Generated via Get Paid First — getpaidfirst-bz.netlify.app</span></div>';
+
+    $('paper').innerHTML = h;
+    state.text = toText(cl);
+  }
+
+  function setJ(j){
+    state.j = j;
+    $('segWrap').setAttribute('data-active', j);
+    $('jUK').setAttribute('aria-pressed', j === 'uk');
+    $('jUS').setAttribute('aria-pressed', j === 'us');
+    $('dep').value = CFG[j].dep;
+    render();
+  }
+
+  ['fName', 'cName', 'scope', 'fee', 'dep', 'rev', 'base', 'days'].forEach(function(id){
+    $(id).addEventListener('input', render);
+  });
+  $('jUK').addEventListener('click', function(){ setJ('uk'); });
+  $('jUS').addEventListener('click', function(){ setJ('us'); });
+
+  function showToast() {
+    var t = $('toast');
+    t.classList.add('show');
+    setTimeout(function(){ t.classList.remove('show'); }, 2400);
+  }
+
+  $('copyBtn').addEventListener('click', function(){
+    var txtEl = $('copyBtnTxt');
+    var done = function(){
+      txtEl.textContent = 'Copied ✓';
+      showToast();
+      setTimeout(function(){ txtEl.textContent = 'Copy Text'; }, 2000);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(state.text).then(done, fallback);
+    } else {
+      fallback();
+    }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = state.text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch(e){}
+      document.body.removeChild(ta);
+    }
+  });
+
+  $('printBtn').addEventListener('click', function(){
+    var m = $('modal');
+    if (m.showModal) m.showModal();
+    else window.print();
+  });
+  $('printGo').addEventListener('click', function(){
+    $('modal').close();
+    setTimeout(function(){ window.print(); }, 180);
+  });
+  $('modal').addEventListener('click', function(e){
+    if (e.target === this) this.close();
+  });
+
+  setJ('uk');
+})();
 </script>
 </body>
 </html>
