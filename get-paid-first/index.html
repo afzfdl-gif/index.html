@@ -4,52 +4,94 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Get Paid First — Freelancer Deposit & Late-Payment Calculator</title>
+<meta name="description" content="Free calculator for US & UK freelancers: see your deposit, statutory interest / late fee, fixed compensation and total due — then copy the exact clause for your invoice.">
+<meta property="og:title" content="Get Paid First — Deposit & Late-Payment Calculator">
+<meta property="og:description" content="Never start a project at $0. Deposit, late fee, compensation and total due — calculated in seconds, clause included.">
+<meta property="og:type" content="website">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:#0b0f17;color:#e8edf5;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:24px 16px}
-  .card{background:#121826;border:1px solid #232c42;border-radius:16px;max-width:640px;width:100%;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
-  h1{font-size:22px;line-height:1.3;margin-bottom:6px}
-  h1 span{color:#5eead4}
-  .sub{color:#94a3b8;font-size:13px;line-height:1.6;margin-bottom:20px}
+  :root{--bg:#0b0f17;--card:#101827;--tile:#0d1420;--line:#22304a;--ink:#e8edf5;--mut:#8fa1b8;--teal:#2dd4bf;--emer:#10b981;--amber:#fbbf24;--red:#f87171}
+  body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;display:flex;justify-content:center;padding:28px 16px 40px}
+  .wrap{max-width:680px;width:100%}
+  .brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .mark{width:34px;height:34px;border-radius:9px;background:var(--emer);display:flex;align-items:center;justify-content:center;font-weight:900;color:#04120c;font-size:18px}
+  .brand b{letter-spacing:.14em;font-size:13px}
+  .brand span{color:var(--mut);font-size:12px;display:block;letter-spacing:.02em}
+  h1{font-size:34px;line-height:1.12;font-weight:850;letter-spacing:-.01em}
+  h1 em{font-style:normal;color:var(--teal)}
+  .sub{color:var(--mut);font-size:14px;line-height:1.65;margin:10px 0 22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
   .toggle{display:flex;gap:8px;margin-bottom:18px}
-  .toggle button{flex:1;padding:10px;border-radius:10px;border:1px solid #2b3652;background:#0f1522;color:#cbd5e1;font-weight:700;cursor:pointer;font-size:14px}
+  .toggle button{flex:1;padding:11px;border-radius:11px;border:1px solid var(--line);background:var(--tile);color:#cbd5e1;font-weight:700;cursor:pointer;font-size:14px}
   .toggle button.active{background:#0d9488;border-color:#0d9488;color:#fff}
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   @media(max-width:520px){.grid{grid-template-columns:1fr}}
-  label{font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em}
-  input{width:100%;margin-top:6px;padding:11px 12px;background:#0f1522;border:1px solid #2b3652;border-radius:10px;color:#fff;font-size:16px}
+  label{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.07em;font-weight:700}
+  input{width:100%;margin-top:6px;padding:12px;background:var(--tile);border:1px solid var(--line);border-radius:11px;color:#fff;font-size:16px}
   input:focus{outline:2px solid #0d9488;border-color:transparent}
-  .out{background:#0f1522;border:1px solid #232c42;border-radius:12px;padding:16px;margin-top:18px;line-height:2;font-size:15px}
-  .out b{color:#fff}
-  .big{font-size:20px;color:#5eead4!important}
-  .stage{margin-top:12px;padding:10px 12px;border-radius:10px;background:#1e293b;color:#fbbf24;font-weight:700;font-size:13px;line-height:1.5}
-  .cta{display:block;text-align:center;margin-top:18px;background:#0d9488;color:#fff;text-decoration:none;font-weight:700;padding:11px 16px;border-radius:10px;font-size:14px}
-  .cta:hover{background:#0f766e}
-  .fine{color:#64748b;font-size:11px;line-height:1.6;margin-top:12px;text-align:center}
+  .bento{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+  .tile{background:var(--tile);border:1px solid var(--line);border-radius:13px;padding:14px 16px}
+  .tile small{display:block;color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:5px}
+  .tile b{font-size:19px;font-variant-numeric:tabular-nums}
+  .tile.total{grid-column:1/-1;background:linear-gradient(135deg,#0d2b23,#0d1f2a);border-color:#14532d}
+  .tile.total b{font-size:34px;color:var(--teal);letter-spacing:-.01em}
+  .stage{margin-top:12px;padding:12px 14px;border-radius:11px;font-weight:700;font-size:13.5px;line-height:1.55;border:1px solid var(--line);background:#16202f;color:var(--amber)}
+  .rec{margin-top:10px;padding:12px 14px;border-radius:11px;background:#0d1a16;border:1px solid #14532d;color:#a7f3d0;font-size:13.5px;line-height:1.55}
+  .rec b{color:#fff}
+  .clausebox{margin-top:18px}
+  .clausebox h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+  .clause{background:var(--tile);border:1px dashed #33507a;border-radius:12px;padding:14px 16px;font-size:13.5px;line-height:1.7;color:#dbe6f3;white-space:pre-wrap}
+  .copybtn{margin-top:10px;width:100%;padding:12px;border:none;border-radius:11px;background:#2563eb;color:#fff;font-weight:800;font-size:14.5px;cursor:pointer}
+  .copybtn.done{background:var(--emer);color:#04120c}
+  .cta{display:block;text-align:center;margin-top:16px;background:var(--emer);color:#04120c;text-decoration:none;font-weight:850;padding:14px 16px;border-radius:12px;font-size:15px}
+  .cta small{display:block;font-weight:600;font-size:12px;opacity:.75;margin-top:2px}
+  .fine{color:#5b6b82;font-size:11.5px;line-height:1.6;margin-top:14px;text-align:center}
+  .hidden{display:none}
 </style>
 </head>
 <body>
-<div class="card">
-  <h1>Get Paid <span>First</span> — Deposit &amp; Late-Payment Calculator</h1>
-  <p class="sub">US mode: contract late fee 1.5%/month. UK mode: statutory interest 8% + Bank of England base rate (4.00% = 12.00%/yr) + fixed compensation £40 / £70 / £100 under the Late Payment of Commercial Debts (Interest) Act 1998.</p>
-
-  <div class="toggle">
-    <button id="btnUS" onclick="setRegion('US')">🇺🇸 US — USD $</button>
-    <button id="btnUK" class="active" onclick="setRegion('UK')">🇬🇧 UK — GBP £</button>
+<div class="wrap">
+  <div class="brand">
+    <div class="mark">✓</div>
+    <div><b>GET PAID FIRST</b><span>by B&amp;Z — payment protection for freelancers</span></div>
   </div>
 
-  <div class="grid">
-    <label>Project / Invoice Total<input id="amount" type="number" min="0" step="50" value="2500" oninput="calc()"></label>
-    <label>Upfront Deposit %<input id="deposit" type="number" min="0" max="100" step="5" value="50" oninput="calc()"></label>
-    <label>Days Overdue (balance)<input id="days" type="number" min="0" step="1" value="30" oninput="calc()"></label>
-    <label>UK Base Rate % (UK only)<input id="base" type="number" min="0" step="0.25" value="4.00" oninput="calc()"></label>
+  <h1>Never start a project <em>at $0.</em></h1>
+  <p class="sub">Enter your numbers. See exactly what a late client legally owes you — then copy the clause that makes them pay it. US mode: contract late fee 1.5%/month. UK mode: statutory interest 8% + Bank of England base rate, plus fixed compensation under the Late Payment of Commercial Debts (Interest) Act 1998.</p>
+
+  <div class="card">
+    <div class="toggle">
+      <button id="btnUS" onclick="setRegion('US')">🇺🇸 US — USD $</button>
+      <button id="btnUK" class="active" onclick="setRegion('UK')">🇬🇧 UK — GBP £</button>
+    </div>
+
+    <div class="grid">
+      <label>Project / Invoice Total<input id="amount" type="number" min="0" step="50" value="2500" oninput="calc()"></label>
+      <label>Upfront Deposit %<input id="deposit" type="number" min="0" max="100" step="5" value="50" oninput="calc()"></label>
+      <label>Days Overdue (balance)<input id="days" type="number" min="0" step="1" value="30" oninput="calc()"></label>
+      <label id="baseWrap">UK Base Rate % (UK only)<input id="base" type="number" min="0" step="0.25" value="4.00" oninput="calc()"></label>
+    </div>
+
+    <div class="bento">
+      <div class="tile total"><small>Total due now</small><b id="outTotal">—</b></div>
+      <div class="tile"><small>Deposit secured upfront</small><b id="outDep">—</b></div>
+      <div class="tile"><small>Balance at risk</small><b id="outBal">—</b></div>
+      <div class="tile"><small id="feeLabel">Interest / late fee</small><b id="outFee">—</b></div>
+      <div class="tile" id="compTile"><small>Fixed compensation</small><b id="outComp">—</b></div>
+    </div>
+
+    <div class="stage" id="stage"></div>
+    <div class="rec" id="rec"></div>
+
+    <div class="clausebox">
+      <h3>Your invoice clause — copy &amp; paste</h3>
+      <div class="clause" id="clause"></div>
+      <button class="copybtn" id="copyBtn" onclick="copyClause()">Copy Clause</button>
+    </div>
+
+    <a class="cta" href="https://bangzrul.gumroad.com/l/getpaidfirst">Get the Full Kit — $20 Standard / $49 Pro<small>15 contract clauses + 7 escalation emails (Day 1 → Letter Before Action)</small></a>
+    <p class="fine">Estimate only. Not legal advice. Check your contract and local law before enforcing any fee.</p>
   </div>
-
-  <div class="out" id="out"></div>
-  <div class="stage" id="stage"></div>
-
-  <a class="cta" href="https://bangzrul.gumroad.com/l/getpaidfirst">Get the Full Kit — Contract Clauses + 7 Escalation Emails →</a>
-  <p class="fine">Estimate only. Not legal advice. Check your contract and local law before enforcing any fee.</p>
 </div>
 
 <script>
@@ -58,6 +100,8 @@ function setRegion(r){
   region = r;
   document.getElementById('btnUS').classList.toggle('active', r==='US');
   document.getElementById('btnUK').classList.toggle('active', r==='UK');
+  document.getElementById('baseWrap').classList.toggle('hidden', r==='US');
+  document.getElementById('compTile').classList.toggle('hidden', r==='US');
   calc();
 }
 function fmt(n){
@@ -65,32 +109,32 @@ function fmt(n){
   return c + n.toLocaleString(region==='UK' ? 'en-GB' : 'en-US',{minimumFractionDigits:2, maximumFractionDigits:2});
 }
 function calc(){
-  const amt  = parseFloat(document.getElementById('amount').value)  || 0;
-  const depP = parseFloat(document.getElementById('deposit').value) || 0;
-  const days = parseFloat(document.getElementById('days').value)    || 0;
+  const amt  = Math.max(0, parseFloat(document.getElementById('amount').value)  || 0);
+  const depP = Math.min(100, Math.max(0, parseFloat(document.getElementById('deposit').value) || 0));
+  const days = Math.max(0, parseFloat(document.getElementById('days').value)    || 0);
   const base = parseFloat(document.getElementById('base').value)    || 0;
 
   const deposit = amt * depP / 100;
   const balance = amt - deposit;
 
-  let fee = 0, comp = 0, feeLabel = '';
+  let fee = 0, comp = 0, feeName = '';
   if(region === 'UK'){
-    const annual = 8 + base;                       // statutory rate %
-    fee  = balance * (annual/100) / 365 * days;    // simple daily interest
+    const annual = 8 + base;
+    fee  = balance * (annual/100) / 365 * days;
     comp = balance <= 0 ? 0 : (balance < 1000 ? 40 : (balance < 10000 ? 70 : 100));
-    feeLabel = 'Statutory interest (' + annual.toFixed(2) + '%/yr)';
+    feeName = 'Statutory interest (' + annual.toFixed(2) + '%/yr)';
   } else {
-    fee = balance * 0.015 * (days/30);             // 1.5% per month
-    feeLabel = 'Contract late fee (1.5%/mo)';
+    fee = balance * 0.015 * (days/30);
+    feeName = 'Contract late fee (1.5%/mo)';
   }
   const total = balance + fee + comp;
 
-  document.getElementById('out').innerHTML =
-    'Deposit secured upfront: <b>' + fmt(deposit) + '</b><br>' +
-    'Balance at risk: <b>' + fmt(balance) + '</b><br>' +
-    feeLabel + ': <b>' + fmt(fee) + '</b>' +
-    (region==='UK' ? '<br>Fixed compensation: <b>' + fmt(comp) + '</b>' : '') +
-    '<br>Total due now: <b class="big">' + fmt(total) + '</b>';
+  document.getElementById('outTotal').textContent = fmt(total);
+  document.getElementById('outDep').textContent   = fmt(deposit);
+  document.getElementById('outBal').textContent   = fmt(balance);
+  document.getElementById('feeLabel').textContent = feeName;
+  document.getElementById('outFee').textContent   = fmt(fee);
+  document.getElementById('outComp').textContent  = fmt(comp);
 
   document.getElementById('stage').textContent =
     days <= 0  ? 'STAGE 0 — Do not start work. Collect the deposit first.' :
@@ -98,6 +142,27 @@ function calc(){
     days <= 14 ? 'STAGE 2 (Day 8–14) — Formal notice. Pause all work.' :
     days <= 30 ? 'STAGE 3 (Day 15–30) — Final notice. Enforce the late fee.' :
                  'STAGE 4 (Day 31+) — Letter Before Action / small claims.';
+
+  document.getElementById('rec').innerHTML =
+    amt < 2500
+      ? 'Recommended structure for a project this size: <b>50% upfront / 50% on delivery</b> — simple, and the client can\'t ghost you for free.'
+      : 'Recommended structure for a project this size: <b>40% upfront / 30% at milestone / 30% on delivery</b> — never let the unpaid balance exceed your deposit.';
+
+  document.getElementById('clause').textContent =
+    region === 'UK'
+      ? 'PAYMENT TERMS — A deposit of ' + depP + '% (' + fmt(deposit) + ') is payable before work begins. The remaining balance (' + fmt(balance) + ') is due on delivery. Interest is charged on overdue amounts at 8% above the Bank of England base rate, plus fixed compensation, under the Late Payment of Commercial Debts (Interest) Act 1998. Work product and usage rights transfer on full payment.'
+      : 'PAYMENT TERMS — A deposit of ' + depP + '% (' + fmt(deposit) + ') is payable before work begins. The remaining balance (' + fmt(balance) + ') is due on delivery. Overdue balances accrue a late fee of 1.5% per month. Work product and usage rights transfer on full payment.';
+}
+function copyClause(){
+  const btn = document.getElementById('copyBtn');
+  const txt = document.getElementById('clause').textContent;
+  const done = () => { btn.textContent = 'Copied ✓'; btn.classList.add('done'); setTimeout(() => { btn.textContent = 'Copy Clause'; btn.classList.remove('done'); }, 1800); };
+  if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(txt).then(done).catch(() => fallback()); } else { fallback(); }
+  function fallback(){
+    const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch(e) {}
+    document.body.removeChild(ta);
+  }
 }
 calc();
 </script>
