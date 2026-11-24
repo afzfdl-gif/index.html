@@ -21,15 +21,18 @@ tailwind.config = { theme: { extend: {
   .reveal.in{opacity:1;transform:none}
   a.u-line{background-image:linear-gradient(currentColor,currentColor);background-size:0% 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .35s ease}
   a.u-line:hover{background-size:100% 1px}
-  .wm-pattern{position:fixed;inset:0;z-index:60;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Ctext x='40' y='280' font-family='Georgia,serif' font-size='44' font-weight='bold' fill='%2328211A' fill-opacity='0.055' transform='rotate(-24 260 260)'%3EDEMO — B&amp;Z%3C/text%3E%3C/svg%3E")}
-  .wm-badge{position:fixed;left:18px;bottom:18px;z-index:61;background:rgba(40,33,26,.88);color:#FAF5EC;font-size:12.5px;letter-spacing:.04em;padding:9px 16px;border-radius:999px;backdrop-filter:blur(4px)}
-  .wm-badge b{color:#F0B48C;font-weight:600}
+  @keyframes kb{from{transform:scale(1)}to{transform:scale(1.12)}}
+  .kenburns{animation:kb 18s ease-in-out infinite alternate}
+  @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .marquee-track{display:flex;width:max-content;animation:mq 28s linear infinite}
+  .lift{transition:transform .35s ease,box-shadow .35s ease}
+  .lift:hover{transform:translateY(-5px);box-shadow:0 18px 40px -18px rgba(40,33,26,.35)}
+  .chip-save{display:inline-block;background:#B4552D;color:#FAF5EC;font-size:11.5px;letter-spacing:.05em;padding:3px 10px;border-radius:999px;margin-left:10px;vertical-align:2px}
+  .stars{color:#E9A13B;letter-spacing:.25em;font-size:15px}
+  .hero-chip{display:inline-flex;align-items:center;gap:7px;background:rgba(250,245,236,.14);border:1px solid rgba(250,245,236,.35);backdrop-filter:blur(4px);padding:7px 14px;border-radius:999px;font-size:13px}
 </style>
 </head>
 <body class="antialiased font-light">
-<div class="wm-pattern" aria-hidden="true"></div>
-<div class="wm-badge">DEMO · <b>B&amp;Z Web Studio</b> · @bz_devweb</div>
-
 <!-- NAV -->
 <header class="fixed top-0 inset-x-0 z-50 bg-cream/85 backdrop-blur border-b border-ink/10">
   <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -45,7 +48,7 @@ tailwind.config = { theme: { extend: {
 
 <!-- HERO -->
 <section class="relative min-h-screen flex items-end">
-  <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80&auto=format&fit=crop" alt="Hidangan Nusantara di meja kayu Arunika" class="absolute inset-0 w-full h-full object-cover">
+  <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80&auto=format&fit=crop" alt="Hidangan Nusantara di meja kayu Arunika" class="absolute inset-0 w-full h-full object-cover kenburns">
   <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/25 to-ink/10"></div>
   <div class="relative max-w-6xl mx-auto px-6 pb-24 pt-40 w-full text-cream">
     <p class="text-sm tracking-[0.25em] uppercase text-cream/80 mb-5 reveal">Kopi & Dapur Nusantara — Dago, Bandung</p>
@@ -55,8 +58,21 @@ tailwind.config = { theme: { extend: {
       <a href="#makanan" class="bg-cream text-ink px-7 py-3.5 rounded-full text-sm font-medium hover:bg-white transition-colors">Lihat Menu</a>
       <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20untuk%20hari%20ini" target="_blank" rel="noopener" class="border border-cream/60 text-cream px-7 py-3.5 rounded-full text-sm hover:bg-cream/10 transition-colors">Pesan via WhatsApp</a>
     </div>
+    <div class="mt-8 flex flex-wrap gap-3 reveal">
+      <span class="hero-chip">★ 4.9 — 320+ ulasan Google</span>
+      <span class="hero-chip">Buka hari ini · 08.00–22.00</span>
+      <span class="hero-chip">Pesan sekarang, siap saat kamu sampai</span>
+    </div>
   </div>
 </section>
+
+<!-- MARQUEE -->
+<div class="bg-clay text-cream overflow-hidden py-3.5" aria-hidden="true">
+  <div class="marquee-track font-serif text-[15px] tracking-[0.18em] uppercase">
+    <span class="pr-2">Rendang dimasak 6 jam ✦ Sambal ulek setiap pagi ✦ Kopi Gayo &amp; Garut ✦ Harga transparan ✦ Pesan via WhatsApp ✦ Buka 08.00–22.00 ✦&nbsp;</span>
+    <span class="pr-2">Rendang dimasak 6 jam ✦ Sambal ulek setiap pagi ✦ Kopi Gayo &amp; Garut ✦ Harga transparan ✦ Pesan via WhatsApp ✦ Buka 08.00–22.00 ✦&nbsp;</span>
+  </div>
+</div>
 
 <!-- CERITA -->
 <section class="min-h-[70vh] flex items-center">
@@ -67,7 +83,7 @@ tailwind.config = { theme: { extend: {
       <p class="mt-6 text-ink/70 leading-relaxed">Arunika mulai dari dapur kecil di Dago tahun 2019. Rendang dimasak 6 jam, sambal diulek setiap pagi, kopi diseduh dari biji Garut dan Gayo. Nggak ada yang instan — kecuali cara kamu memesannya.</p>
       <p class="mt-4 text-ink/70 leading-relaxed">Buka setiap hari 08.00–22.00. Bisa makan di tempat, bungkus, atau pesan untuk acara kantoran.</p>
     </div>
-    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80&auto=format&fit=crop" alt="Suasana ruang makan Arunika" class="w-full h-[420px] object-cover reveal">
+    <div class="overflow-hidden rounded-2xl shadow-xl group reveal"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80&auto=format&fit=crop" alt="Suasana ruang makan Arunika" class="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-105"></div>
   </div>
 </section>
 
@@ -79,12 +95,12 @@ tailwind.config = { theme: { extend: {
 
     <div class="mt-16 space-y-20">
       <article class="grid md:grid-cols-2 gap-10 items-center reveal">
-        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=1200&q=80&auto=format&fit=crop" alt="Nasi Rendang Sapi Arunika" class="w-full h-80 object-cover">
+        <div class="overflow-hidden rounded-2xl shadow-xl group"><img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=1200&q=80&auto=format&fit=crop" alt="Nasi Rendang Sapi Arunika" class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105"></div>
         <div>
           <p class="font-serif text-clay text-lg">01</p>
           <h3 class="font-serif text-3xl mt-2">Nasi Rendang Sapi</h3>
           <p class="mt-4 text-ink/70 leading-relaxed">Rendang sapi dimasak 6 jam sampai bumbu meresap, disajikan dengan nasi pulen, sambal ijo, dan lalapan. Yang ini yang paling sering habis duluan.</p>
-          <p class="mt-5 text-lg">Rp 38rb <span class="text-mute line-through text-base ml-2">Rp 48rb</span></p>
+          <p class="mt-5 text-lg">Rp 38rb <span class="text-mute line-through text-base ml-2">Rp 48rb</span><span class="chip-save">Hemat Rp 10rb</span></p>
           <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Nasi%20Rendang%20Sapi" target="_blank" rel="noopener" class="inline-block mt-5 border border-ink px-6 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors">Pesan Ini</a>
         </div>
       </article>
@@ -94,19 +110,19 @@ tailwind.config = { theme: { extend: {
           <p class="font-serif text-clay text-lg">02</p>
           <h3 class="font-serif text-3xl mt-2">Mie Godog Jawa</h3>
           <p class="mt-4 text-ink/70 leading-relaxed">Mie telur dimasak di atas arang dengan kuah kaldu ayam kampung, telur bebek, dan ebi. Dimasak satu-satu per pesanan, seperti di angkringan aslinya.</p>
-          <p class="mt-5 text-lg">Rp 29rb <span class="text-mute line-through text-base ml-2">Rp 36rb</span></p>
+          <p class="mt-5 text-lg">Rp 29rb <span class="text-mute line-through text-base ml-2">Rp 36rb</span><span class="chip-save">Hemat Rp 7rb</span></p>
           <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Mie%20Godog%20Jawa" target="_blank" rel="noopener" class="inline-block mt-5 border border-ink px-6 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors">Pesan Ini</a>
         </div>
-        <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=1200&q=80&auto=format&fit=crop" alt="Mie Godog Jawa Arunika" class="w-full h-80 object-cover md:order-2 order-1">
+        <div class="overflow-hidden rounded-2xl shadow-xl group md:order-2 order-1"><img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=1200&q=80&auto=format&fit=crop" alt="Mie Godog Jawa Arunika" class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105"></div>
       </article>
 
       <article class="grid md:grid-cols-2 gap-10 items-center reveal">
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80&auto=format&fit=crop" alt="Ayam Bakar Madu Arunika" class="w-full h-80 object-cover">
+        <div class="overflow-hidden rounded-2xl shadow-xl group"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80&auto=format&fit=crop" alt="Ayam Bakar Madu Arunika" class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105"></div>
         <div>
           <p class="font-serif text-clay text-lg">03</p>
           <h3 class="font-serif text-3xl mt-2">Ayam Bakar Madu</h3>
           <p class="mt-4 text-ink/70 leading-relaxed">Ayam kampung diungkep bumbu kuning, dibakar dengan olesan madu hutan, disajikan dengan sambal terasi dan nasi liwet. Manisnya pas, pedasnya sopan.</p>
-          <p class="mt-5 text-lg">Rp 35rb <span class="text-mute line-through text-base ml-2">Rp 44rb</span></p>
+          <p class="mt-5 text-lg">Rp 35rb <span class="text-mute line-through text-base ml-2">Rp 44rb</span><span class="chip-save">Hemat Rp 9rb</span></p>
           <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Ayam%20Bakar%20Madu" target="_blank" rel="noopener" class="inline-block mt-5 border border-ink px-6 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors">Pesan Ini</a>
         </div>
       </article>
@@ -131,17 +147,18 @@ tailwind.config = { theme: { extend: {
       <p class="text-sm tracking-[0.25em] uppercase text-clay mb-5">Paket Hemat</p>
       <h2 class="font-serif text-4xl leading-tight">Buat rame-rame.</h2>
       <div class="mt-10 space-y-8">
-        <div class="border border-ink/15 p-7">
+        <div class="border border-ink/15 p-7 rounded-2xl lift bg-cream">
           <div class="flex items-baseline justify-between"><h3 class="font-serif text-2xl">Paket Berdua</h3><p class="text-lg">Rp 79rb <span class="text-mute line-through text-sm ml-1">Rp 96rb</span></p></div>
           <p class="mt-3 text-ink/70 text-[15px] leading-relaxed">2 makanan utama + 2 es teh rempah. Buat makan berdua tanpa mikir.</p>
           <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Paket%20Berdua" target="_blank" rel="noopener" class="inline-block mt-4 text-clay u-line text-sm font-medium">Pesan Paket Ini</a>
         </div>
-        <div class="border border-ink/15 p-7">
+        <div class="relative border-2 border-clay p-7 rounded-2xl lift bg-clay/5">
+          <span class="absolute -top-3 left-6 bg-clay text-cream text-[11.5px] tracking-[0.12em] uppercase px-3.5 py-1 rounded-full">Paling Laris</span>
           <div class="flex items-baseline justify-between"><h3 class="font-serif text-2xl">Paket Keluarga</h3><p class="text-lg">Rp 149rb <span class="text-mute line-through text-sm ml-1">Rp 185rb</span></p></div>
           <p class="mt-3 text-ink/70 text-[15px] leading-relaxed">4 makanan utama + 4 minuman + kerupuk & sambal ekstra. Untuk 4–5 orang.</p>
           <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Paket%20Keluarga" target="_blank" rel="noopener" class="inline-block mt-4 text-clay u-line text-sm font-medium">Pesan Paket Ini</a>
         </div>
-        <div class="border border-ink/15 p-7">
+        <div class="border border-ink/15 p-7 rounded-2xl lift bg-cream">
           <div class="flex items-baseline justify-between"><h3 class="font-serif text-2xl">Paket Kantoran</h3><p class="text-lg">Rp 349rb <span class="text-mute line-through text-sm ml-1">Rp 420rb</span></p></div>
           <p class="mt-3 text-ink/70 text-[15px] leading-relaxed">10 nasi kotak (rendang/ayam bakar) + 10 es teh. Pesan H-1, kami antar ke kantormu area Bandung.</p>
           <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Paket%20Kantoran" target="_blank" rel="noopener" class="inline-block mt-4 text-clay u-line text-sm font-medium">Pesan Paket Ini</a>
@@ -157,10 +174,12 @@ tailwind.config = { theme: { extend: {
     <p class="text-sm tracking-[0.25em] uppercase text-cream/60 mb-12 reveal">Kata Mereka</p>
     <div class="grid md:grid-cols-2 gap-14">
       <blockquote class="reveal">
+        <p class="stars mb-5">★★★★★</p>
         <p class="font-serif text-2xl leading-snug">"Rendangnya beneran kayak masakan ibu di rumah. Sekarang tiap Jumat kantor kami pesan Paket Kantoran — tinggal klik dari website, nggak pakai antre chat."</p>
         <footer class="mt-6 text-cream/60 text-sm">Sari Wulandari — Admin kantor, Dago</footer>
       </blockquote>
       <blockquote class="reveal">
+        <p class="stars mb-5">★★★★★</p>
         <p class="font-serif text-2xl leading-snug">"Saya nemu Arunika dari Google, lihat menu dan harganya jelas, langsung pesan. Mie godognya juara — kuahnya kerasa kaldu beneran."</p>
         <footer class="mt-6 text-cream/60 text-sm">Bimo Prasetyo — Pelanggan baru via Google</footer>
       </blockquote>
@@ -189,11 +208,17 @@ tailwind.config = { theme: { extend: {
 
 <!-- FOOTER -->
 <footer class="border-t border-ink/10">
-  <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-4 text-sm text-mute">
+  <div class="max-w-6xl mx-auto px-6 pt-10 pb-24 md:pb-10 flex flex-col md:flex-row justify-between gap-4 text-sm text-mute">
     <p>ARUNIKA — Kopi & Dapur Nusantara, Bandung</p>
     <p>Foto: Unsplash (1555396273, 1517248135467, 1565557623262, 1585032226651, 1504674900247)</p>
   </div>
 </footer>
+
+<!-- STICKY ORDER BAR (mobile) -->
+<div class="fixed bottom-0 inset-x-0 z-50 md:hidden px-5 py-3 flex items-center justify-between" style="background:rgba(40,33,26,.94);backdrop-filter:blur(6px)">
+  <div class="text-cream"><p class="text-[13px] font-medium leading-tight">Laper? Pesan sekarang</p><p class="text-[11.5px] leading-tight" style="color:rgba(250,245,236,.6)">Disiapkan sebelum kamu sampai</p></div>
+  <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan" target="_blank" rel="noopener" class="bg-clay text-cream text-[13px] px-5 py-2.5 rounded-full font-medium">Pesan</a>
+</div>
 
 <script>
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.12 });
