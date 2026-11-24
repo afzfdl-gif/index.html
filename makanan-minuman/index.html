@@ -30,6 +30,15 @@ tailwind.config = { theme: { extend: {
   .chip-save{display:inline-block;background:#B4552D;color:#FAF5EC;font-size:11.5px;letter-spacing:.05em;padding:3px 10px;border-radius:999px;margin-left:10px;vertical-align:2px}
   .stars{color:#E9A13B;letter-spacing:.25em;font-size:15px}
   .hero-chip{display:inline-flex;align-items:center;gap:7px;background:rgba(250,245,236,.14);border:1px solid rgba(250,245,236,.35);backdrop-filter:blur(4px);padding:7px 14px;border-radius:999px;font-size:13px}
+  .add-mini{margin-top:5px;background:#28211A;color:#FAF5EC;font-size:12px;padding:5px 13px;border-radius:999px;letter-spacing:.02em;cursor:pointer}
+  .add-mini:active{transform:scale(.96)}
+  .add-btn{cursor:pointer}
+  .add-btn:active{transform:scale(.97)}
+  .pay-card{display:flex;gap:12px;align-items:flex-start;border:1.5px solid rgba(40,33,26,.15);border-radius:16px;padding:16px;cursor:pointer;transition:border-color .2s,background .2s}
+  .pay-card.sel{border-color:#B4552D;background:rgba(180,85,45,.06)}
+  .qty-btn{width:30px;height:30px;border-radius:999px;border:1px solid rgba(40,33,26,.25);display:inline-flex;align-items:center;justify-content:center;font-size:16px;line-height:1;cursor:pointer;background:transparent}
+  .toast{position:fixed;left:50%;bottom:104px;transform:translateX(-50%) translateY(20px);background:#28211A;color:#FAF5EC;padding:11px 22px;border-radius:999px;font-size:13.5px;z-index:80;opacity:0;pointer-events:none;transition:all .3s ease;box-shadow:0 12px 30px -10px rgba(40,33,26,.5)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body class="antialiased font-light">
@@ -42,7 +51,7 @@ tailwind.config = { theme: { extend: {
       <a href="#minuman" class="u-line">Minuman & Paket</a>
       <a href="#kunjungi" class="u-line">Kunjungi Kami</a>
     </nav>
-    <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan" target="_blank" rel="noopener" class="bg-clay hover:bg-clayd text-cream text-sm px-5 py-2.5 rounded-full transition-colors">Pesan Sekarang</a>
+    <button onclick="openKasir()" class="bg-clay hover:bg-clayd text-cream text-sm px-5 py-2.5 rounded-full transition-colors">Pesan Sekarang</button>
   </div>
 </header>
 
@@ -56,7 +65,7 @@ tailwind.config = { theme: { extend: {
     <p class="mt-6 text-lg text-cream/85 max-w-xl reveal">Menu dan harga tampil semua di sini. Pilih, klik, pesan lewat WhatsApp — makananmu disiapkan sebelum kamu sampai.</p>
     <div class="mt-9 flex flex-wrap gap-4 reveal">
       <a href="#makanan" class="bg-cream text-ink px-7 py-3.5 rounded-full text-sm font-medium hover:bg-white transition-colors">Lihat Menu</a>
-      <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20untuk%20hari%20ini" target="_blank" rel="noopener" class="border border-cream/60 text-cream px-7 py-3.5 rounded-full text-sm hover:bg-cream/10 transition-colors">Pesan via WhatsApp</a>
+      <button onclick="openKasir()" class="border border-cream/60 text-cream px-7 py-3.5 rounded-full text-sm hover:bg-cream/10 transition-colors">Buat Pesanan</button>
     </div>
     <div class="mt-8 flex flex-wrap gap-3 reveal">
       <span class="hero-chip">★ 4.9 — 320+ ulasan Google</span>
@@ -101,7 +110,7 @@ tailwind.config = { theme: { extend: {
           <h3 class="font-serif text-3xl mt-2">Nasi Rendang Sapi</h3>
           <p class="mt-4 text-ink/70 leading-relaxed">Rendang sapi dimasak 6 jam sampai bumbu meresap, disajikan dengan nasi pulen, sambal ijo, dan lalapan. Yang ini yang paling sering habis duluan.</p>
           <p class="mt-5 text-lg">Rp 38rb <span class="text-mute line-through text-base ml-2">Rp 48rb</span><span class="chip-save">Hemat Rp 10rb</span></p>
-          <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Nasi%20Rendang%20Sapi" target="_blank" rel="noopener" class="inline-block mt-5 border border-ink px-6 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors">Pesan Ini</a>
+          <button data-add data-name="Nasi Rendang Sapi" data-price="38000" class="add-btn inline-block mt-5 border border-ink px-6 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors">+ Tambah ke Pesanan</button>
         </div>
       </article>
 
@@ -111,7 +120,7 @@ tailwind.config = { theme: { extend: {
           <h3 class="font-serif text-3xl mt-2">Mie Godog Jawa</h3>
           <p class="mt-4 text-ink/70 leading-relaxed">Mie telur dimasak di atas arang dengan kuah kaldu ayam kampung, telur bebek, dan ebi. Dimasak satu-satu per pesanan, seperti di angkringan aslinya.</p>
           <p class="mt-5 text-lg">Rp 29rb <span class="text-mute line-through text-base ml-2">Rp 36rb</span><span class="chip-save">Hemat Rp 7rb</span></p>
-          <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Mie%20Godog%20Jawa" target="_blank" rel="noopener" class="inline-block mt-5 border border-ink px-6 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors">Pesan Ini</a>
+          <button data-add data-name="Mie Godog Jawa" data-price="29000" class="add-btn inline-block mt-5 border border-ink px-6 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors">+ Tambah ke Pesanan</button>
         </div>
         <div class="overflow-hidden rounded-2xl shadow-xl group md:order-2 order-1"><img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=1200&q=80&auto=format&fit=crop" alt="Mie Godog Jawa Arunika" class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105"></div>
       </article>
@@ -123,7 +132,7 @@ tailwind.config = { theme: { extend: {
           <h3 class="font-serif text-3xl mt-2">Ayam Bakar Madu</h3>
           <p class="mt-4 text-ink/70 leading-relaxed">Ayam kampung diungkep bumbu kuning, dibakar dengan olesan madu hutan, disajikan dengan sambal terasi dan nasi liwet. Manisnya pas, pedasnya sopan.</p>
           <p class="mt-5 text-lg">Rp 35rb <span class="text-mute line-through text-base ml-2">Rp 44rb</span><span class="chip-save">Hemat Rp 9rb</span></p>
-          <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Ayam%20Bakar%20Madu" target="_blank" rel="noopener" class="inline-block mt-5 border border-ink px-6 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors">Pesan Ini</a>
+          <button data-add data-name="Ayam Bakar Madu" data-price="35000" class="add-btn inline-block mt-5 border border-ink px-6 py-3 rounded-full text-sm hover:bg-ink hover:text-cream transition-colors">+ Tambah ke Pesanan</button>
         </div>
       </article>
     </div>
@@ -137,10 +146,10 @@ tailwind.config = { theme: { extend: {
       <p class="text-sm tracking-[0.25em] uppercase text-clay mb-5">Minuman</p>
       <h2 class="font-serif text-4xl leading-tight">Pendampingnya.</h2>
       <dl class="mt-10 space-y-0 text-[15px]">
-        <div class="flex items-baseline justify-between py-4 border-b border-ink/10"><dt>Kopi Tubruk Gula Aren<span class="block text-mute text-sm mt-1">Biji Garut, diseduh pekat, aren asli</span></dt><dd class="font-medium whitespace-nowrap ml-6">Rp 18rb</dd></div>
-        <div class="flex items-baseline justify-between py-4 border-b border-ink/10"><dt>Es Kopi Susu Arunika<span class="block text-mute text-sm mt-1">Double shot, susu segar, aren</span></dt><dd class="font-medium whitespace-nowrap ml-6">Rp 22rb</dd></div>
-        <div class="flex items-baseline justify-between py-4 border-b border-ink/10"><dt>Es Teh Rempah<span class="block text-mute text-sm mt-1">Teh melati, serai, dan jahe bakar</span></dt><dd class="font-medium whitespace-nowrap ml-6">Rp 12rb</dd></div>
-        <div class="flex items-baseline justify-between py-4"><dt>Jus Alpukat Cokelat<span class="block text-mute text-sm mt-1">Alpukat mentega, tanpa pemanis buatan</span></dt><dd class="font-medium whitespace-nowrap ml-6">Rp 22rb</dd></div>
+        <div class="flex items-baseline justify-between py-4 border-b border-ink/10"><dt>Kopi Tubruk Gula Aren<span class="block text-mute text-sm mt-1">Biji Garut, diseduh pekat, aren asli</span></dt><dd class="font-medium whitespace-nowrap ml-6 text-right">Rp 18rb<br><button data-add data-name="Kopi Tubruk Gula Aren" data-price="18000" class="add-mini">+ Tambah</button></dd></div>
+        <div class="flex items-baseline justify-between py-4 border-b border-ink/10"><dt>Es Kopi Susu Arunika<span class="block text-mute text-sm mt-1">Double shot, susu segar, aren</span></dt><dd class="font-medium whitespace-nowrap ml-6 text-right">Rp 22rb<br><button data-add data-name="Es Kopi Susu Arunika" data-price="22000" class="add-mini">+ Tambah</button></dd></div>
+        <div class="flex items-baseline justify-between py-4 border-b border-ink/10"><dt>Es Teh Rempah<span class="block text-mute text-sm mt-1">Teh melati, serai, dan jahe bakar</span></dt><dd class="font-medium whitespace-nowrap ml-6 text-right">Rp 12rb<br><button data-add data-name="Es Teh Rempah" data-price="12000" class="add-mini">+ Tambah</button></dd></div>
+        <div class="flex items-baseline justify-between py-4"><dt>Jus Alpukat Cokelat<span class="block text-mute text-sm mt-1">Alpukat mentega, tanpa pemanis buatan</span></dt><dd class="font-medium whitespace-nowrap ml-6 text-right">Rp 22rb<br><button data-add data-name="Jus Alpukat Cokelat" data-price="22000" class="add-mini">+ Tambah</button></dd></div>
       </dl>
     </div>
     <div class="reveal">
@@ -150,18 +159,18 @@ tailwind.config = { theme: { extend: {
         <div class="border border-ink/15 p-7 rounded-2xl lift bg-cream">
           <div class="flex items-baseline justify-between"><h3 class="font-serif text-2xl">Paket Berdua</h3><p class="text-lg">Rp 79rb <span class="text-mute line-through text-sm ml-1">Rp 96rb</span></p></div>
           <p class="mt-3 text-ink/70 text-[15px] leading-relaxed">2 makanan utama + 2 es teh rempah. Buat makan berdua tanpa mikir.</p>
-          <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Paket%20Berdua" target="_blank" rel="noopener" class="inline-block mt-4 text-clay u-line text-sm font-medium">Pesan Paket Ini</a>
+          <button data-add data-name="Paket Berdua" data-price="79000" class="add-btn inline-block mt-4 text-clay u-line text-sm font-medium">+ Tambah ke Pesanan</button>
         </div>
         <div class="relative border-2 border-clay p-7 rounded-2xl lift bg-clay/5">
           <span class="absolute -top-3 left-6 bg-clay text-cream text-[11.5px] tracking-[0.12em] uppercase px-3.5 py-1 rounded-full">Paling Laris</span>
           <div class="flex items-baseline justify-between"><h3 class="font-serif text-2xl">Paket Keluarga</h3><p class="text-lg">Rp 149rb <span class="text-mute line-through text-sm ml-1">Rp 185rb</span></p></div>
           <p class="mt-3 text-ink/70 text-[15px] leading-relaxed">4 makanan utama + 4 minuman + kerupuk & sambal ekstra. Untuk 4–5 orang.</p>
-          <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Paket%20Keluarga" target="_blank" rel="noopener" class="inline-block mt-4 text-clay u-line text-sm font-medium">Pesan Paket Ini</a>
+          <button data-add data-name="Paket Keluarga" data-price="149000" class="add-btn inline-block mt-4 text-clay u-line text-sm font-medium">+ Tambah ke Pesanan</button>
         </div>
         <div class="border border-ink/15 p-7 rounded-2xl lift bg-cream">
           <div class="flex items-baseline justify-between"><h3 class="font-serif text-2xl">Paket Kantoran</h3><p class="text-lg">Rp 349rb <span class="text-mute line-through text-sm ml-1">Rp 420rb</span></p></div>
           <p class="mt-3 text-ink/70 text-[15px] leading-relaxed">10 nasi kotak (rendang/ayam bakar) + 10 es teh. Pesan H-1, kami antar ke kantormu area Bandung.</p>
-          <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan%20Paket%20Kantoran" target="_blank" rel="noopener" class="inline-block mt-4 text-clay u-line text-sm font-medium">Pesan Paket Ini</a>
+          <button data-add data-name="Paket Kantoran" data-price="349000" class="add-btn inline-block mt-4 text-clay u-line text-sm font-medium">+ Tambah ke Pesanan</button>
         </div>
       </div>
     </div>
@@ -208,21 +217,121 @@ tailwind.config = { theme: { extend: {
 
 <!-- FOOTER -->
 <footer class="border-t border-ink/10">
-  <div class="max-w-6xl mx-auto px-6 pt-10 pb-24 md:pb-10 flex flex-col md:flex-row justify-between gap-4 text-sm text-mute">
+  <div class="max-w-6xl mx-auto px-6 pt-10 pb-28 md:pb-28 flex flex-col md:flex-row justify-between gap-4 text-sm text-mute">
     <p>ARUNIKA — Kopi & Dapur Nusantara, Bandung</p>
     <p>Foto: Unsplash (1555396273, 1517248135467, 1565557623262, 1585032226651, 1504674900247)</p>
   </div>
 </footer>
 
-<!-- STICKY ORDER BAR (mobile) -->
-<div class="fixed bottom-0 inset-x-0 z-50 md:hidden px-5 py-3 flex items-center justify-between" style="background:rgba(40,33,26,.94);backdrop-filter:blur(6px)">
-  <div class="text-cream"><p class="text-[13px] font-medium leading-tight">Laper? Pesan sekarang</p><p class="text-[11.5px] leading-tight" style="color:rgba(250,245,236,.6)">Disiapkan sebelum kamu sampai</p></div>
-  <a href="https://wa.me/6282117488321?text=Halo%20Arunika%2C%20saya%20mau%20pesan" target="_blank" rel="noopener" class="bg-clay text-cream text-[13px] px-5 py-2.5 rounded-full font-medium">Pesan</a>
+<!-- CART BAR -->
+<div class="fixed bottom-0 inset-x-0 z-50 px-4 pb-4 md:pb-5 pointer-events-none">
+  <div class="max-w-3xl mx-auto pointer-events-auto flex items-center justify-between gap-4 rounded-full pl-6 pr-2 py-2 shadow-2xl" style="background:rgba(40,33,26,.96);backdrop-filter:blur(6px)">
+    <div class="text-cream min-w-0">
+      <p id="cartInfo" class="text-[13.5px] font-medium leading-tight truncate">Keranjang masih kosong</p>
+      <p id="cartSub" class="text-[11.5px] leading-tight" style="color:rgba(250,245,236,.6)">Tambah menu, bayar via QRIS atau tunai di kasir</p>
+    </div>
+    <button onclick="openKasir()" class="bg-clay hover:bg-clayd text-cream text-sm px-6 py-3 rounded-full font-medium whitespace-nowrap transition-colors">Ke Kasir</button>
+  </div>
 </div>
+
+<!-- KASIR MODAL -->
+<div id="kasirModal" class="fixed inset-0 z-[70] hidden items-end md:items-center justify-center md:p-6" style="background:rgba(40,33,26,.55);backdrop-filter:blur(3px)">
+  <div class="bg-cream w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-t-3xl md:rounded-3xl p-7 md:p-9 relative">
+    <button onclick="closeKasir()" class="absolute top-5 right-6 text-3xl leading-none text-ink/50 hover:text-ink" aria-label="Tutup">&times;</button>
+    <p class="text-xs tracking-[0.25em] uppercase text-clay">Kasir Arunika</p>
+    <h3 class="font-serif text-3xl mt-2">Selesaikan Pesananmu</h3>
+    <div id="kasirItems" class="mt-7 space-y-4"></div>
+    <div class="flex items-baseline justify-between border-t border-ink/15 mt-6 pt-5">
+      <span class="text-sm text-mute">Total bayar</span>
+      <span id="kasirTotal" class="font-serif text-2xl">Rp 0</span>
+    </div>
+    <div class="grid grid-cols-2 gap-4 mt-7">
+      <label class="block">
+        <span class="text-sm text-mute">Nomor Meja</span>
+        <select id="meja" class="mt-2 w-full border border-ink/20 rounded-xl px-4 py-3 bg-white text-[15px]"><option value="Takeaway (bungkus)">Takeaway / Bungkus</option><option value="Meja 1">Meja 1</option><option value="Meja 2">Meja 2</option><option value="Meja 3">Meja 3</option><option value="Meja 4">Meja 4</option><option value="Meja 5">Meja 5</option><option value="Meja 6">Meja 6</option><option value="Meja 7">Meja 7</option><option value="Meja 8">Meja 8</option><option value="Meja 9">Meja 9</option><option value="Meja 10">Meja 10</option><option value="Meja 11">Meja 11</option><option value="Meja 12">Meja 12</option><option value="Meja 13">Meja 13</option><option value="Meja 14">Meja 14</option><option value="Meja 15">Meja 15</option></select>
+      </label>
+      <label class="block">
+        <span class="text-sm text-mute">Nama (opsional)</span>
+        <input id="namaPemesan" type="text" placeholder="Nama kamu" class="mt-2 w-full border border-ink/20 rounded-xl px-4 py-3 bg-white text-[15px]">
+      </label>
+    </div>
+    <p class="text-sm text-mute mt-7 mb-3">Metode Pembayaran</p>
+    <div class="space-y-3">
+      <label class="pay-card sel" id="cardQris">
+        <input type="radio" name="pay" value="qris" checked class="mt-1" style="accent-color:#B4552D">
+        <span><b class="font-medium">QRIS</b><span class="block text-sm text-ink/60 mt-0.5">Scan &amp; bayar sekarang — GoPay, OVO, DANA, ShopeePay, semua m-banking.</span></span>
+      </label>
+      <div id="qrisBox" class="border border-dashed rounded-2xl p-5 text-center bg-white" style="border-color:rgba(180,85,45,.5)">
+        <img src="data:image/png;base64,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" alt="QRIS Arunika" class="w-44 h-44 mx-auto">
+        <p class="mt-3 font-medium tracking-wide">QRIS &middot; ARUNIKA KASIR</p>
+        <p class="text-sm text-mute mt-1">Nominal mengikuti total pesananmu. Setelah bayar, kirim pesanan via WhatsApp &amp; tunjukkan bukti bayar di kasir.</p>
+        <p class="text-[11px] text-mute mt-2 italic">QR contoh untuk demo — bukan QR pembayaran nyata.</p>
+      </div>
+      <label class="pay-card" id="cardTunai">
+        <input type="radio" name="pay" value="tunai" class="mt-1" style="accent-color:#B4552D">
+        <span><b class="font-medium">Tunai di Kasir</b><span class="block text-sm text-ink/60 mt-0.5">Pesan dulu, bayar langsung di kasir saat mengambil pesanan.</span></span>
+      </label>
+      <div id="tunaiBox" class="hidden border border-dashed border-ink/25 rounded-2xl p-5 text-center">
+        <p class="text-sm text-ink/70">Tunjukkan kode pesanan ini di kasir:</p>
+        <p id="kodeTunai" class="font-serif text-3xl tracking-[0.15em] mt-2">ARN-0000</p>
+      </div>
+    </div>
+    <button onclick="kirimPesanan()" class="mt-8 w-full bg-clay hover:bg-clayd text-cream py-4 rounded-full font-medium transition-colors">Kirim Pesanan via WhatsApp</button>
+    <p class="text-center text-[12px] text-mute mt-3">Kode pesanan: <span id="kodePesanan">ARN-0000</span> &middot; Dapur mulai menyiapkan setelah pesananmu terkirim.</p>
+  </div>
+</div>
+<div id="toast" class="toast">Ditambahkan &#10003;</div>
 
 <script>
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+const cart = {};
+let kode = 'ARN-0000';
+const fmt = n => 'Rp ' + n.toLocaleString('id-ID');
+function newKode(){ kode = 'ARN-' + Math.floor(1000 + Math.random()*9000); document.getElementById('kodePesanan').textContent = kode; document.getElementById('kodeTunai').textContent = kode; }
+function cartCount(){ return Object.values(cart).reduce((a,i)=>a+i.qty,0); }
+function cartTotal(){ return Object.values(cart).reduce((a,i)=>a+i.qty*i.price,0); }
+function renderCart(){
+  const c = cartCount(), t = cartTotal();
+  document.getElementById('cartInfo').textContent = c ? c + ' item \u00B7 ' + fmt(t) : 'Keranjang masih kosong';
+  document.getElementById('cartSub').textContent = c ? 'Klik Ke Kasir untuk pilih meja & pembayaran' : 'Tambah menu, bayar via QRIS atau tunai di kasir';
+  const box = document.getElementById('kasirItems');
+  if(!c){ box.innerHTML = '<p class="text-ink/60 text-[15px]">Belum ada menu dipilih. Tutup kasir, lalu tekan + Tambah pada menu yang kamu mau.</p>'; }
+  else box.innerHTML = Object.entries(cart).map(([name,i]) =>
+    '<div class="flex items-center justify-between gap-3">' +
+    '<div class="min-w-0"><p class="font-medium text-[15px] truncate">' + name + '</p><p class="text-sm text-mute">' + fmt(i.price) + '</p></div>' +
+    '<div class="flex items-center gap-2.5 shrink-0"><button class="qty-btn" onclick="chg(\'' + name + '\',-1)">\u2212</button><span class="w-5 text-center text-[15px]">' + i.qty + '</span><button class="qty-btn" onclick="chg(\'' + name + '\',1)">+</button></div>' +
+    '<div class="w-24 text-right font-medium text-[15px] shrink-0">' + fmt(i.price*i.qty) + '</div></div>').join('');
+  document.getElementById('kasirTotal').textContent = fmt(t);
+}
+function chg(name, d){ if(!cart[name]) return; cart[name].qty += d; if(cart[name].qty <= 0) delete cart[name]; renderCart(); }
+document.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', () => {
+  const n = b.dataset.name, pr = parseInt(b.dataset.price, 10);
+  if(!cart[n]) cart[n] = {price: pr, qty: 0};
+  cart[n].qty++; renderCart();
+  const t = document.getElementById('toast'); t.textContent = n + ' ditambahkan \u2713'; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 1600);
+}));
+function openKasir(){ newKode(); renderCart(); const m = document.getElementById('kasirModal'); m.classList.remove('hidden'); m.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+function closeKasir(){ const m = document.getElementById('kasirModal'); m.classList.add('hidden'); m.classList.remove('flex'); document.body.style.overflow = ''; }
+document.getElementById('kasirModal').addEventListener('click', e => { if(e.target.id === 'kasirModal') closeKasir(); });
+document.querySelectorAll('input[name="pay"]').forEach(r => r.addEventListener('change', () => {
+  const q = document.querySelector('input[name="pay"]:checked').value === 'qris';
+  document.getElementById('qrisBox').classList.toggle('hidden', !q);
+  document.getElementById('tunaiBox').classList.toggle('hidden', q);
+  document.getElementById('cardQris').classList.toggle('sel', q);
+  document.getElementById('cardTunai').classList.toggle('sel', !q);
+}));
+function kirimPesanan(){
+  if(!cartCount()){ alert('Keranjang masih kosong \u2014 tambah menu dulu ya.'); return; }
+  const meja = document.getElementById('meja').value;
+  const nama = document.getElementById('namaPemesan').value.trim();
+  const metode = document.querySelector('input[name="pay"]:checked').value === 'qris' ? 'QRIS (sudah saya bayar, bukti saya tunjukkan di kasir)' : 'Tunai di kasir';
+  const lines = Object.entries(cart).map(([n,i]) => '\u2022 ' + i.qty + '\u00D7 ' + n + ' \u2014 ' + fmt(i.price*i.qty));
+  const msg = 'Halo Arunika, saya mau pesan:\n' + lines.join('\n') + '\n\nTotal: ' + fmt(cartTotal()) + '\nMeja: ' + meja + '\nPembayaran: ' + metode + '\nKode pesanan: ' + kode + (nama ? '\nNama: ' + nama : '');
+  window.open('https://wa.me/6282117488321?text=' + encodeURIComponent(msg), '_blank');
+}
+renderCart();
+
 </script>
 </body>
 </html>
