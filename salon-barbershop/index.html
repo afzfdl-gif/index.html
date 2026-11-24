@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAPI. — Barbershop &amp; Salon di Tebet, Jakarta Selatan</title>
+<meta name="description" content="Potong rambut, fade, dan perawatan dengan harga yang jelas sejak awal. Pilih barber dan jam, booking lewat WhatsApp — bisa kapan saja, bahkan saat toko tutup.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { bone:'#F6F2EC', ink:'#211D19', clay:'#96543A', line:'#E3DAD0', moss:'#5C6650' },
+  fontFamily: { serif:['Fraunces','serif'], sans:['"Plus Jakarta Sans"','sans-serif'] }
+}}}
+</script>
+<style>
+  html{scroll-behavior:smooth}
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:#F6F2EC;color:#211D19}
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .row-link{transition:background .25s ease}
+  .row-link:hover{background:#fff}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .faq.open .faq-a{max-height:200px}
+  .faq.open .faq-i{transform:rotate(45deg)}
+  .faq-i{transition:transform .3s}
+  a.u-line{background-image:linear-gradient(currentColor,currentColor);background-size:0% 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .3s ease}
+  a.u-line:hover{background-size:100% 1px}
+  .wm-pattern{position:fixed;inset:0;z-index:60;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Ctext x='40' y='280' font-family='Georgia,serif' font-size='44' font-weight='bold' fill='%23211D19' fill-opacity='0.055' transform='rotate(-24 260 260)'%3EDEMO — B&amp;Z%3C/text%3E%3C/svg%3E")}
+  .wm-badge{position:fixed;left:18px;bottom:18px;z-index:61;background:rgba(33,29,25,.88);color:#F6F2EC;font-size:12.5px;letter-spacing:.04em;padding:9px 16px;border-radius:999px;backdrop-filter:blur(4px)}
+  .wm-badge b{color:#E8BEA0;font-weight:600}
+  .slot{border:1px solid #E3DAD0;border-radius:999px;padding:10px 18px;font-size:15px;cursor:pointer;transition:all .2s ease;background:transparent}
+  .slot:hover{border-color:#211D19}
+  .slot.on{background:#211D19;color:#F6F2EC;border-color:#211D19}
+  .pick{border:1px solid #E3DAD0;border-radius:16px;padding:18px 20px;cursor:pointer;transition:all .2s ease;text-align:left;width:100%;background:transparent}
+  .pick:hover{border-color:#211D19}
+  .pick.on{border-color:#211D19;background:#fff}
+  .pick.on .pick-dot{background:#96543A;border-color:#96543A}
+  .pick-dot{width:14px;height:14px;border-radius:999px;border:2px solid #E3DAD0;display:inline-block;transition:all .2s ease}
+</style>
+</head>
+<body class="antialiased font-light">
+<div class="wm-pattern" aria-hidden="true"></div>
+<div class="wm-badge">DEMO · <b>B&amp;Z Web Studio</b> · @bz_devweb</div>
+
+<!-- ═══ NAV ═══ -->
+<header class="fixed top-0 inset-x-0 z-50 bg-bone/90 backdrop-blur-sm">
+  <div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between border-b border-line">
+    <a href="#" class="font-serif text-[26px] font-semibold tracking-tight">RAPI.</a>
+    <nav class="hidden md:flex gap-9 text-[15px] text-ink/70">
+      <a href="#layanan" class="u-line hover:text-ink">Layanan</a>
+      <a href="#barber" class="u-line hover:text-ink">Barber</a>
+      <a href="#booking" class="u-line hover:text-ink">Booking</a>
+      <a href="#faq" class="u-line hover:text-ink">FAQ</a>
+    </nav>
+    <a href="https://wa.me/6282117488321?text=Halo%20RAPI.%2C%20saya%20mau%20booking%20potong%20rambut" target="_blank" class="text-[15px] font-medium border border-ink rounded-full px-5 py-2.5 hover:bg-ink hover:text-bone transition">Booking</a>
+  </div>
+</header>
+
+<!-- ═══ HERO — satu layar penuh, satu pesan ═══ -->
+<section class="min-h-screen flex flex-col justify-end max-w-6xl mx-auto px-6 pt-[72px]">
+  <div class="grid md:grid-cols-12 gap-10 items-end flex-1 py-14">
+    <div class="md:col-span-7 reveal">
+      <p class="text-[13px] uppercase tracking-[0.22em] text-clay font-medium">Barbershop &amp; salon — Tebet, Jakarta Selatan</p>
+      <h1 class="font-serif text-[44px] leading-[1.12] md:text-[64px] leading-[1.06] font-medium mt-6">
+        Kursi terisi, tanpa menunggu balasan chat.
+      </h1>
+      <p class="text-lg text-ink/65 leading-relaxed mt-7 max-w-[52ch]">
+        Harga jelas sejak awal, barber bisa dipilih, jam bisa dipesan kapan saja — bahkan saat toko tutup. Kamu datang, duduk, langsung ditangani.
+      </p>
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-4 mt-10">
+        <a href="#booking" class="bg-ink text-bone font-medium px-7 py-4 rounded-full hover:bg-clay transition">Pilih jam booking</a>
+        <a href="#layanan" class="u-line font-medium">Lihat layanan &amp; harga</a>
+      </div>
+    </div>
+    <div class="md:col-span-5 reveal">
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1000&q=80&auto=format&fit=crop" alt="Barber RAPI. sedang memotong rambut pelanggan" class="w-full h-[380px] md:h-[520px] object-cover rounded-t-[10rem] rounded-b-2xl">
+    </div>
+  </div>
+  <div class="border-t border-line py-5 flex flex-wrap gap-x-10 gap-y-2 text-sm text-ink/55 reveal">
+    <span>Jl. Tebet Raya No. 42, Jakarta Selatan</span>
+    <span>Setiap hari, 09.00–21.00 WIB</span>
+    <span>Booking online 24 jam — 40% pelanggan kami booking di luar jam buka</span>
+  </div>
+</section>
+
+<!-- ═══ LAYANAN — daftar editorial, bukan grid kartu ═══ -->
+<section id="layanan" class="max-w-6xl mx-auto px-6 py-28">
+  <div class="max-w-2xl reveal">
+    <h2 class="font-serif text-4xl md:text-[44px] leading-tight font-medium">Layanan</h2>
+    <p class="text-ink/60 text-lg mt-4 leading-relaxed">Lima layanan yang paling sering dipesan. Semua harga final — sudah termasuk cuci rambut dan styling akhir.</p>
+  </div>
+  <div class="mt-14 border-t border-line">
+    <article class="row-link reveal grid md:grid-cols-12 gap-6 items-center py-10 border-b border-line px-2 md:px-4 rounded-lg">
+      <span class="md:col-span-1 font-serif text-clay text-lg">01</span>
+      <div class="md:col-span-5">
+        <h3 class="font-serif text-2xl font-medium">Signature Cut</h3>
+        <p class="text-ink/60 mt-2 leading-relaxed max-w-[46ch]">Konsultasi bentuk wajah, potong, cuci, dan styling. Untuk yang mau rapi tanpa harus menjelaskan panjang lebar.</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=600&q=80&auto=format&fit=crop" alt="" class="md:col-span-3 w-full h-36 object-cover rounded-xl">
+      <div class="md:col-span-3 md:text-right">
+        <p class="font-serif text-[26px] font-medium">Rp 75.000</p>
+        <p class="text-ink/50 text-sm mt-1">45 menit</p>
+        <a href="https://wa.me/6282117488321?text=Saya%20mau%20booking%20Signature%20Cut%20Rp75.000" target="_blank" class="u-line inline-block mt-2 font-medium text-clay">Booking cut</a>
+      </div>
+    </article>
+    <article class="row-link reveal grid md:grid-cols-12 gap-6 items-center py-10 border-b border-line px-2 md:px-4 rounded-lg">
+      <span class="md:col-span-1 font-serif text-clay text-lg">02</span>
+      <div class="md:col-span-5">
+        <h3 class="font-serif text-2xl font-medium">Skin Fade</h3>
+        <p class="text-ink/60 mt-2 leading-relaxed max-w-[46ch]">Gradasi halus dari nol ke atas, dirapikan dengan razor. Hasilnya bersih di foto dan tahan sampai dua minggu.</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1621605815971-fbc98d53b06d?w=600&q=80&auto=format&fit=crop" alt="" class="md:col-span-3 w-full h-36 object-cover rounded-xl">
+      <div class="md:col-span-3 md:text-right">
+        <p class="font-serif text-[26px] font-medium">Rp 95.000</p>
+        <p class="text-ink/50 text-sm mt-1">60 menit</p>
+        <a href="https://wa.me/6282117488321?text=Saya%20mau%20booking%20Skin%20Fade%20Rp95.000" target="_blank" class="u-line inline-block mt-2 font-medium text-clay">Booking fade</a>
+      </div>
+    </article>
+    <article class="row-link reveal grid md:grid-cols-12 gap-6 items-center py-10 border-b border-line px-2 md:px-4 rounded-lg">
+      <span class="md:col-span-1 font-serif text-clay text-lg">03</span>
+      <div class="md:col-span-5">
+        <h3 class="font-serif text-2xl font-medium">Beard Trim &amp; Hot Towel</h3>
+        <p class="text-ink/60 mt-2 leading-relaxed max-w-[46ch]">Bentuk jenggot disesuaikan dengan rahang, handuk panas, lalu minyak jenggot. Lima belas menit yang terasa seperti istirahat.</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80&auto=format&fit=crop" alt="" class="md:col-span-3 w-full h-36 object-cover rounded-xl">
+      <div class="md:col-span-3 md:text-right">
+        <p class="font-serif text-[26px] font-medium">Rp 65.000</p>
+        <p class="text-ink/50 text-sm mt-1">30 menit</p>
+        <a href="https://wa.me/6282117488321?text=Saya%20mau%20booking%20Beard%20Trim%20%26%20Hot%20Towel%20Rp65.000" target="_blank" class="u-line inline-block mt-2 font-medium text-clay">Booking trim</a>
+      </div>
+    </article>
+    <article class="row-link reveal grid md:grid-cols-12 gap-6 items-center py-10 border-b border-line px-2 md:px-4 rounded-lg">
+      <span class="md:col-span-1 font-serif text-clay text-lg">04</span>
+      <div class="md:col-span-5">
+        <h3 class="font-serif text-2xl font-medium">Colouring</h3>
+        <p class="text-ink/60 mt-2 leading-relaxed max-w-[46ch]">Warna natural atau berani, dengan perawatan setelahnya supaya rambut tidak kering. Konsultasi warna dulu, gratis.</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&q=80&auto=format&fit=crop" alt="" class="md:col-span-3 w-full h-36 object-cover rounded-xl">
+      <div class="md:col-span-3 md:text-right">
+        <p class="font-serif text-[26px] font-medium">Rp 250.000</p>
+        <p class="text-ink/50 text-sm mt-1">90 menit</p>
+        <a href="https://wa.me/6282117488321?text=Saya%20mau%20booking%20Colouring%20Rp250.000" target="_blank" class="u-line inline-block mt-2 font-medium text-clay">Booking colouring</a>
+      </div>
+    </article>
+    <article class="row-link reveal grid md:grid-cols-12 gap-6 items-center py-10 border-b border-line px-2 md:px-4 rounded-lg">
+      <span class="md:col-span-1 font-serif text-clay text-lg">05</span>
+      <div class="md:col-span-5">
+        <h3 class="font-serif text-2xl font-medium">Creambath &amp; Smoothing</h3>
+        <p class="text-ink/60 mt-2 leading-relaxed max-w-[46ch]">Perawatan rambut dan pijat kepala 45 menit. Untuk rambut yang sudah lama tidak dirawat dan kulit kepala yang tegang.</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&q=80&auto=format&fit=crop" alt="" class="md:col-span-3 w-full h-36 object-cover rounded-xl">
+      <div class="md:col-span-3 md:text-right">
+        <p class="font-serif text-[26px] font-medium">Rp 180.000</p>
+        <p class="text-ink/50 text-sm mt-1">75 menit</p>
+        <a href="https://wa.me/6282117488321?text=Saya%20mau%20booking%20Creambath%20%26%20Smoothing%20Rp180.000" target="_blank" class="u-line inline-block mt-2 font-medium text-clay">Booking creambath</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ═══ BARBER — daftar editorial ═══ -->
+<section id="barber" class="max-w-6xl mx-auto px-6 pb-28">
+  <div class="max-w-2xl reveal">
+    <h2 class="font-serif text-4xl md:text-[44px] leading-tight font-medium">Pilih barbermu</h2>
+    <p class="text-ink/60 text-lg mt-4 leading-relaxed">Tiga barber tetap, masing-masing dengan gaya yang berbeda. Sekali cocok, kamu bisa booking orang yang sama setiap kali.</p>
+  </div>
+  <div class="mt-14 border-t border-line">
+    <div class="reveal grid md:grid-cols-12 gap-6 items-center py-9 border-b border-line">
+      <span class="md:col-span-1 font-serif text-clay text-lg">01</span>
+      <div class="md:col-span-7">
+        <h3 class="font-serif text-2xl font-medium">Rizky — Fade &amp; taper</h3>
+        <p class="text-ink/60 mt-2 leading-relaxed max-w-[52ch]">Delapan tahun memegang clipper. Pelanggannya datang karena garis fade-nya selalu bersih, bahkan di minggu kedua.</p>
+      </div>
+      <p class="md:col-span-4 md:text-right text-ink/55">Senin–Sabtu · 09.00–21.00</p>
+    </div>
+    <div class="reveal grid md:grid-cols-12 gap-6 items-center py-9 border-b border-line">
+      <span class="md:col-span-1 font-serif text-clay text-lg">02</span>
+      <div class="md:col-span-7">
+        <h3 class="font-serif text-2xl font-medium">Dimas — Classic &amp; pompadour</h3>
+        <p class="text-ink/60 mt-2 leading-relaxed max-w-[52ch]">Spesialis potongan klasik dan styling pompadour. Cocok untuk yang mau rapi di kantor tanpa terlihat terlalu dibuat-buat.</p>
+      </div>
+      <p class="md:col-span-4 md:text-right text-ink/55">Selasa–Minggu · 10.00–21.00</p>
+    </div>
+    <div class="reveal grid md:grid-cols-12 gap-6 items-center py-9 border-b border-line">
+      <span class="md:col-span-1 font-serif text-clay text-lg">03</span>
+      <div class="md:col-span-7">
+        <h3 class="font-serif text-2xl font-medium">Fajar — Colouring &amp; perawatan</h3>
+        <p class="text-ink/60 mt-2 leading-relaxed max-w-[52ch]">Yang menangani semua warna dan perawatan rambut. Jujur soal warna yang cocok dengan rambutmu — termasuk kalau jawabannya tidak usah diwarnai.</p>
+      </div>
+      <p class="md:col-span-4 md:text-right text-ink/55">Rabu–Minggu · 10.00–20.00</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BOOKING — pilih layanan, barber, jam ═══ -->
+<section id="booking" class="bg-ink text-bone">
+  <div class="max-w-6xl mx-auto px-6 py-28">
+    <div class="max-w-2xl reveal">
+      <h2 class="font-serif text-4xl md:text-[44px] leading-tight font-medium">Booking dalam satu menit</h2>
+      <p class="text-bone/60 text-lg mt-4 leading-relaxed">Pilih layanan, barber, dan jam. Tombol di bawah langsung membuka WhatsApp dengan pesananmu sudah terisi — tidak perlu mengetik ulang.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-12 mt-14">
+      <div class="reveal">
+        <p class="text-[12px] uppercase tracking-[0.2em] text-bone/50 font-semibold">1 · Layanan</p>
+        <div class="space-y-3 mt-5" id="svc-list">
+          <button type="button" class="pick on" data-svc="Signature Cut — Rp75.000"><span class="flex items-center gap-3"><span class="pick-dot"></span><span class="font-medium">Signature Cut</span><span class="ml-auto text-bone/60">Rp 75.000 · 45 mnt</span></span></button>
+          <button type="button" class="pick" data-svc="Skin Fade — Rp95.000"><span class="flex items-center gap-3"><span class="pick-dot"></span><span class="font-medium">Skin Fade</span><span class="ml-auto text-bone/60">Rp 95.000 · 60 mnt</span></span></button>
+          <button type="button" class="pick" data-svc="Beard Trim &amp; Hot Towel — Rp65.000"><span class="flex items-center gap-3"><span class="pick-dot"></span><span class="font-medium">Beard Trim &amp; Hot Towel</span><span class="ml-auto text-bone/60">Rp 65.000 · 30 mnt</span></span></button>
+          <button type="button" class="pick" data-svc="Colouring — Rp250.000"><span class="flex items-center gap-3"><span class="pick-dot"></span><span class="font-medium">Colouring</span><span class="ml-auto text-bone/60">Rp 250.000 · 90 mnt</span></span></button>
+          <button type="button" class="pick" data-svc="Creambath &amp; Smoothing — Rp180.000"><span class="flex items-center gap-3"><span class="pick-dot"></span><span class="font-medium">Creambath &amp; Smoothing</span><span class="ml-auto text-bone/60">Rp 180.000 · 75 mnt</span></span></button>
+        </div>
+        <p class="text-[12px] uppercase tracking-[0.2em] text-bone/50 font-semibold mt-10">2 · Barber</p>
+        <div class="space-y-3 mt-5" id="barber-list">
+          <button type="button" class="pick on" data-barber="Rizky"><span class="flex items-center gap-3"><span class="pick-dot"></span><span class="font-medium">Rizky</span><span class="ml-auto text-bone/60">Fade &amp; taper</span></span></button>
+          <button type="button" class="pick" data-barber="Dimas"><span class="flex items-center gap-3"><span class="pick-dot"></span><span class="font-medium">Dimas</span><span class="ml-auto text-bone/60">Classic &amp; pompadour</span></span></button>
+          <button type="button" class="pick" data-barber="Fajar"><span class="flex items-center gap-3"><span class="pick-dot"></span><span class="font-medium">Fajar</span><span class="ml-auto text-bone/60">Colouring &amp; perawatan</span></span></button>
+          <button type="button" class="pick" data-barber="Siapa saja yang kosong"><span class="flex items-center gap-3"><span class="pick-dot"></span><span class="font-medium">Siapa saja yang kosong</span><span class="ml-auto text-bone/60">Paling cepat</span></span></button>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="text-[12px] uppercase tracking-[0.2em] text-bone/50 font-semibold">3 · Jam — hari ini</p>
+        <div class="flex flex-wrap gap-3 mt-5" id="slot-list">
+          <button type="button" class="slot on" data-slot="10.00">10.00</button>
+          <button type="button" class="slot" data-slot="11.00">11.00</button>
+          <button type="button" class="slot" data-slot="13.00">13.00</button>
+          <button type="button" class="slot" data-slot="14.00">14.00</button>
+          <button type="button" class="slot" data-slot="15.00">15.00</button>
+          <button type="button" class="slot" data-slot="16.00">16.00</button>
+          <button type="button" class="slot" data-slot="17.00">17.00</button>
+          <button type="button" class="slot" data-slot="18.00">18.00</button>
+          <button type="button" class="slot" data-slot="19.00">19.00</button>
+          <button type="button" class="slot" data-slot="20.00">20.00</button>
+        </div>
+        <p class="text-bone/50 text-sm mt-4 leading-relaxed">Butuh besok atau jam lain? Tulis saja di WhatsApp setelah tombol ditekan — admin membalas pada jam buka.</p>
+        <div class="border border-white/15 rounded-2xl p-7 mt-10 bg-white/5">
+          <p class="text-[12px] uppercase tracking-[0.2em] text-bone/50 font-semibold">Pesananmu</p>
+          <p id="summary" class="font-serif text-2xl font-medium mt-3 leading-snug">Signature Cut — Rp75.000 · Rizky · hari ini 10.00</p>
+          <a id="wa-book" href="https://wa.me/6282117488321?text=Halo%20RAPI.%2C%20saya%20mau%20booking%20Signature%20Cut%20%E2%80%94%20Rp75.000%20dengan%20Rizky%2C%20hari%20ini%20jam%2010.00" target="_blank" class="inline-block mt-6 bg-bone text-ink font-medium px-7 py-4 rounded-full hover:bg-white transition">Kirim booking lewat WhatsApp</a>
+          <p class="text-bone/50 mt-4 text-sm">Tanpa DP. Bayar di tempat setelah selesai.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAKET ═══ -->
+<section class="max-w-6xl mx-auto px-6 py-28">
+  <div class="max-w-2xl reveal">
+    <h2 class="font-serif text-4xl md:text-[44px] leading-tight font-medium">Paket, kalau kamu datang rutin</h2>
+    <p class="text-ink/60 text-lg mt-4 leading-relaxed">Sekali datang pun boleh. Paket hanya masuk akal kalau kamu memang potong tiap dua minggu — dan itu diputuskan setelah coba sekali, bukan sebelumnya.</p>
+  </div>
+  <div class="grid md:grid-cols-3 gap-px bg-ink/10 border border-line rounded-2xl overflow-hidden mt-14 reveal">
+    <div class="bg-bone p-9 flex flex-col">
+      <h3 class="font-serif text-xl font-medium">Sekali Coba</h3>
+      <p class="font-serif text-4xl font-medium mt-5">Rp 75rb</p>
+      <ul class="text-ink/65 space-y-3 mt-7 flex-1 leading-relaxed">
+        <li>Signature Cut, 1 sesi</li>
+        <li>Cuci rambut &amp; styling</li>
+        <li>Pilih barber apa saja</li>
+      </ul>
+      <a href="https://wa.me/6282117488321?text=Saya%20ambil%20paket%20Sekali%20Coba%20Rp75.000" target="_blank" class="mt-9 text-center border border-ink/30 rounded-full py-3 font-medium hover:bg-ink hover:text-bone transition">Pilih</a>
+    </div>
+    <div class="bg-ink text-bone p-9 flex flex-col">
+      <p class="text-[12px] uppercase tracking-[0.2em] text-[#E8BEA0] font-semibold">Paling banyak dipilih</p>
+      <h3 class="font-serif text-xl font-medium mt-2">Potong Rutin</h3>
+      <p class="font-serif text-4xl font-medium mt-5">Rp 269rb</p>
+      <ul class="text-bone/65 space-y-3 mt-7 flex-1 leading-relaxed">
+        <li>Signature Cut, 4 sesi (hemat Rp 31rb)</li>
+        <li>Berlaku 3 bulan</li>
+        <li>Prioritas slot akhir pekan</li>
+      </ul>
+      <a href="https://wa.me/6282117488321?text=Saya%20ambil%20paket%20Potong%20Rutin%20Rp269.000" target="_blank" class="mt-9 text-center bg-bone text-ink rounded-full py-3 font-medium hover:bg-white transition">Pilih</a>
+    </div>
+    <div class="bg-bone p-9 flex flex-col">
+      <h3 class="font-serif text-xl font-medium">Grooming Lengkap</h3>
+      <p class="font-serif text-4xl font-medium mt-5">Rp 199rb</p>
+      <ul class="text-ink/65 space-y-3 mt-7 flex-1 leading-relaxed">
+        <li>Skin Fade + Beard Trim &amp; Hot Towel</li>
+        <li>Pijat kepala 15 menit</li>
+        <li>Minyak jenggot untuk dibawa pulang</li>
+      </ul>
+      <a href="https://wa.me/6282117488321?text=Saya%20ambil%20paket%20Grooming%20Lengkap%20Rp199.000" target="_blank" class="mt-9 text-center border border-ink/30 rounded-full py-3 font-medium hover:bg-ink hover:text-bone transition">Pilih</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONI — satu kutipan besar ═══ -->
+<section class="max-w-6xl mx-auto px-6 pb-28">
+  <div class="grid md:grid-cols-12 gap-10">
+    <div class="md:col-span-4 reveal">
+      <h2 class="font-serif text-4xl leading-tight font-medium">Toko kecil, disengaja.</h2>
+      <p class="text-ink/60 text-lg mt-5 leading-relaxed">Kami membatasi enam kursi supaya setiap pelanggan ditangani barbernya sendiri, bukan dilempar ke siapa yang kosong. RAPI. berdiri sejak 2019 di Tebet.</p>
+      <p class="text-ink/60 text-lg mt-4 leading-relaxed">9.000+ potongan, 3 barber tetap, satu alamat.</p>
+    </div>
+    <div class="md:col-span-8 reveal">
+      <blockquote class="font-serif text-[28px] md:text-[34px] leading-snug font-normal">
+        "Saya booking jam sepuluh malam dari kasur, datang jam sepuluh pagi, langsung duduk. Tidak ada lagi cerita menunggu dua jam karena yang di depan saya walk-in semua."
+      </blockquote>
+      <p class="mt-6 text-ink/55">Andi Pratama, 29 — pelanggan Skin Fade sejak 2023</p>
+      <div class="grid sm:grid-cols-2 gap-8 mt-12 border-t border-line pt-10">
+        <div>
+          <blockquote class="text-ink/75 leading-relaxed">"Harga di website sama persis dengan yang saya bayar di kasir. Itu saja sudah jarang."</blockquote>
+          <p class="mt-3 text-sm text-ink/50">Bagas Wicaksono — Signature Cut</p>
+        </div>
+        <div>
+          <blockquote class="text-ink/75 leading-relaxed">"Barbernya ingat gaya saya. Datang, duduk, dia sudah tahu mau diapakan."</blockquote>
+          <p class="mt-3 text-sm text-ink/50">Rangga Saputra — Beard Trim</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq" class="max-w-3xl mx-auto px-6 pb-28">
+  <h2 class="font-serif text-4xl font-medium reveal">Yang sering ditanyakan</h2>
+  <div class="mt-10 border-t border-line">
+    <div class="faq reveal border-b border-line">
+      <button class="faq-q w-full flex justify-between items-center py-6 text-left font-medium text-lg">Harus booking dulu, atau bisa langsung datang? <span class="faq-i text-clay text-2xl leading-none font-light">+</span></button>
+      <div class="faq-a"><p class="pb-6 text-ink/60 leading-relaxed">Walk-in boleh, tapi kursi tidak bisa dijamin — apalagi Jumat sore dan Sabtu. Booking lewat halaman ini mengunci jam dan barbermu.</p></div>
+    </div>
+    <div class="faq reveal border-b border-line">
+      <button class="faq-q w-full flex justify-between items-center py-6 text-left font-medium text-lg">Harus membayar di muka untuk booking? <span class="faq-i text-clay text-2xl leading-none font-light">+</span></button>
+      <div class="faq-a"><p class="pb-6 text-ink/60 leading-relaxed">Tidak. Kamu membayar di tempat setelah selesai. Kalau tidak bisa datang, kabari lewat WhatsApp supaya kursinya bisa dipakai orang lain.</p></div>
+    </div>
+    <div class="faq reveal border-b border-line">
+      <button class="faq-q w-full flex justify-between items-center py-6 text-left font-medium text-lg">Bisa booking untuk besok, atau tengah malam? <span class="faq-i text-clay text-2xl leading-none font-light">+</span></button>
+      <div class="faq-a"><p class="pb-6 text-ink/60 leading-relaxed">Bisa. Halaman ini menerima booking 24 jam. Pesan yang masuk di luar jam buka dibalas admin begitu toko buka, dan slotmu tetap tercatat.</p></div>
+    </div>
+    <div class="faq reveal border-b border-line">
+      <button class="faq-q w-full flex justify-between items-center py-6 text-left font-medium text-lg">Kalau hasil potongannya tidak cocok? <span class="faq-i text-clay text-2xl leading-none font-light">+</span></button>
+      <div class="faq-a"><p class="pb-6 text-ink/60 leading-relaxed">Sampaikan sebelum pulang — barber akan memperbaikinya di tempat, tanpa biaya tambahan. Kalau sudah sampai rumah, datang lagi dalam dua hari, tetap gratis.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA AKHIR — tenang, satu ajakan ═══ -->
+<section class="max-w-6xl mx-auto px-6 pb-28">
+  <div class="reveal border border-line rounded-2xl px-8 py-16 md:py-20 text-center bg-white/50">
+    <h2 class="font-serif text-4xl md:text-5xl font-medium leading-tight max-w-2xl mx-auto">Kursi kosong tidak membayar sewa. Isi kursimu.</h2>
+    <a href="https://wa.me/6282117488321?text=Halo%20RAPI.%2C%20saya%20mau%20booking%20potong%20rambut" target="_blank" class="inline-block mt-9 bg-ink text-bone font-medium px-8 py-4 rounded-full hover:bg-clay transition">Booking lewat WhatsApp</a>
+    <p class="text-ink/50 mt-5 text-sm">Admin membalas pada jam buka, 09.00–21.00 WIB. Booking online tetap tercatat 24 jam.</p>
+  </div>
+</section>
+
+<footer class="border-t border-line">
+  <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row gap-4 md:items-center md:justify-between text-sm text-ink/50">
+    <p><span class="font-serif text-lg font-semibold text-ink">RAPI.</span> — Jl. Tebet Raya No. 42, Jakarta Selatan</p>
+    <p>Foto: Unsplash. Halaman demo oleh B&amp;Z Web Studio (@bz_devweb).</p>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in') }), { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  document.querySelectorAll('.faq-q').forEach(b => b.addEventListener('click', () => b.parentElement.classList.toggle('open')));
+  let svc = 'Signature Cut — Rp75.000', barber = 'Rizky', slot = '10.00';
+  function sync() {
+    document.getElementById('summary').textContent = svc + ' · ' + barber + ' · hari ini ' + slot;
+    document.getElementById('wa-book').href = 'https://wa.me/6282117488321?text=' + encodeURIComponent('Halo RAPI., saya mau booking ' + svc + ' dengan ' + barber + ', hari ini jam ' + slot);
+  }
+  function single(listId, attr, cb) {
+    document.querySelectorAll('#' + listId + ' button').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('#' + listId + ' button').forEach(x => x.classList.remove('on'));
+      b.classList.add('on'); cb(b.getAttribute(attr)); sync();
+    }));
+  }
+  single('svc-list', 'data-svc', v => svc = v);
+  single('barber-list', 'data-barber', v => barber = v);
+  single('slot-list', 'data-slot', v => slot = v);
+</script>
+</body>
+</html>
