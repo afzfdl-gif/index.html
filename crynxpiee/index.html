@@ -103,6 +103,9 @@
   .chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
   .chip{border:1px solid var(--line);background:rgba(0,0,0,.3);border-radius:999px;padding:8px 18px;font-weight:700;font-size:14px}
   .chip.hot{border-color:var(--gold);color:var(--gold)}
+  a.chip{transition:.18s;cursor:pointer}
+  a.chip:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 20px rgba(242,193,78,.15)}
+  a.chip:active{transform:scale(.93)}
   /* drama list */
   .dramas{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
   @media(max-width:720px){.dramas{grid-template-columns:1fr}}
@@ -176,7 +179,7 @@
       <div class="drama"><div class="no">03</div><div><h3>Never Ending Summer</h3><p>Zhou Keyu &amp; Bao Shangen · cowok gentleman idaman</p></div><div class="views"><b>97 RB</b><small>likes IG</small></div></div>
       <div class="drama"><div class="no">04</div><div><h3>Speed and Love</h3><p>Esther Yu &amp; He Yu · “GILAKKK SEGACOR INI!!!!”</p></div><div class="views"><b>967 RB</b><small>views TikTok</small></div></div>
     </div>
-    <div class="chips" style="margin-top:26px"><span class="chip">Nonton resmi di:</span><span class="chip">Youku</span><span class="chip">Netflix</span><span class="chip">iQIYI</span><span class="chip">WeTV</span></div>
+    <div class="chips" style="margin-top:26px"><span class="chip">Nonton resmi di:</span><a class="chip" href="https://www.youku.com" target="_blank" rel="noopener">Youku ↗</a><a class="chip" href="https://www.netflix.com" target="_blank" rel="noopener">Netflix ↗</a><a class="chip" href="https://www.iqiyi.com" target="_blank" rel="noopener">iQIYI ↗</a><a class="chip" href="https://wetv.vip" target="_blank" rel="noopener">WeTV ↗</a></div>
   </div>
 </section>
 
