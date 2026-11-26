@@ -1,248 +1,2236 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en" class="dark scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DRACIN HUB — Editing Dracin, Info Dracin & Bisnis</title>
-<meta name="description" content="Potongan dracin (drama China) paling nagih untuk TikTok, Facebook & Telegram. Info dracin terbaru, jasa editing dracin, dan kerjasama bisnis.">
-<style>
-  :root{
-    --bg:#0c0a0e; --panel:#151218; --panel2:#1c171f; --line:#2a2330;
-    --txt:#f6f1ea; --mut:#aca49e; --red:#e0342b; --gold:#e8b33c; --pink:#ff4d7e; --grn:#2fbf71;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--txt);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;line-height:1.55;overflow-x:hidden}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-  .wm{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05;background-image:repeating-linear-gradient(-45deg,transparent 0 120px,rgba(255,255,255,.9) 120px 121px,transparent 121px 240px)}
-  .wm span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:110px;font-weight:900;letter-spacing:8px;color:#fff;white-space:nowrap}
-  .badge{position:fixed;left:14px;bottom:14px;z-index:61;background:rgba(10,10,12,.85);border:1px solid var(--line);color:var(--mut);font-size:12px;padding:7px 12px;border-radius:999px;backdrop-filter:blur(4px)}
-  header{position:sticky;top:0;z-index:50;background:rgba(12,10,14,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-  .logo{font-weight:900;font-size:22px;letter-spacing:1px}
-  .logo i{color:var(--pink);font-style:normal}
-  .nav .links{display:flex;gap:26px;color:var(--mut);font-size:14px}
-  .nav .links a:hover{color:var(--txt)}
-  .btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;padding:12px 22px;border-radius:10px;font-size:15px;transition:.2s}
-  .btn:hover{background:#b9251e;transform:translateY(-1px)}
-  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--txt)}
-  .btn.gold{background:var(--gold);color:#141310}
-  @media(max-width:720px){.nav .links{display:none}}
-  .hero{padding:76px 0 54px;text-align:center}
-  .hero .tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
-  .hero h1{font-size:clamp(36px,6.5vw,64px);line-height:1.05;font-weight:900;margin:22px auto 18px;max-width:840px}
-  .hero h1 em{font-style:normal;color:var(--pink)}
-  .hero p{color:var(--mut);font-size:18px;max-width:640px;margin:0 auto 28px}
-  /* social hub */
-  .sosmed{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:6px auto 10px}
-  .sosmed a{display:flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-weight:800;font-size:15px;border:1px solid var(--line);background:var(--panel);transition:.2s}
-  .sosmed a:hover{transform:translateY(-2px)}
-  .sosmed .ic{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;flex:none}
-  .tele .ic{background:#229ed9}.fb .ic{background:#1877f2}.tt .ic{background:#000;border:1px solid #444}
-  .sosmed small{display:block;font-weight:400;color:var(--mut);font-size:12px;line-height:1.2}
-  .stats{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:40px}
-  .stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 24px;min-width:150px}
-  .stat b{display:block;font-size:25px}
-  .stat small{color:var(--mut);font-size:12.5px}
-  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:13px 0;background:var(--panel)}
-  .marquee .track{display:flex;gap:44px;white-space:nowrap;font-weight:800;letter-spacing:2px;font-size:14px;color:var(--mut);animation:scroll 26s linear infinite;width:max-content}
-  @keyframes scroll{to{transform:translateX(-50%)}}
-  section{padding:70px 0}
-  .kicker{color:var(--pink);font-weight:800;letter-spacing:3px;font-size:13px;text-transform:uppercase;text-align:center}
-  h2{font-size:clamp(28px,4.5vw,42px);font-weight:900;text-align:center;margin:12px auto 14px;max-width:740px;line-height:1.15}
-  .sub{color:var(--mut);text-align:center;max-width:620px;margin:0 auto 42px}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.grid{grid-template-columns:1fr}}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s}
-  .card:hover{transform:translateY(-4px);border-color:#453a4f}
-  .thumb{aspect-ratio:9/11;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;position:relative}
-  .thumb .genre{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.55);padding:4px 10px;border-radius:6px;font-size:12px;font-weight:700}
-  .thumb .eps{position:absolute;top:14px;right:14px;background:var(--red);padding:4px 10px;border-radius:6px;font-size:12px;font-weight:800}
-  .thumb h3{font-size:19px;line-height:1.25}
-  .thumb p{color:rgba(255,255,255,.78);font-size:13px}
-  .t1{background:linear-gradient(160deg,#3d0f2e,#7a1f3d 55%,#e0342b)}
-  .t2{background:linear-gradient(160deg,#0b2a4a,#12607a 55%,#2fbf71)}
-  .t3{background:linear-gradient(160deg,#2a1a05,#7a5410 55%,#e8b33c)}
-  .t4{background:linear-gradient(160deg,#131a3a,#3b2a7a 55%,#7a5cff)}
-  .t5{background:linear-gradient(160deg,#26060a,#6e1423 55%,#ff7847)}
-  .t6{background:linear-gradient(160deg,#06231c,#0e5c46 55%,#39d0ba)}
-  .meta{display:flex;justify-content:space-between;padding:13px 16px;font-size:13px;color:var(--mut)}
-  .meta b{color:var(--grn)}
-  .svc{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  @media(max-width:720px){.svc{grid-template-columns:1fr}}
-  .svc .item{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px}
-  .svc .item .ic{font-size:26px}
-  .svc .item h3{font-size:19px;margin:10px 0 8px}
-  .svc .item p{color:var(--mut);font-size:15px}
-  .price{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
-  @media(max-width:900px){.price{grid-template-columns:1fr}}
-  .plan{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:30px;display:flex;flex-direction:column}
-  .plan.hot{border-color:var(--gold);background:var(--panel2);position:relative}
-  .plan.hot::before{content:"PALING LARIS";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#141310;font-size:11px;font-weight:900;letter-spacing:1.5px;padding:4px 12px;border-radius:999px}
-  .plan h3{font-size:18px;letter-spacing:1px}
-  .plan .amt{font-size:38px;font-weight:900;margin:12px 0 2px}
-  .plan .amt small{font-size:15px;color:var(--mut);font-weight:400}
-  .plan ul{list-style:none;margin:18px 0 24px;flex:1}
-  .plan li{padding:7px 0;color:var(--mut);font-size:15px;border-bottom:1px dashed #2a2330}
-  .plan li::before{content:"✓ ";color:var(--grn);font-weight:800}
-  .plan .btn{text-align:center}
-  .biz{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  @media(max-width:900px){.biz{grid-template-columns:1fr}}
-  .biz .item{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;text-align:center}
-  .biz .item .ic{font-size:30px}
-  .biz .item h3{margin:10px 0 8px;font-size:18px}
-  .biz .item p{color:var(--mut);font-size:14.5px;margin-bottom:18px}
-  .faq{max-width:760px;margin:0 auto}
-  details{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:16px 20px}
-  summary{cursor:pointer;font-weight:700}
-  details p{color:var(--mut);margin-top:8px;font-size:15px}
-  .final{background:linear-gradient(160deg,#22091a,#2b0f1e);border:1px solid #3d1626;border-radius:22px;padding:52px 28px;text-align:center}
-  footer{border-top:1px solid var(--line);padding:30px 0 90px;color:var(--mut);font-size:13.5px;text-align:center}
-  .wa-float{position:fixed;right:16px;bottom:16px;z-index:61;background:#25d366;color:#08240f;font-weight:800;padding:13px 20px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.45);font-size:15px}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fazrul Pratama — Portfolio Cosmic</title>
+
+  <!-- Google Fonts: Inter (300-700) & Instrument Serif (400 regular & italic) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: 'hsl(var(--bg))',
+            surface: 'hsl(var(--surface))',
+            'text-primary': 'hsl(var(--text))',
+            muted: 'hsl(var(--muted))',
+            stroke: 'hsl(var(--stroke))',
+            accent: 'hsl(var(--accent))',
+          },
+          fontFamily: {
+            body: ['Inter', 'sans-serif'],
+            display: ['Instrument Serif', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- React 18 & Babel Standalone -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Framer Motion -->
+  <script src="https://cdn.jsdelivr.net/npm/framer-motion@11.0.8/dist/framer-motion.js"></script>
+
+  <!-- hls.js for HLS Video Streaming -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.7/dist/hls.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       1. GLOBAL DESIGN SYSTEM & HSL TOKENS
+       ========================================================================== */
+    :root {
+      --bg: 0 0% 4%;
+      --surface: 0 0% 8%;
+      --text: 0 0% 96%;
+      --muted: 0 0% 53%;
+      --stroke: 0 0% 12%;
+      --accent: 0 0% 96%;
+      --font-body: 'Inter', sans-serif;
+      --font-display: 'Instrument Serif', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      background-color: hsl(var(--bg));
+      color: hsl(var(--text));
+      font-family: var(--font-body);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: hsl(var(--bg));
+    }
+    ::-webkit-scrollbar-thumb {
+      background: hsl(var(--stroke));
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4E85BF;
+    }
+
+    /* Accent Gradient Utility */
+    .accent-gradient {
+      background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+    }
+
+    .accent-gradient-reverse {
+      background: linear-gradient(270deg, #89AACC 0%, #4E85BF 100%);
+    }
+
+    .accent-gradient-animated {
+      background: linear-gradient(90deg, #89AACC 0%, #4E85BF 50%, #89AACC 100%);
+      background-size: 200% 200%;
+      animation: gradient-shift 6s ease infinite;
+    }
+
+    /* ==========================================================================
+       2. REQUIRED KEYFRAME ANIMATIONS
+       ========================================================================== */
+    @keyframes scroll-down {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(200%);
+      }
+    }
+
+    @keyframes role-fade-in {
+      0% {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gradient-shift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .animate-scroll-down {
+      animation: scroll-down 1.5s ease-in-out infinite;
+    }
+
+    .animate-role-fade-in {
+      animation: role-fade-in 0.4s ease-out forwards;
+    }
+
+    .animate-gradient-shift {
+      background-size: 200% 200%;
+      animation: gradient-shift 6s ease infinite;
+    }
+
+    /* Subtle Cosmic Ambient Mesh Fallback behind HLS stream */
+    .cosmic-ambient-bg {
+      background:
+        radial-gradient(circle at 50% 35%, rgba(78, 133, 191, 0.22) 0%, rgba(137, 170, 204, 0.06) 35%, rgba(10, 10, 10, 0.96) 75%),
+        radial-gradient(circle at 20% 80%, rgba(137, 170, 204, 0.1) 0%, transparent 50%),
+        hsl(var(--bg));
+    }
+
+    /* Halftone Overlay Pattern */
+    .halftone-overlay {
+      background-image: radial-gradient(circle, #000 1px, transparent 1px);
+      background-size: 4px 4px;
+    }
+  </style>
 </head>
-<body>
-<div class="wm"><span>DEMO — B&amp;Z</span></div>
-<div class="badge">DEMO · B&amp;Z Web Studio · @bz_devweb</div>
+<body class="bg-bg text-text-primary selection:bg-[#4E85BF]/30 selection:text-white">
+  <div id="root"></div>
 
-<header>
-  <div class="wrap nav">
-    <div class="logo">DRACIN<i>✂</i>HUB</div>
-    <nav class="links">
-      <a href="#info">Info Dracin</a><a href="#editing">Editing</a><a href="#harga">Harga</a><a href="#bisnis">Bisnis</a><a href="#faq">FAQ</a>
-    </nav>
-    <a class="btn" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20tanya%20jasa%20editing%20dracin" target="_blank" rel="noopener">Order Edit</a>
-  </div>
-</header>
+  <script type="text/babel">
+    const { useState, useEffect, useRef, useMemo, useCallback } = React;
 
-<div class="hero">
-  <div class="wrap">
-    <span class="tag">Editing Dracin · Info Dracin · Bisnis</span>
-    <h1>Potongan dracin yang <em>bikin penonton ketagihan.</em></h1>
-    <p>Drama China dipotong di momen paling nagih, subtitle Indonesia rapi, hook 3 detik pertama. Tayang tiap hari di TikTok, Facebook &amp; Telegram.</p>
-    <div class="sosmed">
-      <a class="tele" href="https://t.me/username" target="_blank" rel="noopener"><span class="ic">✈</span><span>Telegram<small>Full episode &amp; update tercepat</small></span></a>
-      <a class="fb" href="https://www.facebook.com/username" target="_blank" rel="noopener"><span class="ic">f</span><span>Facebook<small>Video dracin tiap hari</small></span></a>
-      <a class="tt" href="https://www.tiktok.com/@username" target="_blank" rel="noopener"><span class="ic">♪</span><span>TikTok<small>Potongan paling viral</small></span></a>
-    </div>
-    <div class="stats">
-      <div class="stat"><b>3 detik</b><small>Hook di awal video</small></div>
-      <div class="stat"><b>Sub ID</b><small>Subtitle Indonesia rapi</small></div>
-      <div class="stat"><b>Tiap hari</b><small>Upload konsisten</small></div>
-      <div class="stat"><b>24 jam</b><small>Edit selesai maks.</small></div>
-    </div>
-  </div>
-</div>
+    // Register GSAP ScrollTrigger plugin
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+    }
 
-<div class="marquee"><div class="track">
-  <span>CEO DINGIN ✦ BALAS DENDAM ✦ NIKAH KONTRAK ✦ ISTRI TERBUANG ✦ CINTA SEGITIGA ✦ PEWARIS RAHASIA ✦&nbsp;</span>
-  <span>CEO DINGIN ✦ BALAS DENDAM ✦ NIKAH KONTRAK ✦ ISTRI TERBUANG ✦ CINTA SEGITIGA ✦ PEWARIS RAHASIA ✦&nbsp;</span>
-</div></div>
+    // Safe Framer Motion destructuring with resilient fallback
+    const MotionLib = window.Motion || {};
+    const motion = MotionLib.motion || {
+      div: ({ children, className, style, onClick, ...rest }) => (
+        <div className={className} style={style} onClick={onClick}>{children}</div>
+      ),
+      span: ({ children, className, style, ...rest }) => (
+        <span className={className} style={style}>{children}</span>
+      ),
+      header: ({ children, className, style, ...rest }) => (
+        <header className={className} style={style}>{children}</header>
+      ),
+    };
+    const AnimatePresence = MotionLib.AnimatePresence || (({ children }) => <>{children}</>);
 
-<section id="info">
-  <div class="wrap">
-    <div class="kicker">Info Dracin</div>
-    <h2>Genre dracin yang lagi rame</h2>
-    <p class="sub">Update info, rekomendasi judul, dan jadwal tayang potongan terbaru — ikuti di Telegram, Facebook &amp; TikTok biar tidak ketinggalan episode.</p>
-    <div class="grid">
-      <div class="card"><div class="thumb t1"><span class="genre">CEO DINGIN</span><span class="eps">80 EPS</span><h3>Nikah Kontrak dengan CEO</h3><p>Pernikahan pura-pura yang berubah jadi baper beneran.</p></div><div class="meta"><span>Update tiap hari</span><b>Paling dicari</b></div></div>
-      <div class="card"><div class="thumb t2"><span class="genre">BALAS DENDAM</span><span class="eps">60 EPS</span><h3>Istri Terbuang Kembali Kaya</h3><p>Dikhianati, dibuang, lalu kembali sebagai pewaris rahasia.</p></div><div class="meta"><span>Update tiap hari</span><b>Rating tinggi</b></div></div>
-      <div class="card"><div class="thumb t3"><span class="genre">ROMANSA</span><span class="eps">72 EPS</span><h3>Cinta Pertama Sang Pewaris</h3><p>Kisah lama yang belum selesai, dipertemukan lagi oleh takdir.</p></div><div class="meta"><span>Update tiap hari</span><b>Bikin baper</b></div></div>
-      <div class="card"><div class="thumb t4"><span class="genre">KELUARGA</span><span class="eps">55 EPS</span><h3>Anak Rahasia Sang Miliarder</h3><p>Satu rahasia kecil mengguncang dua keluarga besar.</p></div><div class="meta"><span>Update tiap hari</span><b>Plot twist</b></div></div>
-      <div class="card"><div class="thumb t5"><span class="genre">PERKANTORAN</span><span class="eps">64 EPS</span><h3>Sekretaris Kesayangan Bos</h3><p>Dari karyawan biasa jadi orang paling dipercaya — dan dicinta.</p></div><div class="meta"><span>Update tiap hari</span><b>Ringan &amp; lucu</b></div></div>
-      <div class="card"><div class="thumb t6"><span class="genre">SEJARAH</span><span class="eps">90 EPS</span><h3>Permaisuri yang Terlahir Kembali</h3><p>Kesempatan kedua untuk membalikkan nasib di istana.</p></div><div class="meta"><span>Update tiap hari</span><b>Episode panjang</b></div></div>
-    </div>
-  </div>
-</section>
+    /* ==========================================================================
+       3. ARTWORK & STUDIO PORTRAIT DATA URIS (WITH REFERENCE MODEL SUPPORT)
+       ========================================================================== */
 
-<section id="editing" style="padding-top:0">
-  <div class="wrap">
-    <div class="kicker">Jasa Editing Dracin</div>
-    <h2>Kamu punya bahan, kami yang bikin nagih</h2>
-    <p class="sub">Buat pemilik akun dracin, afiliator aplikasi drama, dan siapa pun yang mau serius di niche ini.</p>
-    <div class="svc">
-      <div class="item"><div class="ic">✂️</div><h3>Potongan Nagih</h3><p>Episode dipotong di cliffhanger paling kuat. Penonton tidak bisa berhenti di tengah — mereka lanjut ke part berikutnya, lalu follow.</p></div>
-      <div class="item"><div class="ic">💬</div><h3>Subtitle Indonesia</h3><p>Terjemahan natural, bukan hasil mesin mentah. Ukuran dan timing pas untuk layar HP, enak dibaca sambil video jalan.</p></div>
-      <div class="item"><div class="ic">🪝</div><h3>Hook &amp; Judul Clickbait Aman</h3><p>3 detik pertama diatur ulang, teks pembuka memancing penasaran, judul &amp; thumbnail dirancang untuk klik — tanpa melanggar kebijakan platform.</p></div>
-      <div class="item"><div class="ic">📅</div><h3>Paket Upload Harian</h3><p>Jadwal posting konsisten di TikTok, Facebook &amp; Telegram. Akun yang upload tiap hari tumbuh jauh lebih cepat daripada yang musiman.</p></div>
-    </div>
-  </div>
-</section>
+    // High-craft SVG studio portrait matching the uploaded reference photo:
+    // Clean studio portrait of a young Southeast Asian man in a muted taupe crewneck
+    // t-shirt and black trousers against a bright minimalist studio backdrop, neat dark parted hair.
+    const REFERENCE_MODEL_FALLBACK_SVG = `data:image/svg+xml;utf8,${encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+        <defs>
+          <radialGradient id="studioBackdrop" cx="50%" cy="38%" r="70%">
+            <stop offset="0%" stop-color="#F6F7F9"/>
+            <stop offset="65%" stop-color="#E7E9ED"/>
+            <stop offset="100%" stop-color="#D5D9E0"/>
+          </radialGradient>
+          <linearGradient id="skinTone" x1="25%" y1="15%" x2="80%" y2="85%">
+            <stop offset="0%" stop-color="#D7A17E"/>
+            <stop offset="55%" stop-color="#C58B68"/>
+            <stop offset="100%" stop-color="#A66D4E"/>
+          </linearGradient>
+          <linearGradient id="skinShadow" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#B07655"/>
+            <stop offset="100%" stop-color="#8C583C"/>
+          </linearGradient>
+          <linearGradient id="taupeShirt" x1="20%" y1="10%" x2="85%" y2="90%">
+            <stop offset="0%" stop-color="#96857D"/>
+            <stop offset="50%" stop-color="#7F6F68"/>
+            <stop offset="100%" stop-color="#665852"/>
+          </linearGradient>
+          <linearGradient id="hairGrad" x1="30%" y1="0%" x2="70%" y2="100%">
+            <stop offset="0%" stop-color="#26282E"/>
+            <stop offset="50%" stop-color="#141519"/>
+            <stop offset="100%" stop-color="#0B0C0E"/>
+          </linearGradient>
+          <filter id="softShadow" x="-15%" y="-15%" width="130%" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="14"/>
+            <feOffset dx="0" dy="16"/>
+            <feComponentTransfer><feFuncA type="linear" slope="0.16"/></feComponentTransfer>
+            <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
 
-<section id="harga" style="padding-top:0">
-  <div class="wrap">
-    <div class="kicker">Harga Editing</div>
-    <h2>Pilih paket sesuai ritme akunmu</h2>
-    <p class="sub">Semua paket termasuk subtitle Indonesia, hook, dan file siap upload.</p>
-    <div class="price">
-      <div class="plan">
-        <h3>COBA DULU</h3>
-        <div class="amt">Rp25rb<small> /video</small></div>
-        <ul><li>1 video potongan dracin (≤3 menit)</li><li>Subtitle Indonesia</li><li>Hook 3 detik + teks pembuka</li><li>1x revisi minor</li><li>Selesai maks. 24 jam</li></ul>
-        <a class="btn ghost" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20paket%20COBA%20DULU%201%20video" target="_blank" rel="noopener">Order 1 Video</a>
-      </div>
-      <div class="plan hot">
-        <h3>AKUN TUMBUH</h3>
-        <div class="amt">Rp499rb<small> /30 video</small></div>
-        <ul><li>30 video potongan dracin</li><li>Subtitle Indonesia + judul clickbait</li><li>Thumbnail/teks cover per video</li><li>Jadwal upload harian diaturkan</li><li>2x revisi minor per video</li></ul>
-        <a class="btn gold" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20paket%20AKUN%20TUMBUH%2030%20video" target="_blank" rel="noopener">Ambil Paket Ini</a>
-      </div>
-      <div class="plan">
-        <h3>KELOLA AKUN</h3>
-        <div class="amt">Rp999rb<small> /bulan</small></div>
-        <ul><li>Semua isi paket Akun Tumbuh</li><li>Riset judul dracin yang lagi naik</li><li>Posting TikTok, FB &amp; Telegram</li><li>Laporan performa mingguan</li><li>Prioritas antrean edit</li></ul>
-        <a class="btn ghost" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20paket%20KELOLA%20AKUN" target="_blank" rel="noopener">Diskusi Dulu</a>
-      </div>
-    </div>
-  </div>
-</section>
+        <!-- Minimalist Bright Studio Cyclorama -->
+        <rect width="800" height="1000" fill="url(#studioBackdrop)"/>
+        <ellipse cx="400" cy="410" rx="340" ry="360" fill="#FFFFFF" opacity="0.45"/>
 
-<section id="bisnis" style="padding-top:0">
-  <div class="wrap">
-    <div class="kicker">Bisnis &amp; Kerjasama</div>
-    <h2>Ada penonton, ada peluang</h2>
-    <p class="sub">Komunitas dracin itu loyal dan aktif. Tiga cara kerjasama dengan halaman ini:</p>
-    <div class="biz">
-      <div class="item"><div class="ic">📣</div><h3>Paid Promote</h3><p>Promosikan aplikasi drama, produk, atau akunmu ke penonton dracin di TikTok, Facebook &amp; Telegram.</p><a class="btn ghost" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20tanya%20PAID%20PROMOTE" target="_blank" rel="noopener">Tanya Rate</a></div>
-      <div class="item"><div class="ic">🤝</div><h3>Endorse &amp; Review</h3><p>Review aplikasi nonton dracin, platform streaming, atau produk yang relevan dengan penonton drama.</p><a class="btn ghost" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20tanya%20ENDORSE" target="_blank" rel="noopener">Tanya Rate</a></div>
-      <div class="item"><div class="ic">🚀</div><h3>Bangun Akun Dracin</h3><p>Mau punya akun dracin sendiri tapi tidak bisa edit? Kami bangunkan dari nol: konsep, edit, jadwal, sampai jalan.</p><a class="btn ghost" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20dibangunkan%20akun%20dracin" target="_blank" rel="noopener">Mulai Konsultasi</a></div>
-    </div>
-  </div>
-</section>
+        <g filter="url(#softShadow)">
+          <!-- Black Minimalist Trousers -->
+          <path d="M275 745 L525 745 L545 1000 L422 1000 L402 845 L382 1000 L258 1000 Z" fill="#121316"/>
+          <path d="M402 845 L402 750" stroke="#1E2026" stroke-width="2"/>
 
-<section id="faq" style="padding-top:0">
-  <div class="wrap">
-    <div class="kicker">FAQ</div>
-    <h2>Sering ditanyakan</h2>
-    <p class="sub">&nbsp;</p>
-    <div class="faq">
-      <details><summary>Nonton full episode di mana?</summary><p>Link full episode dan update tercepat ada di channel Telegram — tombolnya ada di bagian atas halaman ini. Potongan harian tayang di TikTok dan Facebook.</p></details>
-      <details><summary>Saya punya bahan dracin sendiri, bisa dieditkan?</summary><p>Bisa. Kirim bahannya lewat WhatsApp, kami potong, beri subtitle Indonesia, hook, dan judul. Pilih paket per video atau bulanan.</p></details>
-      <details><summary>Berapa lama pengerjaan?</summary><p>Per video maks. 24 jam. Paket bulanan mengikuti jadwal upload harian yang disepakati di awal.</p></details>
-      <details><summary>Bisa untuk platform apa saja?</summary><p>TikTok, Facebook Reels, YouTube Shorts, dan Telegram. Satu bahan bisa kami formatkan untuk semua platform sekaligus.</p></details>
-      <details><summary>Kerjasama bisnis bagaimana?</summary><p>Paid promote, endorse, dan pembangunan akun — semuanya lewat WhatsApp. Sebutkan kebutuhanmu, kami kirim rate dan contoh hasil.</p></details>
-    </div>
-  </div>
-</section>
+          <!-- Left & Right Arms (Relaxed Studio Pose, left hand in pocket) -->
+          <path d="M255 445 C225 525 220 630 236 745 C244 778 268 785 276 755 C285 690 286 585 292 520 Z" fill="url(#skinTone)"/>
+          <path d="M545 445 C576 525 582 625 552 720 C542 748 525 762 515 745 C508 685 512 585 508 520 Z" fill="url(#skinTone)"/>
 
-<div class="wrap" style="padding-bottom:72px">
-  <div class="final">
-    <h2>Ikuti dulu, order belakangan juga boleh.</h2>
-    <p class="sub" style="margin-bottom:26px">Full episode di Telegram, potongan nagih tiap hari di TikTok &amp; Facebook.</p>
-    <div class="sosmed">
-      <a class="tele" href="https://t.me/username" target="_blank" rel="noopener"><span class="ic">✈</span><span>Telegram</span></a>
-      <a class="fb" href="https://www.facebook.com/username" target="_blank" rel="noopener"><span class="ic">f</span><span>Facebook</span></a>
-      <a class="tt" href="https://www.tiktok.com/@username" target="_blank" rel="noopener"><span class="ic">♪</span><span>TikTok</span></a>
-    </div>
-  </div>
-</div>
+          <!-- Muted Taupe Crewneck T-Shirt -->
+          <path d="M332 405 C285 415 245 432 224 468 L206 542 L276 562 L282 522 L274 752 C355 764 445 764 526 752 L518 522 L524 562 L594 542 L576 468 C555 432 515 415 468 405 C445 432 355 432 332 405 Z" fill="url(#taupeShirt)"/>
+          <!-- Crewneck Collar Ribbing -->
+          <path d="M330 406 C355 444 445 444 470 406 C446 428 354 428 330 406 Z" fill="#6D5E57"/>
+          <!-- Subtle Fabric Drape Lines -->
+          <path d="M300 635 Q395 655 495 628" fill="none" stroke="#64564F" stroke-width="2.5" opacity="0.45"/>
+          <path d="M292 685 Q405 705 508 678" fill="none" stroke="#64564F" stroke-width="2" opacity="0.38"/>
+          <path d="M286 725 Q400 738 514 720" fill="none" stroke="#594C46" stroke-width="2" opacity="0.35"/>
 
-<footer>
-  <div class="wrap">DRACIN HUB — halaman demo oleh B&amp;Z Web Studio · @bz_devweb<br>Judul &amp; angka pada halaman demo bersifat ilustrasi. Link Telegram/Facebook/TikTok masih placeholder — ganti dengan akun asli.</div>
-</footer>
+          <!-- Neck & Clavicle Shading -->
+          <path d="M356 340 L352 412 C378 432 422 432 448 412 L444 340 Z" fill="url(#skinTone)"/>
+          <path d="M356 348 C382 368 418 368 444 348 L444 374 C416 385 384 385 356 374 Z" fill="url(#skinShadow)" opacity="0.45"/>
 
-<a class="wa-float" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20tanya-tanya%20dulu" target="_blank" rel="noopener">💬 Chat WhatsApp</a>
+          <!-- Ears -->
+          <ellipse cx="323" cy="276" rx="11" ry="22" fill="#C48A67"/>
+          <ellipse cx="477" cy="276" rx="11" ry="22" fill="#B87E5C"/>
+
+          <!-- Head & Jawline -->
+          <path d="M326 225 C326 172 474 172 474 225 C474 295 456 348 400 356 C344 348 326 295 326 225 Z" fill="url(#skinTone)"/>
+
+          <!-- Facial Features (Calm, Confident Studio Expression) -->
+          <!-- Eyebrows -->
+          <path d="M346 244 Q366 237 386 244" fill="none" stroke="#18191D" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M414 244 Q434 237 454 244" fill="none" stroke="#18191D" stroke-width="4.5" stroke-linecap="round"/>
+
+          <!-- Eyes -->
+          <ellipse cx="367" cy="260" rx="11" ry="5.5" fill="#FFFFFF"/>
+          <circle cx="367" cy="260" r="4.8" fill="#1A1512"/>
+          <circle cx="368.5" cy="258.5" r="1.4" fill="#FFFFFF"/>
+
+          <ellipse cx="433" cy="260" rx="11" ry="5.5" fill="#FFFFFF"/>
+          <circle cx="433" cy="260" r="4.8" fill="#1A1512"/>
+          <circle cx="434.5" cy="258.5" r="1.4" fill="#FFFFFF"/>
+
+          <!-- Nose Bridge & Tip -->
+          <path d="M400 256 L396 292 Q400 297 406 292" fill="none" stroke="#9E6648" stroke-width="2.6" stroke-linecap="round"/>
+
+          <!-- Lips -->
+          <path d="M380 317 Q400 313 420 317 Q400 323 380 317 Z" fill="#A86958"/>
+          <path d="M383 319 Q400 328 417 319" fill="none" stroke="#965A4A" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- Neat Dark Parted Hair -->
+          <path d="M322 246 C316 195 335 154 398 152 C458 150 484 190 478 246 C474 218 456 202 424 198 C414 205 404 208 394 196 C364 202 332 216 322 246 Z" fill="url(#hairGrad)"/>
+          <path d="M396 154 C394 172 396 186 402 198" fill="none" stroke="#363942" stroke-width="2" opacity="0.6"/>
+        </g>
+      </svg>
+    `)}`;
+
+    // Bespoke Dark Cosmic Visual Artwork SVGs for Bento Grid, Journal & Parallax Gallery
+    const ARTWORKS = {
+      automotive: `data:image/svg+xml;utf8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 825" width="1200" height="825">
+          <defs>
+            <radialGradient id="tunnelGlow" cx="52%" cy="48%" r="60%">
+              <stop offset="0%" stop-color="#1E2C3D"/>
+              <stop offset="45%" stop-color="#0D1117"/>
+              <stop offset="100%" stop-color="#060709"/>
+            </radialGradient>
+            <linearGradient id="bladeBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#89AACC" stop-opacity="0"/>
+              <stop offset="45%" stop-color="#89AACC" stop-opacity="0.95"/>
+              <stop offset="75%" stop-color="#4E85BF" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#4E85BF" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="carBody" x1="15%" y1="20%" x2="85%" y2="85%">
+              <stop offset="0%" stop-color="#2A313C"/>
+              <stop offset="40%" stop-color="#12151A"/>
+              <stop offset="100%" stop-color="#07080A"/>
+            </linearGradient>
+          </defs>
+          <rect width="1200" height="825" fill="url(#tunnelGlow)"/>
+          <!-- Wind Tunnel Light Rings -->
+          <ellipse cx="600" cy="410" rx="520" ry="290" fill="none" stroke="#89AACC" stroke-opacity="0.12" stroke-width="1.5"/>
+          <ellipse cx="600" cy="410" rx="390" ry="215" fill="none" stroke="#4E85BF" stroke-opacity="0.18" stroke-width="1"/>
+          <ellipse cx="600" cy="410" rx="260" ry="140" fill="none" stroke="#89AACC" stroke-opacity="0.22" stroke-width="1"/>
+
+          <!-- Aerodynamic Light Trails -->
+          <path d="M80 465 C320 340 620 275 1120 310" fill="none" stroke="url(#bladeBlue)" stroke-width="4"/>
+          <path d="M120 490 C380 390 680 345 1140 365" fill="none" stroke="url(#bladeBlue)" stroke-width="2" opacity="0.65"/>
+
+          <!-- Sculpted Hypercar Silhouette -->
+          <path d="M175 515 C235 450 385 372 575 362 C735 354 875 398 1015 458 C1048 472 1062 496 1045 518 L890 526 C875 478 805 478 790 526 L410 528 C395 478 325 478 310 528 L175 524 Z" fill="url(#carBody)" stroke="#89AACC" stroke-opacity="0.25" stroke-width="1.5"/>
+          <!-- Roofline Highlight -->
+          <path d="M350 422 C465 368 635 360 805 404" fill="none" stroke="#E2EEFA" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+          <!-- Signature LED Headlight & Taillight -->
+          <path d="M955 462 L1018 474 L972 482 Z" fill="#89AACC"/>
+          <path d="M192 486 L248 478 L215 494 Z" fill="#4E85BF"/>
+
+          <!-- Wheels -->
+          <circle cx="360" cy="524" r="54" fill="#090A0D" stroke="#2D3642" stroke-width="6"/>
+          <circle cx="360" cy="524" r="32" fill="none" stroke="#89AACC" stroke-opacity="0.35" stroke-width="2"/>
+          <circle cx="840" cy="524" r="54" fill="#090A0D" stroke="#2D3642" stroke-width="6"/>
+          <circle cx="840" cy="524" r="32" fill="none" stroke="#89AACC" stroke-opacity="0.35" stroke-width="2"/>
+
+          <!-- Wet Floor Reflection -->
+          <line x1="100" y1="580" x2="1100" y2="580" stroke="#89AACC" stroke-opacity="0.2" stroke-width="1"/>
+          <ellipse cx="600" cy="615" rx="430" ry="26" fill="#4E85BF" opacity="0.12"/>
+        </svg>
+      `)}`,
+
+      architecture: `data:image/svg+xml;utf8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" width="900" height="1100">
+          <defs>
+            <linearGradient id="skyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#17202B"/>
+              <stop offset="55%" stop-color="#0B0D10"/>
+              <stop offset="100%" stop-color="#060608"/>
+            </linearGradient>
+            <linearGradient id="monolithLight" x1="0%" y1="0%" x2="100%" y2="85%">
+              <stop offset="0%" stop-color="#353B45"/>
+              <stop offset="50%" stop-color="#1B1E24"/>
+              <stop offset="100%" stop-color="#0E1014"/>
+            </linearGradient>
+            <linearGradient id="beamLight" x1="20%" y1="0%" x2="80%" y2="100%">
+              <stop offset="0%" stop-color="#89AACC" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#4E85BF" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <rect width="900" height="1100" fill="url(#skyGrad)"/>
+          <!-- Architectural Light Shaft -->
+          <polygon points="180,0 560,0 900,780 420,1100" fill="url(#beamLight)"/>
+
+          <!-- Brutalist Concrete Monoliths -->
+          <polygon points="120,180 460,90 460,1100 120,1100" fill="url(#monolithLight)" stroke="#FFFFFF" stroke-opacity="0.08"/>
+          <polygon points="460,90 640,165 640,1100 460,1100" fill="#0B0C0F" stroke="#FFFFFF" stroke-opacity="0.05"/>
+          <polygon points="520,340 810,275 810,1100 520,1100" fill="#16191F" stroke="#89AACC" stroke-opacity="0.16"/>
+
+          <!-- Structural Cantilever Lines & Window Slits -->
+          <g stroke="#89AACC" stroke-opacity="0.22" stroke-width="1">
+            <line x1="160" y1="260" x2="420" y2="200"/>
+            <line x1="160" y1="340" x2="420" y2="285"/>
+            <line x1="160" y1="420" x2="420" y2="370"/>
+            <line x1="160" y1="500" x2="420" y2="455"/>
+            <line x1="160" y1="580" x2="420" y2="540"/>
+            <line x1="160" y1="660" x2="420" y2="625"/>
+          </g>
+          <rect x="565" y="395" width="190" height="6" fill="#89AACC" opacity="0.45"/>
+          <rect x="565" y="465" width="190" height="6" fill="#4E85BF" opacity="0.3"/>
+          <rect x="565" y="535" width="190" height="6" fill="#89AACC" opacity="0.2"/>
+        </svg>
+      `)}`,
+
+      brand: `data:image/svg+xml;utf8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 825" width="1200" height="825">
+          <defs>
+            <radialGradient id="obsidianBg" cx="50%" cy="50%" r="70%">
+              <stop offset="0%" stop-color="#181A1F"/>
+              <stop offset="100%" stop-color="#08090B"/>
+            </radialGradient>
+            <linearGradient id="foilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#DCE8F5"/>
+              <stop offset="50%" stop-color="#89AACC"/>
+              <stop offset="100%" stop-color="#4E85BF"/>
+            </linearGradient>
+          </defs>
+          <rect width="1200" height="825" fill="url(#obsidianBg)"/>
+
+          <!-- Swiss Construction Grid -->
+          <g stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="1">
+            <line x1="200" y1="0" x2="200" y2="825"/>
+            <line x1="600" y1="0" x2="600" y2="825"/>
+            <line x1="1000" y1="0" x2="1000" y2="825"/>
+            <line x1="0" y1="200" x2="1200" y2="200"/>
+            <line x1="0" y1="412" x2="1200" y2="412"/>
+            <line x1="0" y1="625" x2="1200" y2="625"/>
+          </g>
+
+          <!-- Floating Matte Obsidian Brand Cards -->
+          <g transform="translate(310, 175) rotate(-8)">
+            <rect width="380" height="230" rx="20" fill="#111317" stroke="#2B303A" stroke-width="1.5"/>
+            <circle cx="64" cy="64" r="24" fill="none" stroke="url(#foilGrad)" stroke-width="2"/>
+            <text x="64" y="70" text-anchor="middle" fill="#F5F5F5" font-family="Georgia, serif" font-style="italic" font-size="18">MS</text>
+            <rect x="40" y="145" width="140" height="6" rx="3" fill="url(#foilGrad)" opacity="0.8"/>
+            <rect x="40" y="165" width="95" height="4" rx="2" fill="#888888" opacity="0.45"/>
+          </g>
+
+          <g transform="translate(510, 320) rotate(6)">
+            <rect width="410" height="250" rx="22" fill="#15181E" stroke="url(#foilGrad)" stroke-width="1.5"/>
+            <circle cx="205" cy="105" r="44" fill="none" stroke="url(#foilGrad)" stroke-width="2"/>
+            <circle cx="205" cy="105" r="28" fill="none" stroke="#89AACC" stroke-opacity="0.4" stroke-width="1"/>
+            <text x="205" y="192" text-anchor="middle" fill="#EAECEF" font-family="sans-serif" letter-spacing="8" font-size="12">ATELIER COSMIC</text>
+          </g>
+        </svg>
+      `)}`,
+
+      exploration1: `data:image/svg+xml;utf8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+          <defs>
+            <radialGradient id="nebula" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#89AACC" stop-opacity="0.9"/>
+              <stop offset="32%" stop-color="#4E85BF" stop-opacity="0.45"/>
+              <stop offset="68%" stop-color="#111622" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#07080A" stop-opacity="1"/>
+            </radialGradient>
+          </defs>
+          <rect width="800" height="800" fill="#07080A"/>
+          <circle cx="400" cy="400" r="320" fill="url(#nebula)"/>
+          <circle cx="400" cy="400" r="165" fill="#08090C" stroke="#89AACC" stroke-width="2" stroke-opacity="0.7"/>
+          <ellipse cx="400" cy="400" rx="290" ry="78" transform="rotate(-24 400 400)" fill="none" stroke="#DCE8F5" stroke-width="1.5" stroke-opacity="0.5"/>
+        </svg>
+      `)}`,
+
+      exploration2: `data:image/svg+xml;utf8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+          <rect width="800" height="800" fill="#0C0D10"/>
+          <g stroke="#89AACC" stroke-opacity="0.28" fill="none">
+            <rect x="140" y="140" width="520" height="520" rx="260"/>
+            <rect x="190" y="190" width="420" height="420" rx="180" transform="rotate(15 400 400)"/>
+            <rect x="240" y="240" width="320" height="320" rx="110" transform="rotate(30 400 400)"/>
+            <rect x="290" y="290" width="220" height="220" rx="50" transform="rotate(45 400 400)"/>
+          </g>
+          <circle cx="400" cy="400" r="36" fill="#89AACC" opacity="0.85"/>
+        </svg>
+      `)}`,
+
+      exploration3: `data:image/svg+xml;utf8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+          <defs>
+            <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#89AACC"/>
+              <stop offset="100%" stop-color="#4E85BF"/>
+            </linearGradient>
+          </defs>
+          <rect width="800" height="800" fill="#0A0B0E"/>
+          ${Array.from({ length: 18 }, (_, i) => {
+            const y = 140 + i * 30;
+            return `<path d="M 80 ${y} Q 260 ${y - 65}, 400 ${y} T 720 ${y}" fill="none" stroke="url(#waveGrad)" stroke-width="1.8" opacity="${0.18 + (i / 25)}"/>`;
+          }).join('')}
+        </svg>
+      `)}`,
+
+      exploration5: `data:image/svg+xml;utf8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+          <rect width="800" height="800" fill="#090A0D"/>
+          <circle cx="400" cy="400" r="260" fill="none" stroke="#262B34" stroke-width="28"/>
+          <circle cx="400" cy="400" r="260" fill="none" stroke="#89AACC" stroke-width="4" stroke-dasharray="14 26"/>
+          <line x1="400" y1="400" x2="400" y2="180" stroke="#F5F5F5" stroke-width="3" stroke-linecap="round"/>
+          <line x1="400" y1="400" x2="555" y2="465" stroke="#89AACC" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="400" cy="400" r="12" fill="#4E85BF"/>
+        </svg>
+      `)}`,
+
+      exploration6: `data:image/svg+xml;utf8,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+          <defs>
+            <linearGradient id="glassPrism" x1="15%" y1="10%" x2="85%" y2="90%">
+              <stop offset="0%" stop-color="#DCE8F5" stop-opacity="0.75"/>
+              <stop offset="45%" stop-color="#4E85BF" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#0B0D12" stop-opacity="0.9"/>
+            </linearGradient>
+          </defs>
+          <rect width="800" height="800" fill="#08090C"/>
+          <polygon points="400,110 660,560 140,560" fill="url(#glassPrism)" stroke="#89AACC" stroke-width="2"/>
+          <polygon points="400,220 580,530 220,530" fill="none" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="1.5"/>
+          <line x1="110" y1="410" x2="690" y2="410" stroke="#89AACC" stroke-opacity="0.5" stroke-width="1.5"/>
+        </svg>
+      `)}`,
+    };
+
+    /* ==========================================================================
+       4. SMART REFERENCE MODEL IMAGE COMPONENT
+       Loads Gemini_Generated_Image_cxooigcxooigcxoo.jpg with seamless fallback
+       ========================================================================== */
+    function ModelPortraitImage({ alt = 'Reference Studio Portrait', className = '', style = {} }) {
+      const [src, setSrc] = useState('Gemini_Generated_Image_cxooigcxooigcxoo.jpg');
+      const [fallbackStep, setFallbackStep] = useState(0);
+
+      const handleError = () => {
+        if (fallbackStep === 0) {
+          setFallbackStep(1);
+          setSrc('./Gemini_Generated_Image_cxooigcxooigcxoo.jpg');
+        } else if (fallbackStep === 1) {
+          setFallbackStep(2);
+          setSrc(REFERENCE_MODEL_FALLBACK_SVG);
+        }
+      };
+
+      return (
+        <img
+          src={src}
+          alt={alt}
+          onError={handleError}
+          className={className}
+          style={style}
+          loading="eager"
+        />
+      );
+    }
+
+    /* ==========================================================================
+       5. PORTFOLIO CONTENT DATA (FAZRUL PRATAMA / BANGZRUL)
+       ========================================================================== */
+    const PROJECTS_DATA = [
+      {
+        id: 'sistem-logistik-hpp',
+        title: 'Sistem Logistik & HPP Material',
+        category: 'Supply Chain & Web App',
+        year: '2026',
+        colSpan: 'md:col-span-7',
+        aspectClass: 'aspect-[4/3] md:aspect-[16/11]',
+        image: ARTWORKS.automotive,
+        isPortrait: false,
+        client: 'Proyek Pengembangan Jalan Tol Baia',
+        role: 'Distributor Material & Web Developer',
+        summary:
+          'Sistem pencatatan distribusi material agregat dan kalkulasi Harga Pokok Penjualan (HPP) untuk mendukung kelancaran suplai Pengembangan Jalan Tol Baia.',
+        metrics: ['Tracking Ritase Real-Time', 'Akurasi Kalkulasi HPP', 'Suplai Tol Baia Banten'],
+        details:
+          'Mengintegrasikan pencatatan surat jalan armada, volume kubikasi material konstruksi, serta analisis biaya distribusi berbasis web guna mencegah bottleneck operasional di lapangan.',
+      },
+      {
+        id: 'peta-kerja-sdm',
+        title: 'Peta Kerja & Evaluasi SDM',
+        category: 'HR Consulting & System',
+        year: '2026',
+        colSpan: 'md:col-span-5',
+        aspectClass: 'aspect-[4/3] md:aspect-auto md:h-full md:min-h-[420px]',
+        image: ARTWORKS.architecture,
+        isPortrait: false,
+        client: 'Mitra Industri & Organisasi Regional',
+        role: 'Konsultan SDM & Peta Kerja',
+        summary:
+          'Penyusunan peta kerja (job mapping), analisis beban kerja, serta kerangka evaluasi kompetensi untuk meningkatkan efisiensi tim dan kepatuhan K3.',
+        metrics: ['Standarisasi SOP Tim', 'Analisis Beban Kerja', 'Integrasi Kepatuhan K3'],
+        details:
+          'Menggunakan pendekatan Teknik Industri untuk memetakan alur tanggung jawab tiap divisi, menyusun indikator kinerja utama (KPI), dan menyelaraskan kompetensi personel dengan kebutuhan proyek.',
+      },
+      {
+        id: 'human-perspective-edukasi',
+        title: 'Human Perspective & Edukasi',
+        category: 'Content Creation',
+        year: '2026',
+        colSpan: 'md:col-span-5',
+        aspectClass: 'aspect-[4/3] md:aspect-auto md:h-full md:min-h-[420px]',
+        image: 'Gemini_Generated_Image_cxooigcxooigcxoo.jpg',
+        isPortrait: true,
+        client: 'Bang Zrul • @Zrul.Insigth',
+        role: 'Konten Kreator & Pengembang SDM',
+        summary:
+          'Produksi konten edukasi pengembangan SDM, komunikasi publik, dan wawasan karier melalui kanal Bang Zrul dan TikTok @Zrul.Insigth.',
+        metrics: ['Edukasi Pengembangan SDM', 'Public Speaking & Karier', 'Komunitas Digital Aktif'],
+        details:
+          'Menjembatani pengalaman praktis di dunia industri, negosiasi lapangan, dan manajemen diri menjadi materi edukasi visual yang terstruktur dan mudah diterapkan generasi muda.',
+      },
+      {
+        id: 'tata-letak-fasilitas-k3',
+        title: 'Tata Letak Fasilitas & Simulasi K3',
+        category: 'Industrial Engineering',
+        year: '2025',
+        colSpan: 'md:col-span-7',
+        aspectClass: 'aspect-[4/3] md:aspect-[16/11]',
+        image: ARTWORKS.brand,
+        isPortrait: false,
+        client: 'Studi Rekayasa Industri & Lapangan',
+        role: 'Pengawas K3 & Industrial Engineer',
+        summary:
+          'Perancangan tata letak fasilitas kerja berbasis AutoCAD dan SketchUp dengan mengintegrasikan standar Keselamatan dan Kesehatan Kerja (K3).',
+        metrics: ['Pemodelan 2D/3D CAD', 'Mitigasi Risiko Area Kerja', 'Efisiensi Alur Material'],
+        details:
+          'Menganalisis jalur evakuasi, zonasi alat berat, serta ergonomi stasiun kerja untuk menekan potensi kecelakaan kerja sekaligus mempercepat alur perpindahan material.',
+      },
+    ];
+
+    const JOURNAL_ENTRIES = [
+      {
+        id: 'rantai-pasok-jalan-tol',
+        title: 'Mengelola Rantai Pasok Material untuk Infrastruktur Jalan Tol',
+        readTime: '4 mnt baca',
+        date: '12 Nov 2026',
+        thumb: ARTWORKS.automotive,
+        isPortrait: false,
+        excerpt:
+          'Ketepatan jadwal pengiriman material dan akurasi perhitungan HPP menjadi kunci utama menjaga ritme pembangunan infrastruktur skala besar seperti Jalan Tol Baia.',
+        body: [
+          'Dalam proyek pembangunan jalan tol, keterlambatan suplai material agregat maupun urugan bukan sekadar persoalan logistik, melainkan berdampak langsung pada biaya operasional alat berat dan tenggat konstruksi.',
+          'Dengan menggabungkan pencatatan digital real-time, negosiasi vendor yang transparan, serta pemetaan rute distribusi di wilayah Banten, rantai pasok dapat berjalan lebih terukur dan efisien.',
+        ],
+      },
+      {
+        id: 'budaya-k3-produktivitas',
+        title: 'Penerapan Budaya K3 sebagai Fondasi Produktivitas Lapangan',
+        readTime: '3 mnt baca',
+        date: '28 Okt 2026',
+        thumb: ARTWORKS.brand,
+        isPortrait: false,
+        excerpt:
+          'Keselamatan dan Kesehatan Kerja (K3) bukan penghambat kecepatan proyek, melainkan sistem proteksi yang memastikan operasional berjalan tanpa henti.',
+        body: [
+          'Banyak tim lapangan masih memandang prosedur K3 sebatas formalitas administratif. Padahal, setiap insiden kecil di area proyek berpotensi menghentikan seluruh lini kerja dan menimbulkan kerugian besar.',
+          'Sebagai Pengawas K3, pendekatan komunikasi persuasif melalui briefing rutin dan inspeksi preventif terbukti jauh lebih efektif membangun kesadaran kolektif dibandingkan teguran satu arah.',
+        ],
+      },
+      {
+        id: 'peta-kerja-pengembangan-sdm',
+        title: 'Menyusun Peta Kerja yang Efektif untuk Pengembangan SDM',
+        readTime: '5 mnt baca',
+        date: '15 Okt 2026',
+        thumb: ARTWORKS.architecture,
+        isPortrait: false,
+        excerpt:
+          'Peta kerja yang jelas membantu setiap individu memahami peran strategisnya sekaligus memudahkan organisasi mengukur potensi dan kebutuhan pelatihan.',
+        body: [
+          'Berangkat dari disiplin Teknik Industri, penyusunan peta kerja (job mapping) dimulai dari membedah alur proses bisnis dan beban kerja aktual di setiap posisi.',
+          'Ketika batas tanggung jawab dan indikator keberhasilan dirumuskan secara objektif, proses evaluasi SDM menjadi lebih adil dan terarah.',
+        ],
+      },
+      {
+        id: 'lapangan-ke-layar-edukasi',
+        title: 'Dari Lapangan ke Layar: Berbagi Edukasi Pengembangan Diri',
+        readTime: '3 mnt baca',
+        date: '02 Okt 2026',
+        thumb: 'Gemini_Generated_Image_cxooigcxooigcxoo.jpg',
+        isPortrait: true,
+        excerpt:
+          'Mengapa berbagi pengalaman nyata seputar negosiasi, public speaking, dan dinamika kerja lapangan melalui konten digital mampu memperluas dampak.',
+        body: [
+          'Pengalaman memimpin divisi analisis kemasyarakatan, bernegosiasi dengan mitra konstruksi, hingga membangun sistem web memberikan banyak pelajaran praktis yang jarang dibahas di ruang kelas.',
+          'Melalui kanal Bang Zrul dan TikTok @Zrul.Insigth, catatan lapangan tersebut dikemas ulang menjadi edukasi singkat agar lebih banyak talenta muda siap menghadapi dunia kerja.',
+        ],
+      },
+    ];
+
+    const EXPLORATION_ITEMS = [
+      {
+        id: 'exp-1',
+        title: 'Koridor Logistik Tol Baia',
+        medium: 'Pemetaan Rantai Pasok Material',
+        year: '2026',
+        column: 'left',
+        rotation: '-rotate-3',
+        image: ARTWORKS.exploration1,
+        isPortrait: false,
+      },
+      {
+        id: 'exp-2',
+        title: 'Arsitektur Peta Kerja',
+        medium: 'Sistem Evaluasi & Struktur SDM',
+        year: '2026',
+        column: 'left',
+        rotation: 'rotate-2',
+        image: ARTWORKS.exploration2,
+        isPortrait: false,
+      },
+      {
+        id: 'exp-3',
+        title: 'Bang Zrul — Studio Monograph',
+        medium: 'Personal Branding & Edukasi SDM',
+        year: '2026',
+        column: 'left',
+        rotation: '-rotate-2',
+        image: 'Gemini_Generated_Image_cxooigcxooigcxoo.jpg',
+        isPortrait: true,
+      },
+      {
+        id: 'exp-4',
+        title: 'Spektrum Analitik Web',
+        medium: 'Eksplorasi Antarmuka & Telemetry',
+        year: '2026',
+        column: 'right',
+        rotation: 'rotate-3',
+        image: ARTWORKS.exploration3,
+        isPortrait: false,
+      },
+      {
+        id: 'exp-5',
+        title: 'Simulasi Zona K3',
+        medium: 'Standar Keselamatan & Ergonomi',
+        year: '2025',
+        column: 'right',
+        rotation: '-rotate-2',
+        image: ARTWORKS.exploration5,
+        isPortrait: false,
+      },
+      {
+        id: 'exp-6',
+        title: 'Struktur & Negosiasi Sistem',
+        medium: 'Teknik Industri & Ekosistem Digital',
+        year: '2025',
+        column: 'right',
+        rotation: 'rotate-2',
+        image: ARTWORKS.exploration6,
+        isPortrait: false,
+      },
+    ];
+
+    const HLS_STREAM_URL =
+      'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
+
+    /* ==========================================================================
+       6. REUSABLE HLS AMBIENT BACKGROUND VIDEO COMPONENT
+       ========================================================================== */
+    function HlsBackgroundVideo({ flipped = false, overlayClass = 'bg-black/20' }) {
+      const videoRef = useRef(null);
+
+      useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        let hls = null;
+
+        if (window.Hls && window.Hls.isSupported()) {
+          hls = new window.Hls({
+            enableWorker: true,
+            lowLatencyMode: false,
+          });
+          hls.loadSource(HLS_STREAM_URL);
+          hls.attachMedia(video);
+          hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
+            video.play().catch(() => {});
+          });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = HLS_STREAM_URL;
+          video.addEventListener('loadedmetadata', () => {
+            video.play().catch(() => {});
+          });
+        }
+
+        return () => {
+          if (hls) {
+            hls.destroy();
+          }
+        };
+      }, []);
+
+      return (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none cosmic-ambient-bg">
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className={`absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 ${
+              flipped ? 'scale-y-[-1]' : ''
+            }`}
+          />
+          <div className={`absolute inset-0 ${overlayClass}`} />
+        </div>
+      );
+    }
+
+    /* ==========================================================================
+       7. SECTION 1: LOADING SCREEN (000 -> 100 OVER 2700MS)
+       ========================================================================== */
+    function LoadingScreen({ onComplete }) {
+      const [count, setCount] = useState(0);
+      const [wordIndex, setWordIndex] = useState(0);
+      const words = ['Design', 'Create', 'Inspire'];
+
+      // Rotate words every 900ms
+      useEffect(() => {
+        const interval = setInterval(() => {
+          setWordIndex((prev) => (prev + 1) % words.length);
+        }, 900);
+        return () => clearInterval(interval);
+      }, []);
+
+      // requestAnimationFrame counter from 000 -> 100 over 2700ms
+      useEffect(() => {
+        const duration = 2700;
+        let startTime = null;
+        let rafId = null;
+        let timeoutId = null;
+
+        const tick = (now) => {
+          if (!startTime) startTime = now;
+          const elapsed = now - startTime;
+          const progress = Math.min(1, elapsed / duration);
+          const nextVal = Math.floor(progress * 100);
+          setCount(nextVal);
+
+          if (progress < 1) {
+            rafId = requestAnimationFrame(tick);
+          } else {
+            timeoutId = setTimeout(() => {
+              if (onComplete) onComplete();
+            }, 400);
+          }
+        };
+
+        rafId = requestAnimationFrame(tick);
+
+        return () => {
+          if (rafId) cancelAnimationFrame(rafId);
+          if (timeoutId) clearTimeout(timeoutId);
+        };
+      }, [onComplete]);
+
+      return (
+        <div className="fixed inset-0 z-[9999] bg-bg flex flex-col justify-between p-6 md:p-10 select-none">
+          {/* Top-left: "BangZrul • Portfolio" label */}
+          <motion.div
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="text-xs text-muted uppercase tracking-[0.3em]"
+          >
+            BangZrul • Portfolio
+          </motion.div>
+
+          {/* Center: Rotating words ["Design", "Create", "Inspire"] */}
+          <div className="flex items-center justify-center my-auto overflow-hidden h-24 md:h-32">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={words[wordIndex]}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="text-4xl md:text-6xl lg:text-7xl font-display italic text-text-primary/80 inline-block"
+              >
+                {words[wordIndex]}
+              </motion.span>
+            </AnimatePresence>
+          </div>
+
+          {/* Bottom-right: Counter display 000 -> 100 */}
+          <div className="flex justify-end items-end pb-2">
+            <span className="text-6xl md:text-8xl lg:text-9xl font-display text-text-primary tabular-nums leading-none">
+              {String(count).padStart(3, '0')}
+            </span>
+          </div>
+
+          {/* Bottom progress bar */}
+          <div className="fixed bottom-0 left-0 right-0 h-[3px] bg-stroke/50">
+            <div
+              className="h-full w-full accent-gradient origin-left transition-transform duration-75 ease-out"
+              style={{
+                transform: `scaleX(${count / 100})`,
+                boxShadow: '0 0 8px rgba(137, 170, 204, 0.35)',
+              }}
+            />
+          </div>
+        </div>
+      );
+    }
+
+    /* ==========================================================================
+       8. FLOATING PILL NAVBAR
+       ========================================================================== */
+    function FloatingNavbar({ activeSection, onOpenResume }) {
+      const [isScrolled, setIsScrolled] = useState(false);
+
+      useEffect(() => {
+        const handleScroll = () => {
+          setIsScrolled(window.scrollY > 100);
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      const scrollToId = (id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      };
+
+      const navItems = [
+        { label: 'Home', id: 'home', action: () => scrollToId('home') },
+        { label: 'Work', id: 'work', action: () => scrollToId('work') },
+        { label: 'Journal', id: 'journal', action: () => scrollToId('journal') },
+        { label: 'Resume', id: 'resume', action: onOpenResume },
+      ];
+
+      return (
+        <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 md:pt-6 px-4 pointer-events-none">
+          <nav
+            aria-label="Primary Navigation"
+            className={`pointer-events-auto inline-flex items-center rounded-full backdrop-blur-md border border-white/10 bg-surface/90 px-2 py-2 transition-shadow duration-300 ${
+              isScrolled ? 'shadow-md shadow-black/10' : ''
+            }`}
+          >
+            {/* 1. Logo: Sleek pill badge with reversing accent gradient border displaying "BangZrul" */}
+            <button
+              type="button"
+              onClick={() => scrollToId('home')}
+              aria-label="BangZrul Home"
+              className="relative h-9 px-3.5 rounded-full p-[1.5px] transition-transform duration-300 hover:scale-105 group cursor-pointer focus:outline-none"
+            >
+              <span className="absolute inset-0 rounded-full accent-gradient transition-opacity duration-300 opacity-100 group-hover:opacity-0" />
+              <span className="absolute inset-0 rounded-full accent-gradient-reverse transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+              <span className="relative h-full px-3 rounded-full bg-bg flex items-center justify-center font-display italic text-sm tracking-wide text-text-primary whitespace-nowrap">
+                BangZrul
+              </span>
+            </button>
+
+            {/* 2. Divider (hidden on mobile) */}
+            <div className="w-px h-5 bg-stroke mx-1 hidden sm:block" />
+
+            {/* 3. Nav links: ["Home", "Work", "Journal", "Resume"] */}
+            <div className="flex items-center gap-0.5 sm:gap-1">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={item.action}
+                    className={`text-xs sm:text-sm rounded-full px-2.5 sm:px-4 py-1.5 sm:py-2 transition-colors duration-200 cursor-pointer ${
+                      isActive
+                        ? 'text-text-primary bg-stroke/50'
+                        : 'text-muted hover:text-text-primary hover:bg-stroke/50'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* 4. Divider */}
+            <div className="w-px h-5 bg-stroke mx-1" />
+
+            {/* 5. "Say hi" button with animated accent-gradient border behind (inset: -2px) on hover */}
+            <button
+              type="button"
+              onClick={() => scrollToId('contact')}
+              className="relative group inline-flex items-center justify-center rounded-full text-xs sm:text-sm cursor-pointer focus:outline-none"
+            >
+              <span
+                style={{ inset: '-2px' }}
+                className="absolute rounded-full accent-gradient animate-gradient-shift opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+              />
+              <span className="relative z-10 inline-flex items-center gap-1 bg-surface rounded-full backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 text-text-primary">
+                <span>Say hi</span>
+                <span className="text-xs transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                  ↗
+                </span>
+              </span>
+            </button>
+          </nav>
+        </header>
+      );
+    }
+
+    /* ==========================================================================
+       9. SECTION 2: HERO SECTION
+       ========================================================================== */
+    function HeroSection({ isReady }) {
+      const heroRef = useRef(null);
+      const [roleIndex, setRoleIndex] = useState(0);
+      const roles = [
+        'Web Development',
+        'Distributor Material',
+        'Konten Kreator',
+        'Pengembang SDM',
+      ];
+
+      // Cycle roles every 2s
+      useEffect(() => {
+        const interval = setInterval(() => {
+          setRoleIndex((prev) => (prev + 1) % roles.length);
+        }, 2000);
+        return () => clearInterval(interval);
+      }, []);
+
+      // GSAP Entrance Timeline triggered once loading screen finishes
+      useEffect(() => {
+        if (!isReady || !window.gsap || !heroRef.current) return;
+
+        const ctx = gsap.context(() => {
+          const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+          tl.fromTo(
+            '.name-reveal',
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1.2, delay: 0.1 },
+            0
+          );
+
+          tl.fromTo(
+            '.blur-in',
+            { opacity: 0, filter: 'blur(10px)', y: 20 },
+            {
+              opacity: 1,
+              filter: 'blur(0px)',
+              y: 0,
+              duration: 1,
+              stagger: 0.1,
+              delay: 0.3,
+            },
+            0
+          );
+        }, heroRef);
+
+        return () => ctx.revert();
+      }, [isReady]);
+
+      const scrollToId = (id) => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      };
+
+      return (
+        <section
+          id="home"
+          ref={heroRef}
+          className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-6 pt-24 pb-20"
+        >
+          {/* Background HLS Video + Dark Overlay + Bottom Fade */}
+          <HlsBackgroundVideo flipped={false} overlayClass="bg-black/20" />
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg to-transparent pointer-events-none z-[1]" />
+
+          {/* Centered Hero Content */}
+          <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
+            {/* Eyebrow */}
+            <p className="text-xs text-muted uppercase tracking-[0.3em] mb-6 blur-in">
+              COLLECTION &apos;26
+            </p>
+
+            {/* Circular Portrait Avatar Badge using Reference Model Image */}
+            <div className="blur-in mb-6">
+              <div className="relative p-1 rounded-full bg-surface/80 backdrop-blur-md border border-white/15 shadow-2xl group">
+                <span className="absolute -inset-[1.5px] rounded-full accent-gradient opacity-50 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]" />
+                <div className="relative w-16 h-16 rounded-full overflow-hidden bg-surface border border-white/15">
+                  <ModelPortraitImage
+                    alt="Fazrul Pratama Studio Portrait"
+                    className="w-full h-full object-cover object-top scale-125 transition-transform duration-500 group-hover:scale-135"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Name */}
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight text-text-primary mb-6 name-reveal">
+              Fazrul Pratama
+            </h1>
+
+            {/* Role line */}
+            <p className="text-lg md:text-2xl text-muted font-light mb-6 blur-in">
+              Seorang{' '}
+              <span
+                key={roleIndex}
+                className="font-display italic text-text-primary animate-role-fade-in inline-block px-1"
+              >
+                {roles[roleIndex]}
+              </span>{' '}
+              berbasis di Serang.
+            </p>
+
+            {/* Description */}
+            <p className="text-sm md:text-base text-muted max-w-xl mb-12 leading-relaxed blur-in">
+              Membangun ekosistem digital, menggerakkan rantai pasok konstruksi,
+              dan mengembangkan potensi manusia. Berpengalaman sebagai Web
+              Developer &amp; Distributor Material yang berfokus pada efisiensi
+              sistem, sekaligus Content Creator yang aktif berbagi edukasi
+              seputar pengembangan SDM.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="inline-flex flex-wrap items-center justify-center gap-4 blur-in">
+              {/* "Lihat Karya": Solid default -> Hover bg-bg text-text-primary with accent gradient border ring */}
+              <button
+                type="button"
+                onClick={() => scrollToId('work')}
+                className="relative group rounded-full text-sm font-medium transition-transform duration-300 hover:scale-105 cursor-pointer focus:outline-none"
+              >
+                <span
+                  style={{ inset: '-2px' }}
+                  className="absolute rounded-full accent-gradient animate-gradient-shift opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                />
+                <span className="relative z-10 block rounded-full px-7 py-3.5 bg-text-primary text-bg group-hover:bg-bg group-hover:text-text-primary transition-colors duration-300">
+                  Lihat Karya
+                </span>
+              </button>
+
+              {/* "Hubungi Saya...": Outlined border-2 border-stroke bg-bg -> Hover border-transparent with accent gradient border ring */}
+              <button
+                type="button"
+                onClick={() => scrollToId('contact')}
+                className="relative group rounded-full text-sm font-medium transition-transform duration-300 hover:scale-105 cursor-pointer focus:outline-none"
+              >
+                <span
+                  style={{ inset: '-2px' }}
+                  className="absolute rounded-full accent-gradient animate-gradient-shift opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                />
+                <span className="relative z-10 block rounded-full px-7 py-3.5 border-2 border-stroke bg-bg text-text-primary group-hover:border-transparent transition-colors duration-300">
+                  Hubungi Saya...
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 pointer-events-none">
+            <span className="text-xs text-muted uppercase tracking-[0.2em]">
+              SCROLL
+            </span>
+            <div className="w-px h-10 bg-stroke overflow-hidden relative">
+              <div className="w-full h-1/2 accent-gradient animate-scroll-down" />
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ==========================================================================
+       10. REUSABLE GRADIENT BORDER PILL BUTTON
+       ========================================================================== */
+    function GradientOutlineButton({ children, onClick, href, className = '' }) {
+      const inner = (
+        <>
+          <span
+            style={{ inset: '-2px' }}
+            className="absolute rounded-full accent-gradient animate-gradient-shift opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          />
+          <span className="relative z-10 inline-flex items-center gap-2 rounded-full border border-stroke group-hover:border-transparent bg-surface px-5 py-2.5 text-xs sm:text-sm text-text-primary transition-colors duration-300">
+            {children}
+          </span>
+        </>
+      );
+
+      if (href) {
+        return (
+          <a
+            href={href}
+            target={href.startsWith('http') ? '_blank' : undefined}
+            rel={href.startsWith('http') ? 'noreferrer' : undefined}
+            className={`relative group inline-flex items-center rounded-full transition-transform duration-300 hover:scale-105 cursor-pointer ${className}`}
+          >
+            {inner}
+          </a>
+        );
+      }
+
+      return (
+        <button
+          type="button"
+          onClick={onClick}
+          className={`relative group inline-flex items-center rounded-full transition-transform duration-300 hover:scale-105 cursor-pointer focus:outline-none ${className}`}
+        >
+          {inner}
+        </button>
+      );
+    }
+
+    /* ==========================================================================
+       11. SECTION 3: SELECTED WORKS (BENTO GRID)
+       ========================================================================== */
+    function SelectedWorksSection({ onSelectProject }) {
+      return (
+        <section id="work" className="bg-bg py-12 md:py-16">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
+            {/* Section Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+              viewport={{ once: true, margin: '-100px' }}
+              className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
+            >
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-px bg-stroke" />
+                  <span className="text-xs text-muted uppercase tracking-[0.3em]">
+                    Selected Work
+                  </span>
+                </div>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-text-primary mb-3">
+                  Featured <span className="font-display italic">projects</span>
+                </h2>
+                <p className="text-sm md:text-base text-muted max-w-lg">
+                  Kumpulan proyek pilihan di bidang pengembangan web, rantai
+                  pasok material, teknik industri, dan konten edukasi.
+                </p>
+              </div>
+
+              <div className="hidden md:inline-flex">
+                <GradientOutlineButton href="https://www.instagram.com/fzrlprtm">
+                  <span>View all work</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </GradientOutlineButton>
+              </div>
+            </motion.div>
+
+            {/* Bento Grid: Column spans alternate 7 / 5 / 5 / 7 */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
+              {PROJECTS_DATA.map((project, idx) => (
+                <motion.article
+                  key={project.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.85,
+                    delay: idx * 0.08,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  onClick={() => onSelectProject(project)}
+                  className={`${project.colSpan} ${project.aspectClass} bg-surface border border-stroke rounded-3xl overflow-hidden relative group cursor-pointer`}
+                >
+                  {/* Project Image */}
+                  {project.isPortrait ? (
+                    <div className="w-full h-full relative bg-[#EAECEF]">
+                      <ModelPortraitImage
+                        alt={project.title}
+                        className="w-full h-full object-cover object-[50%_20%] transition-transform duration-700 ease-out group-hover:scale-105 contrast-[1.03]"
+                      />
+                      {/* Subtle Editorial Vignette for Dark Portfolio Cohesion */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15 pointer-events-none" />
+                    </div>
+                  ) : (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  )}
+
+                  {/* Halftone Overlay: radial-gradient(circle, #000 1px, transparent 1px) at 4x4px */}
+                  <div className="absolute inset-0 halftone-overlay opacity-20 mix-blend-multiply pointer-events-none" />
+
+                  {/* Bottom Subtle Metadata Tag (Default state) */}
+                  <div className="absolute bottom-5 left-6 right-6 flex items-center justify-between pointer-events-none transition-opacity duration-300 group-hover:opacity-0">
+                    <span className="text-xs uppercase tracking-[0.2em] text-white/80 bg-black/45 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10">
+                      {project.title}
+                    </span>
+                    <span className="text-xs text-white/70 bg-black/45 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 tabular-nums">
+                      {project.year}
+                    </span>
+                  </div>
+
+                  {/* Hover Overlay: bg-bg/70 opacity-0 -> 1 + backdrop-blur-lg */}
+                  <div className="absolute inset-0 bg-bg/70 opacity-0 group-hover:opacity-100 backdrop-blur-lg transition-all duration-500 flex items-center justify-center p-6">
+                    {/* Hover Label Pill with animated gradient border & white bg */}
+                    <div className="p-[2px] rounded-full accent-gradient animate-gradient-shift transform translate-y-3 group-hover:translate-y-0 transition-transform duration-500 shadow-2xl">
+                      <div className="bg-white text-black px-6 py-2.5 rounded-full text-sm font-medium flex items-center gap-1.5 whitespace-nowrap">
+                        <span>View —</span>
+                        <span className="font-display italic text-base">
+                          {project.title}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ==========================================================================
+       12. SECTION 4: JOURNAL
+       ========================================================================== */
+    function JournalSection({ onSelectArticle }) {
+      const [expandedAll, setExpandedAll] = useState(false);
+
+      return (
+        <section id="journal" className="bg-bg py-16 md:py-24">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
+            {/* Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+              viewport={{ once: true, margin: '-100px' }}
+              className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
+            >
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-px bg-stroke" />
+                  <span className="text-xs text-muted uppercase tracking-[0.3em]">
+                    Journal
+                  </span>
+                </div>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-text-primary mb-3">
+                  Recent <span className="font-display italic">thoughts</span>
+                </h2>
+                <p className="text-sm md:text-base text-muted max-w-lg">
+                  Catatan lapangan seputar rantai pasok konstruksi, K3,
+                  pengembangan SDM, dan ekosistem digital.
+                </p>
+              </div>
+
+              <div className="hidden md:inline-flex">
+                <GradientOutlineButton
+                  onClick={() => setExpandedAll((prev) => !prev)}
+                >
+                  <span>{expandedAll ? 'Compact view' : 'View all'}</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </GradientOutlineButton>
+              </div>
+            </motion.div>
+
+            {/* 4 Journal Entries as Horizontal Pills */}
+            <div className="flex flex-col gap-4">
+              {JOURNAL_ENTRIES.map((entry, idx) => (
+                <motion.article
+                  key={entry.id}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.75,
+                    delay: idx * 0.08,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  onClick={() => onSelectArticle(entry)}
+                  className="group rounded-[40px] sm:rounded-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 p-4 sm:pr-8 bg-surface/30 hover:bg-surface border border-stroke transition-all duration-300 cursor-pointer"
+                >
+                  {/* Thumbnail + Title */}
+                  <div className="flex items-center gap-5 sm:gap-6">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border border-stroke shrink-0 bg-surface">
+                      {entry.isPortrait ? (
+                        <ModelPortraitImage
+                          alt={entry.title}
+                          className="w-full h-full object-cover object-[50%_20%] scale-125 transition-transform duration-500 group-hover:scale-135"
+                        />
+                      ) : (
+                        <img
+                          src={entry.thumb}
+                          alt={entry.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      )}
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-light text-text-primary group-hover:text-white transition-colors leading-snug">
+                        {entry.title}
+                      </h3>
+                      {expandedAll && (
+                        <p className="text-xs sm:text-sm text-muted mt-1.5 max-w-2xl">
+                          {entry.excerpt}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Read Time, Date & Arrow */}
+                  <div className="flex items-center gap-3 sm:gap-5 pl-20 sm:pl-0 shrink-0 self-end sm:self-center">
+                    <span className="text-xs text-muted uppercase tracking-wider px-3 py-1 rounded-full bg-bg/70 border border-stroke">
+                      {entry.readTime}
+                    </span>
+                    <span className="text-xs sm:text-sm text-muted tabular-nums">
+                      {entry.date}
+                    </span>
+                    <span className="w-8 h-8 rounded-full border border-stroke flex items-center justify-center text-xs text-muted group-hover:text-text-primary group-hover:border-white/25 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                      ↗
+                    </span>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ==========================================================================
+       13. SECTION 5: EXPLORATIONS (PINNED CENTER + PARALLAX GALLERY)
+       ========================================================================== */
+    function ExplorationsSection({ onSelectExploration }) {
+      const sectionRef = useRef(null);
+      const contentRef = useRef(null);
+      const leftColRef = useRef(null);
+      const rightColRef = useRef(null);
+
+      const leftItems = EXPLORATION_ITEMS.filter((item) => item.column === 'left');
+      const rightItems = EXPLORATION_ITEMS.filter((item) => item.column === 'right');
+
+      useEffect(() => {
+        if (!window.gsap || !window.ScrollTrigger || !sectionRef.current) return;
+
+        const ctx = gsap.context(() => {
+          // Layer 1: Pin center header for the 300vh scroll span
+          ScrollTrigger.create({
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom bottom',
+            pin: contentRef.current,
+            pinSpacing: false,
+          });
+
+          // Layer 2: Scroll-driven vertical parallax for Left & Right columns
+          gsap.fromTo(
+            leftColRef.current,
+            { yPercent: 12 },
+            {
+              yPercent: -32,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.8,
+              },
+            }
+          );
+
+          gsap.fromTo(
+            rightColRef.current,
+            { yPercent: 24 },
+            {
+              yPercent: -48,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.8,
+              },
+            }
+          );
+        }, sectionRef);
+
+        return () => ctx.revert();
+      }, []);
+
+      return (
+        <section
+          id="explorations"
+          ref={sectionRef}
+          className="relative min-h-[300vh] bg-bg overflow-hidden"
+        >
+          {/* Layer 1: Pinned Center (z-10) */}
+          <div
+            ref={contentRef}
+            className="h-screen flex flex-col items-center justify-center text-center px-6 relative z-10 pointer-events-auto"
+          >
+            <div className="bg-bg/65 backdrop-blur-md border border-white/[0.06] rounded-3xl px-8 py-10 max-w-lg mx-auto shadow-2xl">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <span className="w-8 h-px bg-stroke" />
+                <span className="text-xs text-muted uppercase tracking-[0.3em]">
+                  Explorations
+                </span>
+                <span className="w-8 h-px bg-stroke" />
+              </div>
+
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-text-primary mb-4">
+                Visual <span className="font-display italic">playground</span>
+              </h2>
+
+              <p className="text-sm md:text-base text-muted max-w-sm mx-auto mb-8 leading-relaxed">
+                Eksplorasi visual seputar industri, desain sistem, dan
+                dokumentasi kreatif.
+              </p>
+
+              <GradientOutlineButton href="https://www.tiktok.com/@zrul.insigth">
+                <span>TikTok @Zrul.Insigth</span>
+                <span>↗</span>
+              </GradientOutlineButton>
+            </div>
+          </div>
+
+          {/* Layer 2: Parallax Columns (z-20, absolute) */}
+          <div className="absolute inset-0 z-20 pointer-events-none">
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 h-full grid grid-cols-2 gap-6 sm:gap-12 md:gap-40 items-start pt-[45vh]">
+              {/* Left Parallax Column */}
+              <div
+                ref={leftColRef}
+                className="flex flex-col items-start gap-28 md:gap-48"
+              >
+                {leftItems.map((item) => (
+                  <div
+                    key={item.id}
+                    onClick={() => onSelectExploration(item)}
+                    className={`pointer-events-auto aspect-square w-full max-w-[320px] rounded-2xl overflow-hidden border border-stroke bg-surface shadow-2xl cursor-pointer group relative transition-transform duration-500 hover:scale-105 ${item.rotation}`}
+                  >
+                    {item.isPortrait ? (
+                      <div className="w-full h-full relative bg-[#EAECEF]">
+                        <ModelPortraitImage
+                          alt={item.title}
+                          className="w-full h-full object-cover object-[50%_18%] transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
+                      </div>
+                    ) : (
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    )}
+                    <div className="absolute inset-0 halftone-overlay opacity-15 mix-blend-multiply pointer-events-none" />
+                    <div className="absolute inset-0 bg-bg/60 opacity-0 group-hover:opacity-100 backdrop-blur-sm transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
+                      <span className="font-display italic text-xl text-text-primary">
+                        {item.title}
+                      </span>
+                      <span className="text-[11px] text-muted uppercase tracking-widest mt-1">
+                        Klik untuk memperbesar
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Right Parallax Column */}
+              <div
+                ref={rightColRef}
+                className="flex flex-col items-end gap-28 md:gap-48 pt-24 md:pt-40"
+              >
+                {rightItems.map((item) => (
+                  <div
+                    key={item.id}
+                    onClick={() => onSelectExploration(item)}
+                    className={`pointer-events-auto aspect-square w-full max-w-[320px] rounded-2xl overflow-hidden border border-stroke bg-surface shadow-2xl cursor-pointer group relative transition-transform duration-500 hover:scale-105 ${item.rotation}`}
+                  >
+                    {item.isPortrait ? (
+                      <div className="w-full h-full relative bg-[#EAECEF]">
+                        <ModelPortraitImage
+                          alt={item.title}
+                          className="w-full h-full object-cover object-[50%_18%] transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
+                      </div>
+                    ) : (
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    )}
+                    <div className="absolute inset-0 halftone-overlay opacity-15 mix-blend-multiply pointer-events-none" />
+                    <div className="absolute inset-0 bg-bg/60 opacity-0 group-hover:opacity-100 backdrop-blur-sm transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
+                      <span className="font-display italic text-xl text-text-primary">
+                        {item.title}
+                      </span>
+                      <span className="text-[11px] text-muted uppercase tracking-widest mt-1">
+                        Klik untuk memperbesar
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ==========================================================================
+       14. SECTION 6: STATS
+       ========================================================================== */
+    function StatsSection() {
+      const stats = [
+        { value: '4+', label: 'Bidang Keahlian Terpadu' },
+        { value: '15+', label: 'Proyek & Inisiatif Selesai' },
+        { value: '100%', label: 'Komitmen Standar K3 & Kualitas' },
+      ];
+
+      return (
+        <section className="bg-bg py-16 md:py-24 border-t border-b border-stroke/60">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 text-center">
+              {stats.map((stat, idx) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: idx * 0.12,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  className="flex flex-col items-center justify-center p-6 rounded-3xl bg-surface/20 border border-stroke/50"
+                >
+                  <div className="text-6xl md:text-7xl lg:text-8xl font-display italic text-text-primary mb-3 tracking-tight">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs text-muted uppercase tracking-[0.25em]">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ==========================================================================
+       15. SECTION 7: CONTACT / FOOTER (FLIPPED HLS VIDEO + GSAP MARQUEE)
+       ========================================================================== */
+    function ContactFooterSection() {
+      const marqueeTrackRef = useRef(null);
+      const [copied, setCopied] = useState(false);
+
+      useEffect(() => {
+        if (!window.gsap || !marqueeTrackRef.current) return;
+
+        const ctx = gsap.context(() => {
+          gsap.to(marqueeTrackRef.current, {
+            xPercent: -50,
+            duration: 40,
+            ease: 'none',
+            repeat: -1,
+          });
+        });
+
+        return () => ctx.revert();
+      }, []);
+
+      const handleCopyEmail = () => {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText('zruldek@gmail.com').catch(() => {});
+        }
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2200);
+      };
+
+      const marqueePhrase = 'MEMBANGUN EKOSISTEM DIGITAL & INFRASTRUKTUR • ';
+      // Repeat 10x per half (20x total so xPercent: -50 loops seamlessly)
+      const marqueeItems = Array.from({ length: 20 }, (_, i) => i);
+
+      const socials = [
+        {
+          name: 'Instagram (@fzrlprtm)',
+          href: 'https://www.instagram.com/fzrlprtm',
+        },
+        {
+          name: 'TikTok (@Zrul.Insigth)',
+          href: 'https://www.tiktok.com/@zrul.insigth',
+        },
+        { name: 'YouTube (Bang Zrul)', href: 'https://www.youtube.com' },
+        { name: 'LinkedIn (Fazrul Pratama)', href: 'https://www.linkedin.com' },
+      ];
+
+      return (
+        <footer
+          id="contact"
+          className="relative bg-bg pt-16 md:pt-20 pb-8 md:pb-12 overflow-hidden"
+        >
+          {/* Same HLS Background Video flipped vertically (scale-y-[-1]) with bg-black/60 overlay */}
+          <HlsBackgroundVideo flipped={true} overlayClass="bg-black/60" />
+          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-bg to-transparent pointer-events-none z-[1]" />
+
+          {/* GSAP Infinite Marquee */}
+          <div className="relative z-10 w-full overflow-hidden py-8 md:py-12 border-y border-white/10 mb-14 md:mb-20">
+            <div
+              ref={marqueeTrackRef}
+              className="flex w-max whitespace-nowrap will-change-transform"
+            >
+              {marqueeItems.map((idx) => (
+                <span
+                  key={idx}
+                  className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic text-text-primary/90 tracking-tight pr-6 select-none"
+                >
+                  {marqueePhrase}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Centered Email CTA */}
+          <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 text-center mb-20 md:mb-28">
+            <p className="text-xs text-muted uppercase tracking-[0.3em] mb-4">
+              Mari Berkolaborasi • @zruldek
+            </p>
+            <h3 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-text-primary mb-8">
+              Punya proyek atau diskusi{' '}
+              <span className="font-display italic">strategis?</span>
+            </h3>
+
+            <div className="inline-flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="mailto:zruldek@gmail.com"
+                className="relative group inline-flex items-center justify-center rounded-full transition-transform duration-300 hover:scale-105 cursor-pointer"
+              >
+                <span
+                  style={{ inset: '-2px' }}
+                  className="absolute rounded-full accent-gradient animate-gradient-shift opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                />
+                <span className="relative z-10 inline-flex items-center gap-3 rounded-full border border-stroke group-hover:border-transparent bg-surface/95 backdrop-blur-md px-8 py-4 text-sm sm:text-base text-text-primary transition-colors duration-300">
+                  <span>zruldek@gmail.com</span>
+                  <span className="text-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                    ↗
+                  </span>
+                </span>
+              </a>
+
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="rounded-full border border-stroke bg-bg/70 hover:bg-surface backdrop-blur-md px-5 py-4 text-xs uppercase tracking-widest text-muted hover:text-text-primary transition-colors duration-200 cursor-pointer"
+              >
+                {copied ? 'Tersalin ✓' : 'Salin email (@zruldek)'}
+              </button>
+            </div>
+          </div>
+
+          {/* Footer Bar */}
+          <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 pt-8 border-t border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6">
+            {/* Social Links */}
+            <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-6">
+              {socials.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs sm:text-sm text-muted hover:text-text-primary transition-colors duration-200"
+                >
+                  {social.name}
+                </a>
+              ))}
+            </div>
+
+            {/* Availability Status */}
+            <div className="inline-flex items-center gap-2.5 text-xs text-muted tracking-wide text-center sm:text-left">
+              <span className="relative flex h-2.5 w-2.5 shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+              </span>
+              <span>Distributor Material Untuk Pengembangan Jalan Tol Baia</span>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    /* ==========================================================================
+       16. INTERACTIVE MODALS (PROJECT CASE STUDY, JOURNAL READER, LIGHTBOX, RESUME)
+       ========================================================================== */
+    function ModalBackdrop({ onClose, children, maxWidth = 'max-w-3xl' }) {
+      useEffect(() => {
+        const handleKey = (e) => {
+          if (e.key === 'Escape') onClose();
+        };
+        window.addEventListener('keydown', handleKey);
+        return () => window.removeEventListener('keydown', handleKey);
+      }, [onClose]);
+
+      return (
+        <div
+          onClick={onClose}
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className={`relative w-full ${maxWidth} bg-surface border border-stroke rounded-3xl overflow-hidden shadow-2xl my-auto`}
+          >
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close modal"
+              className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-bg/80 border border-stroke text-muted hover:text-text-primary flex items-center justify-center text-sm transition-colors cursor-pointer"
+            >
+              ✕
+            </button>
+            {children}
+          </div>
+        </div>
+      );
+    }
+
+    function ProjectCaseStudyModal({ project, onClose }) {
+      if (!project) return null;
+      return (
+        <ModalBackdrop onClose={onClose} maxWidth="max-w-3xl">
+          <div className="aspect-[16/9] w-full overflow-hidden relative bg-bg">
+            {project.isPortrait ? (
+              <div className="w-full h-full bg-[#EAECEF]">
+                <ModelPortraitImage
+                  alt={project.title}
+                  className="w-full h-full object-cover object-[50%_20%]"
+                />
+              </div>
+            ) : (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover"
+              />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
+          </div>
+
+          <div className="p-6 sm:p-8 md:p-10">
+            <div className="flex flex-wrap items-center gap-3 text-xs text-muted uppercase tracking-[0.25em] mb-3">
+              <span>{project.category}</span>
+              <span>•</span>
+              <span>{project.year}</span>
+            </div>
+
+            <h3 className="text-3xl sm:text-5xl font-display italic text-text-primary mb-4">
+              {project.title}
+            </h3>
+
+            <p className="text-sm sm:text-base text-muted leading-relaxed mb-6">
+              {project.summary} {project.details}
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+              {project.metrics.map((metric) => (
+                <div
+                  key={metric}
+                  className="rounded-2xl bg-bg/70 border border-stroke px-4 py-3 text-xs text-text-primary font-medium"
+                >
+                  {metric}
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-stroke text-xs text-muted">
+              <div>
+                <span className="uppercase tracking-widest block text-[10px] mb-1">
+                  Client
+                </span>
+                <span className="text-text-primary">{project.client}</span>
+              </div>
+              <div>
+                <span className="uppercase tracking-widest block text-[10px] mb-1">
+                  Role
+                </span>
+                <span className="text-text-primary">{project.role}</span>
+              </div>
+            </div>
+          </div>
+        </ModalBackdrop>
+      );
+    }
+
+    function ArticleReaderModal({ article, onClose }) {
+      if (!article) return null;
+      return (
+        <ModalBackdrop onClose={onClose} maxWidth="max-w-2xl">
+          <div className="p-6 sm:p-10">
+            <div className="flex items-center gap-3 text-xs text-muted uppercase tracking-[0.25em] mb-4">
+              <span>{article.date}</span>
+              <span>•</span>
+              <span>{article.readTime}</span>
+            </div>
+
+            <h3 className="text-2xl sm:text-4xl font-display italic text-text-primary leading-tight mb-6">
+              {article.title}
+            </h3>
+
+            <p className="text-base sm:text-lg text-text-primary/90 font-light leading-relaxed border-l-2 border-[#89AACC] pl-4 mb-6">
+              {article.excerpt}
+            </p>
+
+            <div className="space-y-4 text-sm sm:text-base text-muted leading-relaxed">
+              {article.body.map((para, index) => (
+                <p key={index}>{para}</p>
+              ))}
+            </div>
+          </div>
+        </ModalBackdrop>
+      );
+    }
+
+    function ExplorationLightboxModal({ item, onClose, onNavigate }) {
+      if (!item) return null;
+      return (
+        <ModalBackdrop onClose={onClose} maxWidth="max-w-2xl">
+          <div className="aspect-square w-full max-h-[70vh] overflow-hidden bg-bg relative">
+            {item.isPortrait ? (
+              <div className="w-full h-full bg-[#EAECEF]">
+                <ModelPortraitImage
+                  alt={item.title}
+                  className="w-full h-full object-cover object-[50%_20%]"
+                />
+              </div>
+            ) : (
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover"
+              />
+            )}
+          </div>
+
+          <div className="p-6 flex items-center justify-between gap-4 bg-surface border-t border-stroke">
+            <div>
+              <h4 className="text-2xl font-display italic text-text-primary">
+                {item.title}
+              </h4>
+              <p className="text-xs text-muted uppercase tracking-widest mt-0.5">
+                {item.medium} — {item.year}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => onNavigate(-1)}
+                className="px-4 py-2 rounded-full border border-stroke bg-bg text-xs text-text-primary hover:border-white/30 cursor-pointer"
+              >
+                ← Prev
+              </button>
+              <button
+                type="button"
+                onClick={() => onNavigate(1)}
+                className="px-4 py-2 rounded-full border border-stroke bg-bg text-xs text-text-primary hover:border-white/30 cursor-pointer"
+              >
+                Next →
+              </button>
+            </div>
+          </div>
+        </ModalBackdrop>
+      );
+    }
+
+    function ResumeModal({ isOpen, onClose }) {
+      if (!isOpen) return null;
+
+      const experience = [
+        {
+          period: 'Saat Ini',
+          role: 'Distributor Material Konstruksi',
+          company: 'Pengembangan Jalan Tol Baia · Serang, Banten',
+          summary:
+            'Suplai & logistik material untuk proyek Pengembangan Jalan Tol Baia serta infrastruktur wilayah Banten dengan fokus ketepatan ritase dan efisiensi HPP.',
+        },
+        {
+          period: 'Pengalaman',
+          role: 'Web Developer',
+          company: 'BangZrul Digital Ecosystem · Serang',
+          summary:
+            'Perancangan dan pengembangan aplikasi web, sistem informasi operasional, dan landing page interaktif berbasis teknologi modern.',
+        },
+        {
+          period: 'Pengalaman',
+          role: 'Pengawas K3 (Keselamatan dan Kesehatan Kerja)',
+          company: 'Operasional Proyek & Lapangan',
+          summary:
+            'Pengawasan standar keselamatan kerja, mitigasi risiko lapangan, dan kepatuhan prosedur proyek untuk menjaga produktivitas tanpa insiden.',
+        },
+        {
+          period: 'Organisasi',
+          role: 'Kepala Divisi Analisis Kemasyarakatan',
+          company: 'Lembaga & Koordinasi Strategis',
+          summary:
+            'Riset sosial, pemetaan kebutuhan masyarakat, dan koordinasi program strategis organisasi berbasis data lapangan.',
+        },
+      ];
+
+      const skills = [
+        'Public Speaking',
+        'Negosiasi',
+        'Konsultan SDM & Peta Kerja',
+        'Manajemen K3',
+        'Supply Chain & Analisis HPP',
+        'Web Development (React / HTML / Tailwind)',
+        'Python',
+        'AutoCAD & SketchUp',
+      ];
+
+      return (
+        <ModalBackdrop onClose={onClose} maxWidth="max-w-3xl">
+          <div className="p-6 sm:p-10 max-h-[88vh] overflow-y-auto">
+            {/* Header Profil */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
+              <div className="w-16 h-16 rounded-full overflow-hidden border border-white/15 shrink-0 bg-surface">
+                <ModelPortraitImage
+                  alt="Fazrul Pratama"
+                  className="w-full h-full object-cover object-top scale-125"
+                />
+              </div>
+              <div>
+                <p className="text-xs text-muted uppercase tracking-[0.3em]">
+                  Curriculum Vitae • BangZrul
+                </p>
+                <h3 className="text-3xl sm:text-4xl font-display italic text-text-primary">
+                  Fazrul Pratama
+                </h3>
+                <p className="text-xs text-muted mt-1">
+                  Serang, Banten, Indonesia •{' '}
+                  <span className="text-emerald-400">
+                    Distributor Material Untuk Pengembangan Jalan Tol Baia
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            {/* Pendidikan */}
+            <div className="border-t border-stroke pt-5 mb-6">
+              <h4 className="text-xs text-muted uppercase tracking-[0.25em] mb-3">
+                Pendidikan
+              </h4>
+              <div className="rounded-2xl bg-bg/60 border border-stroke p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <p className="text-sm sm:text-base font-medium text-text-primary">
+                    S1 Teknik Industri
+                  </p>
+                  <p className="text-xs text-[#89AACC]">
+                    Universitas Serang Raya (UNSERA)
+                  </p>
+                </div>
+                <span className="text-xs text-muted">Serang, Banten</span>
+              </div>
+            </div>
+
+            {/* Pengalaman */}
+            <div className="border-t border-stroke pt-5 mb-6">
+              <h4 className="text-xs text-muted uppercase tracking-[0.25em] mb-4">
+                Pengalaman &amp; Peran
+              </h4>
+              <div className="space-y-4">
+                {experience.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex flex-col sm:flex-row sm:justify-between gap-2 pb-4 border-b border-stroke/60 last:border-none last:pb-0"
+                  >
+                    <div className="max-w-xl">
+                      <h5 className="text-sm sm:text-base font-medium text-text-primary">
+                        {item.role}
+                      </h5>
+                      <p className="text-xs text-[#89AACC] mb-1">
+                        {item.company}
+                      </p>
+                      <p className="text-xs sm:text-sm text-muted leading-relaxed">
+                        {item.summary}
+                      </p>
+                    </div>
+                    <span className="text-xs text-muted tabular-nums shrink-0">
+                      {item.period}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Keahlian & Tools */}
+            <div className="border-t border-stroke pt-5 mb-8">
+              <h4 className="text-xs text-muted uppercase tracking-[0.25em] mb-3">
+                Keahlian &amp; Tools
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="text-xs text-text-primary bg-bg/80 border border-stroke rounded-full px-3.5 py-1.5"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-5 border-t border-stroke">
+              <span className="text-xs text-muted">
+                Serang, Banten • @zruldek
+              </span>
+              <a
+                href="mailto:zruldek@gmail.com?subject=Kolaborasi%20%26%20CV%20Fazrul%20Pratama"
+                className="rounded-full px-5 py-2.5 text-xs font-medium bg-text-primary text-bg hover:opacity-90 transition-opacity"
+              >
+                Hubungi via Email ↗
+              </a>
+            </div>
+          </div>
+        </ModalBackdrop>
+      );
+    }
+
+    /* ==========================================================================
+       17. MAIN APP ORCHESTRATION
+       ========================================================================== */
+    function App() {
+      const [isLoading, setIsLoading] = useState(true);
+      const [activeSection, setActiveSection] = useState('home');
+      const [selectedProject, setSelectedProject] = useState(null);
+      const [selectedArticle, setSelectedArticle] = useState(null);
+      const [selectedExplorationIdx, setSelectedExplorationIdx] = useState(null);
+      const [isResumeOpen, setIsResumeOpen] = useState(false);
+
+      // Track active scroll section for floating navbar highlight
+      useEffect(() => {
+        const handleScroll = () => {
+          const workEl = document.getElementById('work');
+          const journalEl = document.getElementById('journal');
+          const scrollPos = window.scrollY + 260;
+
+          if (journalEl && scrollPos >= journalEl.offsetTop) {
+            setActiveSection('journal');
+          } else if (workEl && scrollPos >= workEl.offsetTop) {
+            setActiveSection('work');
+          } else {
+            setActiveSection('home');
+          }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      const handleLoadingComplete = useCallback(() => {
+        setIsLoading(false);
+        // Refresh ScrollTrigger measurements after loader unmounts
+        setTimeout(() => {
+          if (window.ScrollTrigger) {
+            window.ScrollTrigger.refresh();
+          }
+        }, 120);
+      }, []);
+
+      const handleNavigateLightbox = (delta) => {
+        setSelectedExplorationIdx((prev) => {
+          if (prev === null) return null;
+          const next =
+            (prev + delta + EXPLORATION_ITEMS.length) % EXPLORATION_ITEMS.length;
+          return next;
+        });
+      };
+
+      return (
+        <div className="min-h-screen bg-bg text-text-primary font-body">
+          {/* Section 1: Loading Screen */}
+          {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+
+          {/* Floating Top-Center Pill Navbar */}
+          <FloatingNavbar
+            activeSection={activeSection}
+            onOpenResume={() => setIsResumeOpen(true)}
+          />
+
+          {/* Main Single-Page Experience */}
+          <main>
+            {/* Section 2: Hero */}
+            <HeroSection isReady={!isLoading} />
+
+            {/* Section 3: Selected Works */}
+            <SelectedWorksSection
+              onSelectProject={(project) => setSelectedProject(project)}
+            />
+
+            {/* Section 4: Journal */}
+            <JournalSection
+              onSelectArticle={(article) => setSelectedArticle(article)}
+            />
+
+            {/* Section 5: Explorations (Parallax Gallery) */}
+            <ExplorationsSection
+              onSelectExploration={(item) => {
+                const idx = EXPLORATION_ITEMS.findIndex((e) => e.id === item.id);
+                setSelectedExplorationIdx(idx >= 0 ? idx : 0);
+              }}
+            />
+
+            {/* Section 6: Stats */}
+            <StatsSection />
+          </main>
+
+          {/* Section 7: Contact / Footer */}
+          <ContactFooterSection />
+
+          {/* Interactive Modals */}
+          <ProjectCaseStudyModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+
+          <ArticleReaderModal
+            article={selectedArticle}
+            onClose={() => setSelectedArticle(null)}
+          />
+
+          <ExplorationLightboxModal
+            item={
+              selectedExplorationIdx !== null
+                ? EXPLORATION_ITEMS[selectedExplorationIdx]
+                : null
+            }
+            onClose={() => setSelectedExplorationIdx(null)}
+            onNavigate={handleNavigateLightbox}
+          />
+
+          <ResumeModal
+            isOpen={isResumeOpen}
+            onClose={() => setIsResumeOpen(false)}
+          />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
 </body>
 </html>
