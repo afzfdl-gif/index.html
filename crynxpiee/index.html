@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piee 🦋 — @crynxpiee · Cdrama Edits</title>
+<meta name="description" content="Semua tentang Piee (@crynxpiee): editan Cdrama paling baper, info drama terbaru, nonton di mana, dan link resmi TikTok, Instagram & Linktree.">
+<style>
+  :root{
+    --bg:#0d0812; --panel:rgba(255,255,255,.045); --line:rgba(255,255,255,.11);
+    --txt:#fdf7f2; --mut:#cbb8c6; --pink:#ff5c8a; --rose:#ff8fab; --gold:#f2c14e; --violet:#8b5cf6; --teal:#2dd4bf;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--txt);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;line-height:1.55;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px;position:relative;z-index:2}
+  /* aurora background */
+  .aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .aurora i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
+  .aurora .a1{width:520px;height:520px;background:#5b2144;top:-160px;left:-120px;animation:drift 16s ease-in-out infinite alternate}
+  .aurora .a2{width:460px;height:460px;background:#2b1650;bottom:-140px;right:-100px;animation:drift 20s ease-in-out infinite alternate-reverse}
+  .aurora .a3{width:300px;height:300px;background:#6d4a08;top:44%;left:58%;opacity:.28;animation:drift 24s ease-in-out infinite alternate}
+  @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(70px,44px) scale(1.14)}}
+  /* floating butterflies */
+  .bfly{position:fixed;z-index:1;font-size:22px;pointer-events:none;opacity:.75;animation:floaty 9s ease-in-out infinite}
+  .bfly.b1{top:16%;left:6%}.bfly.b2{top:64%;left:3%;font-size:16px;animation-delay:-3s}
+  .bfly.b3{top:24%;right:5%;font-size:18px;animation-delay:-5s}.bfly.b4{top:78%;right:7%;animation-delay:-1.5s}
+  @media(max-width:640px){.bfly{display:none}}
+  @keyframes floaty{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-26px) rotate(10deg)}}
+  /* watermark */
+  .wm{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05}
+  .wm span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:110px;font-weight:900;letter-spacing:8px;color:#fff;white-space:nowrap}
+  .badge{position:fixed;left:14px;bottom:14px;z-index:61;background:rgba(10,8,14,.85);border:1px solid var(--line);color:var(--mut);font-size:12px;padding:7px 12px;border-radius:999px;backdrop-filter:blur(4px)}
+  /* hero */
+  .hero{padding:74px 0 30px;text-align:center;position:relative}
+  .avatar{width:118px;height:118px;margin:0 auto 18px;border-radius:50%;padding:4px;background:conic-gradient(from 120deg,var(--pink),var(--gold),var(--violet),var(--teal),var(--pink));animation:spin 9s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .avatar .in{width:100%;height:100%;border-radius:50%;background:#1b1020;display:flex;align-items:center;justify-content:center;font-size:52px;font-weight:900;color:var(--rose);animation:spin 9s linear infinite reverse}
+  .hero h1{font-size:clamp(38px,7vw,58px);font-weight:900;line-height:1.05}
+  .hero h1 .grad{background:linear-gradient(92deg,var(--rose),var(--gold) 55%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .handle{color:var(--rose);font-weight:700;font-size:18px;margin-top:4px}
+  .bio{color:var(--mut);max-width:520px;margin:14px auto 6px;font-size:16.5px}
+  .rule{display:inline-block;margin-top:12px;background:rgba(224,52,43,.14);border:1px solid rgba(255,92,138,.45);color:#ffb3c2;font-size:13.5px;font-weight:700;padding:7px 16px;border-radius:999px}
+  .stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px 22px;min-width:138px;backdrop-filter:blur(6px)}
+  .stat b{display:block;font-size:23px}
+  .stat small{color:var(--mut);font-size:12px}
+  /* social hub */
+  .hub{display:grid;gap:12px;max-width:560px;margin:36px auto 0}
+  .hub a{display:flex;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px 20px;backdrop-filter:blur(6px);transition:.22s;text-align:left}
+  .hub a:hover{transform:translateY(-3px) scale(1.01);border-color:var(--rose);box-shadow:0 14px 34px rgba(255,92,138,.18)}
+  .hub .ic{width:44px;height:44px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff}
+  .ig .ic{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+  .tt .ic{background:#000;border:1px solid #3a3a3a}
+  .lt .ic{background:#43e660;color:#0c2b12}
+  .hub b{font-size:16.5px;display:block;line-height:1.25}
+  .hub small{color:var(--mut);font-size:13px}
+  .hub .go{margin-left:auto;color:var(--rose);font-size:20px}
+  /* marquee */
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:13px 0;margin-top:56px;background:rgba(255,255,255,.02)}
+  .marquee .track{display:flex;gap:40px;white-space:nowrap;font-weight:800;letter-spacing:2px;font-size:13.5px;color:var(--mut);animation:scroll 28s linear infinite;width:max-content}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  section{padding:66px 0 6px}
+  .kicker{color:var(--gold);font-weight:800;letter-spacing:3px;font-size:12.5px;text-transform:uppercase;text-align:center}
+  h2{font-size:clamp(27px,4.6vw,40px);font-weight:900;text-align:center;margin:10px auto 12px;max-width:720px;line-height:1.15}
+  .sub{color:var(--mut);text-align:center;max-width:600px;margin:0 auto 40px}
+  /* edits grid */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.25s;backdrop-filter:blur(6px)}
+  .card:hover{transform:translateY(-5px);border-color:var(--rose);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+  .thumb{aspect-ratio:9/10.5;display:flex;flex-direction:column;justify-content:flex-end;padding:15px;position:relative}
+  .thumb .play{position:absolute;top:13px;right:13px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;font-size:13px}
+  .thumb .cm{position:absolute;top:13px;left:13px;background:rgba(0,0,0,.55);padding:3px 9px;border-radius:6px;font-size:12px;font-weight:700}
+  .thumb p{font-size:16.5px;font-weight:700;line-height:1.3}
+  .t1{background:linear-gradient(165deg,#3d0f2e,#7a1f3d 55%,#e0342b)}
+  .t2{background:linear-gradient(165deg,#131a3a,#3b2a7a 55%,#7a5cff)}
+  .t3{background:linear-gradient(165deg,#0b2a4a,#12607a 55%,#2fbf71)}
+  .t4{background:linear-gradient(165deg,#2a1a05,#7a5410 55%,#e8b33c)}
+  .t5{background:linear-gradient(165deg,#26060a,#6e1423 55%,#ff7847)}
+  .t6{background:linear-gradient(165deg,#06231c,#0e5c46 55%,#39d0ba)}
+  .meta{display:flex;justify-content:space-between;padding:12px 15px;font-size:12.5px;color:var(--mut)}
+  .meta b{color:var(--rose)}
+  /* spotlight */
+  .spot{background:linear-gradient(150deg,rgba(255,92,138,.13),rgba(139,92,246,.10));border:1px solid rgba(255,92,138,.35);border-radius:22px;padding:38px 30px;text-align:center}
+  .spot h3{font-size:clamp(24px,4vw,34px);font-weight:900}
+  .spot .cast{color:var(--rose);font-weight:700;margin-top:6px}
+  .spot p{color:var(--mut);max-width:560px;margin:14px auto 22px}
+  .chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);background:rgba(0,0,0,.3);border-radius:999px;padding:8px 18px;font-weight:700;font-size:14px}
+  .chip.hot{border-color:var(--gold);color:var(--gold)}
+  /* drama list */
+  .dramas{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:720px){.dramas{grid-template-columns:1fr}}
+  .drama{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;display:flex;gap:16px;align-items:center;backdrop-filter:blur(6px)}
+  .drama .no{font-size:30px;font-weight:900;color:var(--pink);min-width:44px}
+  .drama h3{font-size:17.5px;line-height:1.3}
+  .drama p{color:var(--mut);font-size:13.5px}
+  .drama .views{margin-left:auto;text-align:right;flex:none}
+  .drama .views b{display:block;color:var(--gold);font-size:17px}
+  .drama .views small{color:var(--mut);font-size:11.5px}
+  /* business */
+  .biz{max-width:640px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:32px;text-align:center;backdrop-filter:blur(6px)}
+  .biz p{color:var(--mut);margin:10px 0 22px}
+  .btn{display:inline-block;background:linear-gradient(92deg,var(--pink),#e0342b);color:#fff;font-weight:800;padding:13px 26px;border-radius:12px;font-size:15.5px;transition:.2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,92,138,.3)}
+  footer{padding:56px 0 84px;text-align:center;color:var(--mut);font-size:13.5px}
+  footer a{color:var(--rose);font-weight:700}
+</style>
+</head>
+<body>
+<div class="aurora"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+<span class="bfly b1">🦋</span><span class="bfly b2">🦋</span><span class="bfly b3">🦋</span><span class="bfly b4">🦋</span>
+<div class="wm"><span>DEMO — B&amp;Z</span></div>
+<div class="badge">DEMO · B&amp;Z Web Studio · @bz_devweb</div>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="avatar"><div class="in">P</div></div>
+    <h1>Piee <span class="grad">🦋</span></h1>
+    <div class="handle">@crynxpiee · Cdrama 🇨🇳</div>
+    <p class="bio">Editan Cdrama yang bikin gagal move on — cowok greenflag, plot twist nyesek, dan scene paling baper, dipotong pas di momen terbaiknya.</p>
+    <span class="rule">❗ Don't reupload my video — hargai editornya, ya.</span>
+    <div class="stats">
+      <div class="stat"><b>20,6 RB</b><small>Followers Instagram</small></div>
+      <div class="stat"><b>163</b><small>Postingan edit</small></div>
+      <div class="stat"><b>2 JT+</b><small>Views video TikTok teratas</small></div>
+      <div class="stat"><b>Tiap hari</b><small>Edit baru tayang</small></div>
+    </div>
+
+    <div class="hub">
+      <a class="tt" href="https://www.tiktok.com/@crynxpiee" target="_blank" rel="noopener"><span class="ic">♪</span><span><b>TikTok — @crynxpiee</b><small>Edit full &amp; paling viral ada di sini</small></span><span class="go">→</span></a>
+      <a class="ig" href="https://www.instagram.com/crynxpiee" target="_blank" rel="noopener"><span class="ic">◎</span><span><b>Instagram — @crynxpiee</b><small>Reels harian &amp; info drama terbaru</small></span><span class="go">→</span></a>
+      <a class="lt" href="https://linktr.ee/crynxpiee" target="_blank" rel="noopener"><span class="ic">🌿</span><span><b>Linktree — Semua Link Piee</b><small>Satu pintu ke semua akun &amp; info</small></span><span class="go">→</span></a>
+    </div>
+  </div>
+</div>
+
+<div class="marquee"><div class="track">
+  <span>GREENFLAG ✦ GAGAL MOVE ON ✦ PLOT TWIST ✦ NYESEK ✦ BAPER ✦ CDRAMA ✦ COWO TERHIJAU ✦&nbsp;</span>
+  <span>GREENFLAG ✦ GAGAL MOVE ON ✦ PLOT TWIST ✦ NYESEK ✦ BAPER ✦ CDRAMA ✦ COWO TERHIJAU ✦&nbsp;</span>
+</div></div>
+
+<section id="edit">
+  <div class="wrap">
+    <div class="kicker">Edit Terbaru</div>
+    <h2>Baru tayang di Instagram Piee</h2>
+    <p class="sub">Klik untuk nonton langsung di Instagram. Komentar penontonnya ikut bicara — ini yang lagi rame.</p>
+    <div class="grid">
+      <a class="card" href="https://www.instagram.com/reel/Dev2sFitptR/" target="_blank" rel="noopener"><div class="thumb t1"><span class="cm">💬 28</span><span class="play">▶</span><p>“Mba Xiwei langganan ditarik naik ke kuda yaa😭🤏”</p></div><div class="meta"><span>Where The Mask Ends</span><b>2.604 likes</b></div></a>
+      <a class="card" href="https://www.instagram.com/reel/De8wcgsByDN/" target="_blank" rel="noopener"><div class="thumb t2"><span class="cm">💬 26</span><span class="play">▶</span><p>“Salah cari musuh sih😭😭”</p></div><div class="meta"><span>Where The Mask Ends</span><b>Yan An &amp; Tian Xiwei</b></div></a>
+      <a class="card" href="https://www.instagram.com/reel/De9iQGtpbcr/" target="_blank" rel="noopener"><div class="thumb t3"><span class="cm">💬 22</span><span class="play">▶</span><p>“Kan bukan siapa-siapa ~ 🫢”</p></div><div class="meta"><span>Where The Mask Ends</span><b>Youku &amp; Netflix</b></div></a>
+      <a class="card" href="https://www.instagram.com/reel/De3bm8VNQwt/" target="_blank" rel="noopener"><div class="thumb t4"><span class="cm">💬 16</span><span class="play">▶</span><p>“Sambut pak duda kitaa😭”</p></div><div class="meta"><span>Edit terbaru</span><b>Youku &amp; Netflix</b></div></a>
+      <a class="card" href="https://www.instagram.com/reel/DfCFY82Bdqu/" target="_blank" rel="noopener"><div class="thumb t5"><span class="cm">💬 14</span><span class="play">▶</span><p>“Kompak bgtt jadi mantan 😭😭”</p></div><div class="meta"><span>Edit terbaru</span><b>Youku &amp; Netflix</b></div></a>
+      <a class="card" href="https://www.instagram.com/reel/DffNiYthaEn/" target="_blank" rel="noopener"><div class="thumb t6"><span class="cm">💬 1</span><span class="play">▶</span><p>“Cowo terhijau ku, OMGG!!!!🥹🤍”</p></div><div class="meta"><span>Greenflag edition</span><b>iQIYI</b></div></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Drama Spotlight</div>
+    <h2>Yang lagi diedit Piee sekarang</h2>
+    <p class="sub">&nbsp;</p>
+    <div class="spot">
+      <h3>Where The Mask Ends (2026)</h3>
+      <div class="cast">Yan An &amp; Tian Xiwei</div>
+      <p>Drama yang paling sering muncul di feed Piee minggu ini — dari scene “salah cari musuh” sampai momen ditarik naik ke kuda yang tembus 2.604 likes.</p>
+      <div class="chips"><span class="chip hot">📺 Tayang di Youku</span><span class="chip hot">📺 Tayang di Netflix</span><span class="chip">Ikuti editnya di IG &amp; TikTok Piee</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Info Dracin</div>
+    <h2>Drama lain yang pernah diedit Piee</h2>
+    <p class="sub">Judul-judul yang editannya meledak — lengkap dengan tempat nonton resminya.</p>
+    <div class="dramas">
+      <div class="drama"><div class="no">01</div><div><h3>Generation to Generation</h3><p>Zhou Yiran &amp; Li Yunrui · kisah tragis 5 tahun dikurung</p></div><div class="views"><b>2 JT</b><small>views TikTok</small></div></div>
+      <div class="drama"><div class="no">02</div><div><h3>Overdo (2026)</h3><p>Zhang Linghe &amp; Wang Churan · iQIYI &amp; WeTV</p></div><div class="views"><b>18 RB</b><small>likes IG</small></div></div>
+      <div class="drama"><div class="no">03</div><div><h3>Never Ending Summer</h3><p>Zhou Keyu &amp; Bao Shangen · cowok gentleman idaman</p></div><div class="views"><b>97 RB</b><small>likes IG</small></div></div>
+      <div class="drama"><div class="no">04</div><div><h3>Speed and Love</h3><p>Esther Yu &amp; He Yu · “GILAKKK SEGACOR INI!!!!”</p></div><div class="views"><b>967 RB</b><small>views TikTok</small></div></div>
+    </div>
+    <div class="chips" style="margin-top:26px"><span class="chip">Nonton resmi di:</span><span class="chip">Youku</span><span class="chip">Netflix</span><span class="chip">iQIYI</span><span class="chip">WeTV</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Bisnis &amp; Kerjasama</div>
+    <h2>Buat brand &amp; kamu yang mau order</h2>
+    <p class="sub">&nbsp;</p>
+    <div class="biz">
+      <div style="font-size:32px">🤝</div>
+      <h3 style="font-size:22px;margin-top:8px">Paid promote, endorse &amp; order</h3>
+      <p>Penonton Piee adalah komunitas Cdrama yang loyal dan aktif di TikTok &amp; Instagram. Untuk kerjasama bisnis dan pemesanan, Piee mengarahkan lewat akun order resminya — atau DM langsung ke Instagram.</p>
+      <a class="btn" href="https://www.instagram.com/vitcollections" target="_blank" rel="noopener">Order di @vitcollections →</a>
+      <div style="margin-top:14px"><a href="https://www.instagram.com/crynxpiee" target="_blank" rel="noopener" style="color:var(--rose);font-weight:700">atau DM @crynxpiee →</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Fan page demo untuk Piee 🦋 (@crynxpiee) — dibuat oleh <a href="https://wa.me/6282117488321?text=Halo%20B%26Z%2C%20saya%20mau%20page%20seperti%20punya%20%40crynxpiee" target="_blank" rel="noopener">B&amp;Z Web Studio</a>.<br>
+    Mau page sekeren ini untuk akunmu? Klik link di atas. · Konten edit milik @crynxpiee — jangan reupload.
+  </div>
+</footer>
+</body>
+</html>

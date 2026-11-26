@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRACIN HUB — Editing Dracin, Info Dracin & Bisnis</title>
+<meta name="description" content="Potongan dracin (drama China) paling nagih untuk TikTok, Facebook & Telegram. Info dracin terbaru, jasa editing dracin, dan kerjasama bisnis.">
+<style>
+  :root{
+    --bg:#0c0a0e; --panel:#151218; --panel2:#1c171f; --line:#2a2330;
+    --txt:#f6f1ea; --mut:#aca49e; --red:#e0342b; --gold:#e8b33c; --pink:#ff4d7e; --grn:#2fbf71;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--txt);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;line-height:1.55;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  .wm{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05;background-image:repeating-linear-gradient(-45deg,transparent 0 120px,rgba(255,255,255,.9) 120px 121px,transparent 121px 240px)}
+  .wm span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:110px;font-weight:900;letter-spacing:8px;color:#fff;white-space:nowrap}
+  .badge{position:fixed;left:14px;bottom:14px;z-index:61;background:rgba(10,10,12,.85);border:1px solid var(--line);color:var(--mut);font-size:12px;padding:7px 12px;border-radius:999px;backdrop-filter:blur(4px)}
+  header{position:sticky;top:0;z-index:50;background:rgba(12,10,14,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .logo{font-weight:900;font-size:22px;letter-spacing:1px}
+  .logo i{color:var(--pink);font-style:normal}
+  .nav .links{display:flex;gap:26px;color:var(--mut);font-size:14px}
+  .nav .links a:hover{color:var(--txt)}
+  .btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;padding:12px 22px;border-radius:10px;font-size:15px;transition:.2s}
+  .btn:hover{background:#b9251e;transform:translateY(-1px)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--txt)}
+  .btn.gold{background:var(--gold);color:#141310}
+  @media(max-width:720px){.nav .links{display:none}}
+  .hero{padding:76px 0 54px;text-align:center}
+  .hero .tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
+  .hero h1{font-size:clamp(36px,6.5vw,64px);line-height:1.05;font-weight:900;margin:22px auto 18px;max-width:840px}
+  .hero h1 em{font-style:normal;color:var(--pink)}
+  .hero p{color:var(--mut);font-size:18px;max-width:640px;margin:0 auto 28px}
+  /* social hub */
+  .sosmed{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:6px auto 10px}
+  .sosmed a{display:flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-weight:800;font-size:15px;border:1px solid var(--line);background:var(--panel);transition:.2s}
+  .sosmed a:hover{transform:translateY(-2px)}
+  .sosmed .ic{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;flex:none}
+  .tele .ic{background:#229ed9}.fb .ic{background:#1877f2}.tt .ic{background:#000;border:1px solid #444}
+  .sosmed small{display:block;font-weight:400;color:var(--mut);font-size:12px;line-height:1.2}
+  .stats{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 24px;min-width:150px}
+  .stat b{display:block;font-size:25px}
+  .stat small{color:var(--mut);font-size:12.5px}
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:13px 0;background:var(--panel)}
+  .marquee .track{display:flex;gap:44px;white-space:nowrap;font-weight:800;letter-spacing:2px;font-size:14px;color:var(--mut);animation:scroll 26s linear infinite;width:max-content}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  section{padding:70px 0}
+  .kicker{color:var(--pink);font-weight:800;letter-spacing:3px;font-size:13px;text-transform:uppercase;text-align:center}
+  h2{font-size:clamp(28px,4.5vw,42px);font-weight:900;text-align:center;margin:12px auto 14px;max-width:740px;line-height:1.15}
+  .sub{color:var(--mut);text-align:center;max-width:620px;margin:0 auto 42px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s}
+  .card:hover{transform:translateY(-4px);border-color:#453a4f}
+  .thumb{aspect-ratio:9/11;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;position:relative}
+  .thumb .genre{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.55);padding:4px 10px;border-radius:6px;font-size:12px;font-weight:700}
+  .thumb .eps{position:absolute;top:14px;right:14px;background:var(--red);padding:4px 10px;border-radius:6px;font-size:12px;font-weight:800}
+  .thumb h3{font-size:19px;line-height:1.25}
+  .thumb p{color:rgba(255,255,255,.78);font-size:13px}
+  .t1{background:linear-gradient(160deg,#3d0f2e,#7a1f3d 55%,#e0342b)}
+  .t2{background:linear-gradient(160deg,#0b2a4a,#12607a 55%,#2fbf71)}
+  .t3{background:linear-gradient(160deg,#2a1a05,#7a5410 55%,#e8b33c)}
+  .t4{background:linear-gradient(160deg,#131a3a,#3b2a7a 55%,#7a5cff)}
+  .t5{background:linear-gradient(160deg,#26060a,#6e1423 55%,#ff7847)}
+  .t6{background:linear-gradient(160deg,#06231c,#0e5c46 55%,#39d0ba)}
+  .meta{display:flex;justify-content:space-between;padding:13px 16px;font-size:13px;color:var(--mut)}
+  .meta b{color:var(--grn)}
+  .svc{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media(max-width:720px){.svc{grid-template-columns:1fr}}
+  .svc .item{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px}
+  .svc .item .ic{font-size:26px}
+  .svc .item h3{font-size:19px;margin:10px 0 8px}
+  .svc .item p{color:var(--mut);font-size:15px}
+  .price{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+  @media(max-width:900px){.price{grid-template-columns:1fr}}
+  .plan{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:30px;display:flex;flex-direction:column}
+  .plan.hot{border-color:var(--gold);background:var(--panel2);position:relative}
+  .plan.hot::before{content:"PALING LARIS";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#141310;font-size:11px;font-weight:900;letter-spacing:1.5px;padding:4px 12px;border-radius:999px}
+  .plan h3{font-size:18px;letter-spacing:1px}
+  .plan .amt{font-size:38px;font-weight:900;margin:12px 0 2px}
+  .plan .amt small{font-size:15px;color:var(--mut);font-weight:400}
+  .plan ul{list-style:none;margin:18px 0 24px;flex:1}
+  .plan li{padding:7px 0;color:var(--mut);font-size:15px;border-bottom:1px dashed #2a2330}
+  .plan li::before{content:"✓ ";color:var(--grn);font-weight:800}
+  .plan .btn{text-align:center}
+  .biz{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:900px){.biz{grid-template-columns:1fr}}
+  .biz .item{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;text-align:center}
+  .biz .item .ic{font-size:30px}
+  .biz .item h3{margin:10px 0 8px;font-size:18px}
+  .biz .item p{color:var(--mut);font-size:14.5px;margin-bottom:18px}
+  .faq{max-width:760px;margin:0 auto}
+  details{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:16px 20px}
+  summary{cursor:pointer;font-weight:700}
+  details p{color:var(--mut);margin-top:8px;font-size:15px}
+  .final{background:linear-gradient(160deg,#22091a,#2b0f1e);border:1px solid #3d1626;border-radius:22px;padding:52px 28px;text-align:center}
+  footer{border-top:1px solid var(--line);padding:30px 0 90px;color:var(--mut);font-size:13.5px;text-align:center}
+  .wa-float{position:fixed;right:16px;bottom:16px;z-index:61;background:#25d366;color:#08240f;font-weight:800;padding:13px 20px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.45);font-size:15px}
+</style>
+</head>
+<body>
+<div class="wm"><span>DEMO — B&amp;Z</span></div>
+<div class="badge">DEMO · B&amp;Z Web Studio · @bz_devweb</div>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">DRACIN<i>✂</i>HUB</div>
+    <nav class="links">
+      <a href="#info">Info Dracin</a><a href="#editing">Editing</a><a href="#harga">Harga</a><a href="#bisnis">Bisnis</a><a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20tanya%20jasa%20editing%20dracin" target="_blank" rel="noopener">Order Edit</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="tag">Editing Dracin · Info Dracin · Bisnis</span>
+    <h1>Potongan dracin yang <em>bikin penonton ketagihan.</em></h1>
+    <p>Drama China dipotong di momen paling nagih, subtitle Indonesia rapi, hook 3 detik pertama. Tayang tiap hari di TikTok, Facebook &amp; Telegram.</p>
+    <div class="sosmed">
+      <a class="tele" href="https://t.me/username" target="_blank" rel="noopener"><span class="ic">✈</span><span>Telegram<small>Full episode &amp; update tercepat</small></span></a>
+      <a class="fb" href="https://www.facebook.com/username" target="_blank" rel="noopener"><span class="ic">f</span><span>Facebook<small>Video dracin tiap hari</small></span></a>
+      <a class="tt" href="https://www.tiktok.com/@username" target="_blank" rel="noopener"><span class="ic">♪</span><span>TikTok<small>Potongan paling viral</small></span></a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>3 detik</b><small>Hook di awal video</small></div>
+      <div class="stat"><b>Sub ID</b><small>Subtitle Indonesia rapi</small></div>
+      <div class="stat"><b>Tiap hari</b><small>Upload konsisten</small></div>
+      <div class="stat"><b>24 jam</b><small>Edit selesai maks.</small></div>
+    </div>
+  </div>
+</div>
+
+<div class="marquee"><div class="track">
+  <span>CEO DINGIN ✦ BALAS DENDAM ✦ NIKAH KONTRAK ✦ ISTRI TERBUANG ✦ CINTA SEGITIGA ✦ PEWARIS RAHASIA ✦&nbsp;</span>
+  <span>CEO DINGIN ✦ BALAS DENDAM ✦ NIKAH KONTRAK ✦ ISTRI TERBUANG ✦ CINTA SEGITIGA ✦ PEWARIS RAHASIA ✦&nbsp;</span>
+</div></div>
+
+<section id="info">
+  <div class="wrap">
+    <div class="kicker">Info Dracin</div>
+    <h2>Genre dracin yang lagi rame</h2>
+    <p class="sub">Update info, rekomendasi judul, dan jadwal tayang potongan terbaru — ikuti di Telegram, Facebook &amp; TikTok biar tidak ketinggalan episode.</p>
+    <div class="grid">
+      <div class="card"><div class="thumb t1"><span class="genre">CEO DINGIN</span><span class="eps">80 EPS</span><h3>Nikah Kontrak dengan CEO</h3><p>Pernikahan pura-pura yang berubah jadi baper beneran.</p></div><div class="meta"><span>Update tiap hari</span><b>Paling dicari</b></div></div>
+      <div class="card"><div class="thumb t2"><span class="genre">BALAS DENDAM</span><span class="eps">60 EPS</span><h3>Istri Terbuang Kembali Kaya</h3><p>Dikhianati, dibuang, lalu kembali sebagai pewaris rahasia.</p></div><div class="meta"><span>Update tiap hari</span><b>Rating tinggi</b></div></div>
+      <div class="card"><div class="thumb t3"><span class="genre">ROMANSA</span><span class="eps">72 EPS</span><h3>Cinta Pertama Sang Pewaris</h3><p>Kisah lama yang belum selesai, dipertemukan lagi oleh takdir.</p></div><div class="meta"><span>Update tiap hari</span><b>Bikin baper</b></div></div>
+      <div class="card"><div class="thumb t4"><span class="genre">KELUARGA</span><span class="eps">55 EPS</span><h3>Anak Rahasia Sang Miliarder</h3><p>Satu rahasia kecil mengguncang dua keluarga besar.</p></div><div class="meta"><span>Update tiap hari</span><b>Plot twist</b></div></div>
+      <div class="card"><div class="thumb t5"><span class="genre">PERKANTORAN</span><span class="eps">64 EPS</span><h3>Sekretaris Kesayangan Bos</h3><p>Dari karyawan biasa jadi orang paling dipercaya — dan dicinta.</p></div><div class="meta"><span>Update tiap hari</span><b>Ringan &amp; lucu</b></div></div>
+      <div class="card"><div class="thumb t6"><span class="genre">SEJARAH</span><span class="eps">90 EPS</span><h3>Permaisuri yang Terlahir Kembali</h3><p>Kesempatan kedua untuk membalikkan nasib di istana.</p></div><div class="meta"><span>Update tiap hari</span><b>Episode panjang</b></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="editing" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Jasa Editing Dracin</div>
+    <h2>Kamu punya bahan, kami yang bikin nagih</h2>
+    <p class="sub">Buat pemilik akun dracin, afiliator aplikasi drama, dan siapa pun yang mau serius di niche ini.</p>
+    <div class="svc">
+      <div class="item"><div class="ic">✂️</div><h3>Potongan Nagih</h3><p>Episode dipotong di cliffhanger paling kuat. Penonton tidak bisa berhenti di tengah — mereka lanjut ke part berikutnya, lalu follow.</p></div>
+      <div class="item"><div class="ic">💬</div><h3>Subtitle Indonesia</h3><p>Terjemahan natural, bukan hasil mesin mentah. Ukuran dan timing pas untuk layar HP, enak dibaca sambil video jalan.</p></div>
+      <div class="item"><div class="ic">🪝</div><h3>Hook &amp; Judul Clickbait Aman</h3><p>3 detik pertama diatur ulang, teks pembuka memancing penasaran, judul &amp; thumbnail dirancang untuk klik — tanpa melanggar kebijakan platform.</p></div>
+      <div class="item"><div class="ic">📅</div><h3>Paket Upload Harian</h3><p>Jadwal posting konsisten di TikTok, Facebook &amp; Telegram. Akun yang upload tiap hari tumbuh jauh lebih cepat daripada yang musiman.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="harga" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Harga Editing</div>
+    <h2>Pilih paket sesuai ritme akunmu</h2>
+    <p class="sub">Semua paket termasuk subtitle Indonesia, hook, dan file siap upload.</p>
+    <div class="price">
+      <div class="plan">
+        <h3>COBA DULU</h3>
+        <div class="amt">Rp25rb<small> /video</small></div>
+        <ul><li>1 video potongan dracin (≤3 menit)</li><li>Subtitle Indonesia</li><li>Hook 3 detik + teks pembuka</li><li>1x revisi minor</li><li>Selesai maks. 24 jam</li></ul>
+        <a class="btn ghost" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20paket%20COBA%20DULU%201%20video" target="_blank" rel="noopener">Order 1 Video</a>
+      </div>
+      <div class="plan hot">
+        <h3>AKUN TUMBUH</h3>
+        <div class="amt">Rp499rb<small> /30 video</small></div>
+        <ul><li>30 video potongan dracin</li><li>Subtitle Indonesia + judul clickbait</li><li>Thumbnail/teks cover per video</li><li>Jadwal upload harian diaturkan</li><li>2x revisi minor per video</li></ul>
+        <a class="btn gold" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20paket%20AKUN%20TUMBUH%2030%20video" target="_blank" rel="noopener">Ambil Paket Ini</a>
+      </div>
+      <div class="plan">
+        <h3>KELOLA AKUN</h3>
+        <div class="amt">Rp999rb<small> /bulan</small></div>
+        <ul><li>Semua isi paket Akun Tumbuh</li><li>Riset judul dracin yang lagi naik</li><li>Posting TikTok, FB &amp; Telegram</li><li>Laporan performa mingguan</li><li>Prioritas antrean edit</li></ul>
+        <a class="btn ghost" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20paket%20KELOLA%20AKUN" target="_blank" rel="noopener">Diskusi Dulu</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bisnis" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">Bisnis &amp; Kerjasama</div>
+    <h2>Ada penonton, ada peluang</h2>
+    <p class="sub">Komunitas dracin itu loyal dan aktif. Tiga cara kerjasama dengan halaman ini:</p>
+    <div class="biz">
+      <div class="item"><div class="ic">📣</div><h3>Paid Promote</h3><p>Promosikan aplikasi drama, produk, atau akunmu ke penonton dracin di TikTok, Facebook &amp; Telegram.</p><a class="btn ghost" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20tanya%20PAID%20PROMOTE" target="_blank" rel="noopener">Tanya Rate</a></div>
+      <div class="item"><div class="ic">🤝</div><h3>Endorse &amp; Review</h3><p>Review aplikasi nonton dracin, platform streaming, atau produk yang relevan dengan penonton drama.</p><a class="btn ghost" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20tanya%20ENDORSE" target="_blank" rel="noopener">Tanya Rate</a></div>
+      <div class="item"><div class="ic">🚀</div><h3>Bangun Akun Dracin</h3><p>Mau punya akun dracin sendiri tapi tidak bisa edit? Kami bangunkan dari nol: konsep, edit, jadwal, sampai jalan.</p><a class="btn ghost" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20dibangunkan%20akun%20dracin" target="_blank" rel="noopener">Mulai Konsultasi</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker">FAQ</div>
+    <h2>Sering ditanyakan</h2>
+    <p class="sub">&nbsp;</p>
+    <div class="faq">
+      <details><summary>Nonton full episode di mana?</summary><p>Link full episode dan update tercepat ada di channel Telegram — tombolnya ada di bagian atas halaman ini. Potongan harian tayang di TikTok dan Facebook.</p></details>
+      <details><summary>Saya punya bahan dracin sendiri, bisa dieditkan?</summary><p>Bisa. Kirim bahannya lewat WhatsApp, kami potong, beri subtitle Indonesia, hook, dan judul. Pilih paket per video atau bulanan.</p></details>
+      <details><summary>Berapa lama pengerjaan?</summary><p>Per video maks. 24 jam. Paket bulanan mengikuti jadwal upload harian yang disepakati di awal.</p></details>
+      <details><summary>Bisa untuk platform apa saja?</summary><p>TikTok, Facebook Reels, YouTube Shorts, dan Telegram. Satu bahan bisa kami formatkan untuk semua platform sekaligus.</p></details>
+      <details><summary>Kerjasama bisnis bagaimana?</summary><p>Paid promote, endorse, dan pembangunan akun — semuanya lewat WhatsApp. Sebutkan kebutuhanmu, kami kirim rate dan contoh hasil.</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="wrap" style="padding-bottom:72px">
+  <div class="final">
+    <h2>Ikuti dulu, order belakangan juga boleh.</h2>
+    <p class="sub" style="margin-bottom:26px">Full episode di Telegram, potongan nagih tiap hari di TikTok &amp; Facebook.</p>
+    <div class="sosmed">
+      <a class="tele" href="https://t.me/username" target="_blank" rel="noopener"><span class="ic">✈</span><span>Telegram</span></a>
+      <a class="fb" href="https://www.facebook.com/username" target="_blank" rel="noopener"><span class="ic">f</span><span>Facebook</span></a>
+      <a class="tt" href="https://www.tiktok.com/@username" target="_blank" rel="noopener"><span class="ic">♪</span><span>TikTok</span></a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">DRACIN HUB — halaman demo oleh B&amp;Z Web Studio · @bz_devweb<br>Judul &amp; angka pada halaman demo bersifat ilustrasi. Link Telegram/Facebook/TikTok masih placeholder — ganti dengan akun asli.</div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/6282117488321?text=Halo%20DRACIN%20HUB%2C%20saya%20mau%20tanya-tanya%20dulu" target="_blank" rel="noopener">💬 Chat WhatsApp</a>
+</body>
+</html>
