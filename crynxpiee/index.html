@@ -228,6 +228,19 @@
   function DW(){return document.documentElement.scrollWidth}
   function DH(){return document.documentElement.scrollHeight}
   addEventListener('pointerdown',function(e){gx=e.pageX;gy=e.pageY;gatherUntil=performance.now()+2400},{passive:true});
+  addEventListener('pointermove',function(e){
+    for(var i=0;i<flies.length;i++){var f=flies[i]; if(f.held&&f.drag){
+      if(Math.abs(e.pageX-f.drag.sx)+Math.abs(e.pageY-f.drag.sy)>10) f.drag.moved=true;
+      if(f.drag.moved){ f.x=e.pageX-f.drag.dx; f.y=e.pageY-f.drag.dy; }
+    }}
+  },{passive:true});
+  addEventListener('pointerup',function(e){
+    for(var i=0;i<flies.length;i++){var f=flies[i]; if(f.held){
+      if(f.drag&&f.drag.moved){ f.baseY=f.y; f.phase=-f.x*f.freq; }
+      else catchFly(f,e.pageX,e.pageY);
+      f.held=false; f.drag=null;
+    }}
+  });
   function newPath(f){
     f.baseY=DH()*(.05+Math.random()*.88);
     f.amp=60+Math.random()*75;
@@ -242,10 +255,12 @@
     (isBack? back : front).appendChild(f.el);
   }
   function spawn(){
-    var el=document.createElement('span'); el.className='fly'; el.innerHTML='<span class="w">🦋</span>';
-    var f={el:el,x:Math.random()*DW()*.9+20, y:200, vx:0, vy:0, s:Math.random()*6.28, dir:Math.random()<.5?-1:1, r:46+flies.length*26, ai:Math.random()*6.28, as:.010+Math.random()*.014, back:false, baseY:0, amp:80, freq:.006, phase:0, speed:2};
+    var el=document.createElement('span'); el.className='fly'; el.innerHTML='<span class="w">🦋</span>'; el.style.touchAction='none';
+    var f={el:el,x:Math.random()*DW()*.9+20, y:200, vx:0, vy:0, s:Math.random()*6.28, dir:Math.random()<.5?-1:1, r:46+flies.length*26, ai:Math.random()*6.28, as:.010+Math.random()*.014, back:false, baseY:0, amp:80, freq:.006, phase:0, speed:2, held:false, drag:null};
     newPath(f); f.y=f.baseY;
-    el.addEventListener('pointerdown',function(e){catchFly(f,e.pageX,e.pageY)});
+    el.addEventListener('pointerdown',function(e){
+      f.held=true; f.drag={dx:e.pageX-f.x, dy:e.pageY-f.y, sx:e.pageX, sy:e.pageY, moved:false};
+    });
     flies.push(f); setDepth(f, Math.random()<.4);
   }
   function catchFly(f,x,y){
@@ -258,12 +273,27 @@
     f.x = f.dir>0? -70 : DW()+70; f.baseY=Math.max(60,Math.min(DH()-60,y)); f.phase=-f.x*f.freq; gatherUntil=0;
   }
   for(var i=0;i<10;i++) spawn();
+  /* perched butterflies: draggable */
+  document.querySelectorAll('.perch').forEach(function(el){
+    el.style.pointerEvents='auto'; el.style.cursor='grab'; el.style.touchAction='none';
+    el.addEventListener('pointerdown',function(e){
+      e.stopPropagation();
+      var r=el.getBoundingClientRect(), px=r.left+scrollX, py=r.top+scrollY;
+      document.body.appendChild(el);
+      el.style.position='absolute'; el.style.left=px+'px'; el.style.top=py+'px'; el.style.right='auto'; el.style.zIndex=45; el.style.cursor='grabbing';
+      var ox=e.pageX-px, oy=e.pageY-py;
+      function mv(ev){ el.style.left=(ev.pageX-ox)+'px'; el.style.top=(ev.pageY-oy)+'px'; }
+      function up(){ removeEventListener('pointermove',mv); removeEventListener('pointerup',up); el.style.cursor='grab'; }
+      addEventListener('pointermove',mv); addEventListener('pointerup',up);
+    });
+  });
   var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   function tick(){
     var now=performance.now(), gathering=now<gatherUntil, W=DW(), H=DH();
-    if(wasGathering && !gathering){ for(var j=0;j<flies.length;j++){ flies[j].baseY=flies[j].y; flies[j].phase=-flies[j].x*flies[j].freq; } }
+    if(wasGathering && !gathering){ for(var j=0;j<flies.length;j++){ if(!flies[j].held){ flies[j].baseY=flies[j].y; flies[j].phase=-flies[j].x*flies[j].freq; } } }
     wasGathering=gathering;
     for(var i=0;i<flies.length;i++){var f=flies[i];
+      if(f.held){ f.el.style.transform='translate('+f.x+'px,'+f.y+'px)'; continue; }
       if(gathering){
         f.ai+=f.as*2.4;
         var px=gx+Math.cos(f.ai)*f.r, py=gy+Math.sin(f.ai*1.2)*f.r*.72;
