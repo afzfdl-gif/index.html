@@ -12,7 +12,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--txt);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;line-height:1.55;overflow-x:hidden}
+  body{position:relative;background:var(--bg);color:var(--txt);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;line-height:1.55;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1080px;margin:0 auto;padding:0 20px;position:relative;z-index:2}
   /* aurora background */
@@ -23,14 +23,14 @@
   .aurora .a3{width:300px;height:300px;background:#6d4a08;top:44%;left:58%;opacity:.28;animation:drift 24s ease-in-out infinite alternate}
   @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(70px,44px) scale(1.14)}}
   /* interactive butterflies */
-  #bfly-layer{position:fixed;inset:0;z-index:40;pointer-events:none}
-  #bfly-back{position:fixed;inset:0;z-index:1;pointer-events:none}
+  #bfly-layer{position:absolute;inset:0;z-index:40;pointer-events:none}
+  #bfly-back{position:absolute;inset:0;z-index:1;pointer-events:none}
   .fly.back{pointer-events:none;opacity:.8;filter:blur(1.1px) drop-shadow(0 3px 6px rgba(0,0,0,.35))}
   .fly{position:absolute;left:0;top:0;font-size:27px;pointer-events:auto;cursor:pointer;user-select:none;-webkit-user-select:none;will-change:transform;filter:drop-shadow(0 4px 9px rgba(0,0,0,.45));line-height:1}
   .fly .w{display:inline-block;animation:flap .26s ease-in-out infinite alternate}
   @keyframes flap{from{transform:scaleX(1) rotate(-4deg)}to{transform:scaleX(.5) rotate(4deg)}}
-  .burst{position:fixed;z-index:41;pointer-events:none;font-size:14px;line-height:1}
-  .phrase{position:fixed;z-index:42;pointer-events:none;background:rgba(20,10,22,.93);border:1px solid var(--rose);color:#ffd9e4;font-weight:700;font-size:13.5px;padding:7px 13px;border-radius:999px;white-space:nowrap;transform:translate(-50%,-50%)}
+  .burst{position:absolute;z-index:41;pointer-events:none;font-size:14px;line-height:1}
+  .phrase{position:absolute;z-index:42;pointer-events:none;background:rgba(20,10,22,.93);border:1px solid var(--rose);color:#ffd9e4;font-weight:700;font-size:13.5px;padding:7px 13px;border-radius:999px;white-space:nowrap;transform:translate(-50%,-50%)}
   #catchpill{position:fixed;right:14px;bottom:14px;z-index:61;background:rgba(10,8,14,.88);border:1px solid var(--rose);color:#ffd9e4;padding:8px 15px;border-radius:999px;font-size:13.5px;font-weight:700;backdrop-filter:blur(4px)}
   /* watermark */
   .wm{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05}
@@ -220,9 +220,9 @@
   var phrases=['Gagal move on! 😭','Greenflag parah! 💚','Nyesek banget… 🥹','Baper maksimal! 🤍','Plot twist! 😱','Cowo terhijau! 🫢','Auto rewatch!','Xiwei cantik banget! ✨','Pak duda idaman! 😭','Salah cari musuh! 😭'];
   var sparks=['✦','🤍','✨','💗','✦'];
   var gx=innerWidth/2, gy=innerHeight/3, gatherUntil=0, caught=0, flies=[];
-  addEventListener('pointerdown',function(e){gx=e.clientX;gy=e.clientY;gatherUntil=performance.now()+2400},{passive:true});
+  addEventListener('pointerdown',function(e){gx=e.pageX;gy=e.pageY;gatherUntil=performance.now()+2400},{passive:true});
   function waypoint(f){
-    var W=innerWidth,H=innerHeight;
+    var W=document.documentElement.scrollWidth,H=document.documentElement.scrollHeight;
     f.tx = f.x < W/2 ? W*(.55+Math.random()*.42) : W*(.03+Math.random()*.4);
     f.ty = H*(.08+Math.random()*.8);
   }
@@ -234,9 +234,9 @@
   }
   function spawn(){
     var el=document.createElement('span'); el.className='fly'; el.innerHTML='<span class="w">🦋</span>';
-    var f={el:el,x:Math.random()*innerWidth*.9+20, y:Math.random()*innerHeight*.7+40, vx:0, vy:0, s:Math.random()*6.28, r:46+flies.length*26, ai:Math.random()*6.28, as:.010+Math.random()*.014, tx:0, ty:0, back:false};
+    var f={el:el,x:Math.random()*document.documentElement.scrollWidth*.92+20, y:Math.random()*document.documentElement.scrollHeight*.85+40, vx:0, vy:0, s:Math.random()*6.28, r:46+flies.length*26, ai:Math.random()*6.28, as:.010+Math.random()*.014, tx:0, ty:0, back:false};
     waypoint(f);
-    el.addEventListener('pointerdown',function(e){catchFly(f,e.clientX,e.clientY)});
+    el.addEventListener('pointerdown',function(e){catchFly(f,e.pageX,e.pageY)});
     flies.push(f); setDepth(f, Math.random()<.4);
   }
   function catchFly(f,x,y){
@@ -246,12 +246,12 @@
       b.animate([{transform:'translate(-50%,-50%) scale(1)',opacity:1},{transform:'translate('+(Math.cos(a)*d-7)+'px,'+(Math.sin(a)*d-24)+'px) scale(.4)',opacity:0}],{duration:650+Math.random()*300,easing:'cubic-bezier(.17,.67,.35,1)'}).onfinish=(function(el){return function(){el.remove()}})(b);}
     var p=document.createElement('div');p.className='phrase';p.textContent=phrases[Math.floor(Math.random()*phrases.length)];p.style.left=x+'px';p.style.top=(y-34)+'px';document.body.appendChild(p);
     p.animate([{transform:'translate(-50%,-50%) scale(.7)',opacity:0},{transform:'translate(-50%,-90%) scale(1.05)',opacity:1,offset:.25},{transform:'translate(-50%,-190%) scale(1)',opacity:0}],{duration:1500,easing:'ease-out'}).onfinish=function(){p.remove()};
-    f.x=-70; f.y=Math.random()*innerHeight*.6+40; f.vx=1.6; f.vy=0; waypoint(f);
+    f.x=-70; f.y=Math.random()*document.documentElement.scrollHeight*.8+40; f.vx=1.6; f.vy=0; waypoint(f);
   }
   for(var i=0;i<6;i++) spawn();
   var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   function tick(){
-    var now=performance.now(), gathering=now<gatherUntil;
+    var now=performance.now(), gathering=now<gatherUntil, DW=document.documentElement.scrollWidth, DH=document.documentElement.scrollHeight;
     for(var i=0;i<flies.length;i++){var f=flies[i];
       if(gathering){
         f.ai+=f.as*2.4;
@@ -266,8 +266,8 @@
       }
       var sp=Math.sqrt(f.vx*f.vx+f.vy*f.vy),max=8; if(sp>max){f.vx*=max/sp;f.vy*=max/sp;}
       f.x+=f.vx; f.y+=f.vy+Math.sin(now/150+f.s)*.6;
-      if(f.x<4){f.x=4;f.vx=Math.abs(f.vx)} if(f.x>innerWidth-52){f.x=innerWidth-52;f.vx=-Math.abs(f.vx)}
-      if(f.y<4){f.y=4;f.vy=Math.abs(f.vy)} if(f.y>innerHeight-52){f.y=innerHeight-52;f.vy=-Math.abs(f.vy)}
+      if(f.x<4){f.x=4;f.vx=Math.abs(f.vx)} if(f.x>DW-52){f.x=DW-52;f.vx=-Math.abs(f.vx)}
+      if(f.y<4){f.y=4;f.vy=Math.abs(f.vy)} if(f.y>DH-52){f.y=DH-52;f.vy=-Math.abs(f.vy)}
       f.el.style.transform='translate('+f.x+'px,'+f.y+'px) rotate('+(f.vx*4)+'deg)';
     }
     if(!reduced) requestAnimationFrame(tick);
