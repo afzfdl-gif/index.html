@@ -22,12 +22,14 @@
   .aurora .a2{width:460px;height:460px;background:#2b1650;bottom:-140px;right:-100px;animation:drift 20s ease-in-out infinite alternate-reverse}
   .aurora .a3{width:300px;height:300px;background:#6d4a08;top:44%;left:58%;opacity:.28;animation:drift 24s ease-in-out infinite alternate}
   @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(70px,44px) scale(1.14)}}
-  /* floating butterflies */
-  .bfly{position:fixed;z-index:1;font-size:22px;pointer-events:none;opacity:.75;animation:floaty 9s ease-in-out infinite}
-  .bfly.b1{top:16%;left:6%}.bfly.b2{top:64%;left:3%;font-size:16px;animation-delay:-3s}
-  .bfly.b3{top:24%;right:5%;font-size:18px;animation-delay:-5s}.bfly.b4{top:78%;right:7%;animation-delay:-1.5s}
-  @media(max-width:640px){.bfly{display:none}}
-  @keyframes floaty{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-26px) rotate(10deg)}}
+  /* interactive butterflies */
+  #bfly-layer{position:fixed;inset:0;z-index:40;pointer-events:none}
+  .fly{position:absolute;left:0;top:0;font-size:27px;pointer-events:auto;cursor:pointer;user-select:none;-webkit-user-select:none;will-change:transform;filter:drop-shadow(0 4px 9px rgba(0,0,0,.45));line-height:1}
+  .fly .w{display:inline-block;animation:flap .26s ease-in-out infinite alternate}
+  @keyframes flap{from{transform:scaleX(1) rotate(-4deg)}to{transform:scaleX(.5) rotate(4deg)}}
+  .burst{position:fixed;z-index:41;pointer-events:none;font-size:14px;line-height:1}
+  .phrase{position:fixed;z-index:42;pointer-events:none;background:rgba(20,10,22,.93);border:1px solid var(--rose);color:#ffd9e4;font-weight:700;font-size:13.5px;padding:7px 13px;border-radius:999px;white-space:nowrap;transform:translate(-50%,-50%)}
+  #catchpill{position:fixed;right:14px;bottom:14px;z-index:61;background:rgba(10,8,14,.88);border:1px solid var(--rose);color:#ffd9e4;padding:8px 15px;border-radius:999px;font-size:13.5px;font-weight:700;backdrop-filter:blur(4px)}
   /* watermark */
   .wm{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05}
   .wm span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);font-size:110px;font-weight:900;letter-spacing:8px;color:#fff;white-space:nowrap}
@@ -46,6 +48,16 @@
   .stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px 22px;min-width:138px;backdrop-filter:blur(6px)}
   .stat b{display:block;font-size:23px}
   .stat small{color:var(--mut);font-size:12px}
+  .stat{position:relative}
+  .stats{margin-top:44px}
+  .stat.igcard{background:linear-gradient(160deg,rgba(240,148,51,.20),rgba(220,39,103,.16) 55%,rgba(188,24,136,.10))}
+  .stat.igcard2{background:linear-gradient(160deg,rgba(139,92,246,.22),rgba(188,24,136,.10))}
+  .stat.ttcard{background:linear-gradient(160deg,rgba(0,0,0,.8),rgba(37,244,238,.08) 55%,rgba(254,44,85,.12))}
+  .plogo{position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:31px;height:31px;border-radius:9px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.45)}
+  .plogo svg{width:18px;height:18px}
+  .plogo.iglogo{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+  .plogo.ttlogo{background:#000;border:1px solid #3a3a3a;font-size:16px;color:#fff;text-shadow:1.5px 1.5px 0 #fe2c55,-1.5px -1.5px 0 #25f4ee}
+  .plogo.goldlogo{background:linear-gradient(135deg,#f2c14e,#e8930c);color:#231a00;font-size:15px;font-weight:900}
   /* social hub */
   .hub{display:grid;gap:12px;max-width:560px;margin:36px auto 0}
   .hub a{display:flex;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px 20px;backdrop-filter:blur(6px);transition:.22s;text-align:left}
@@ -112,18 +124,20 @@
 </head>
 <body>
 <div class="aurora"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
-<span class="bfly b1">🦋</span><span class="bfly b2">🦋</span><span class="bfly b3">🦋</span><span class="bfly b4">🦋</span>
+<div id="bfly-layer"></div>
+<div id="catchpill">🦋 Tangkap kupu-kupunya!</div>
 <div class="hero">
   <div class="wrap">
     <div class="avatar"><div class="in">P</div></div>
     <h1>Piee <span class="grad">🦋</span></h1>
     <div class="handle">@crynxpiee · Cdrama 🇨🇳</div>
     <span class="rule">❗ Don't reupload my video — hargai editornya, ya.</span>
+    <div style="margin-top:13px;color:var(--mut);font-size:13px">Psst… ada kupu-kupu liar beterbangan di halaman ini. Coba tangkap! 🦋</div>
     <div class="stats">
-      <div class="stat"><b>20,6 RB</b><small>Followers Instagram</small></div>
-      <div class="stat"><b>163</b><small>Postingan edit</small></div>
-      <div class="stat"><b>2 JT+</b><small>Views video TikTok teratas</small></div>
-      <div class="stat"><b>Tiap hari</b><small>Edit baru tayang</small></div>
+      <div class="stat igcard"><span class="plogo iglogo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="#fff" stroke="none"/></svg></span><b>20,6 RB</b><small>Followers Instagram</small></div>
+      <div class="stat igcard2"><span class="plogo iglogo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="#fff" stroke="none"/></svg></span><b>163</b><small>Postingan edit</small></div>
+      <div class="stat ttcard"><span class="plogo ttlogo">♪</span><b>2 JT+</b><small>Views video TikTok teratas</small></div>
+      <div class="stat"><span class="plogo goldlogo">✦</span><b>Tiap hari</b><small>Edit baru tayang</small></div>
     </div>
 
     <div class="hub">
@@ -187,5 +201,47 @@
     Mau page sekeren ini untuk akunmu? Klik link di atas. · Konten edit milik @crynxpiee — jangan reupload.
   </div>
 </footer>
+<script>
+(function(){
+  var layer=document.getElementById('bfly-layer'), pill=document.getElementById('catchpill');
+  var phrases=['Gagal move on! 😭','Greenflag parah! 💚','Nyesek banget… 🥹','Baper maksimal! 🤍','Plot twist! 😱','Cowo terhijau! 🫢','Auto rewatch!','Xiwei cantik banget! ✨','Pak duda idaman! 😭','Salah cari musuh! 😭'];
+  var sparks=['✦','🤍','✨','💗','✦'];
+  var mx=-999,my=-999,caught=0,flies=[];
+  addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY},{passive:true});
+  function spawn(edge){
+    var el=document.createElement('span'); el.className='fly'; el.innerHTML='<span class="w">🦋</span>';
+    var f={el:el,x:edge? -40 : Math.random()*innerWidth*.9+20, y:Math.random()*innerHeight*.7+40, vx:(Math.random()*.9+.5)*(Math.random()<.5?-1:1), vy:(Math.random()-.5)*.6, s:Math.random()*6.28, sc:.8+Math.random()*.55};
+    el.style.fontSize=(24*f.sc)+'px';
+    el.addEventListener('pointerdown',function(e){catchFly(f,e.clientX,e.clientY)});
+    layer.appendChild(el); flies.push(f);
+  }
+  function catchFly(f,x,y){
+    caught++; pill.textContent='🦋 '+caught+' tertangkap!';
+    for(var i=0;i<9;i++){var b=document.createElement('span');b.className='burst';b.textContent=sparks[i%sparks.length];b.style.left=x+'px';b.style.top=y+'px';document.body.appendChild(b);
+      var a=Math.random()*6.28,d=44+Math.random()*60;
+      b.animate([{transform:'translate(-50%,-50%) scale(1)',opacity:1},{transform:'translate('+(Math.cos(a)*d-7)+'px,'+(Math.sin(a)*d-24)+'px) scale(.4)',opacity:0}],{duration:650+Math.random()*300,easing:'cubic-bezier(.17,.67,.35,1)'}).onfinish=(function(el){return function(){el.remove()}})(b);}
+    var p=document.createElement('div');p.className='phrase';p.textContent=phrases[Math.floor(Math.random()*phrases.length)];p.style.left=x+'px';p.style.top=(y-34)+'px';document.body.appendChild(p);
+    p.animate([{transform:'translate(-50%,-50%) scale(.7)',opacity:0},{transform:'translate(-50%,-90%) scale(1.05)',opacity:1,offset:.25},{transform:'translate(-50%,-190%) scale(1)',opacity:0}],{duration:1500,easing:'ease-out'}).onfinish=function(){p.remove()};
+    f.x=-60; f.y=Math.random()*innerHeight*.6+40; f.vx=Math.abs(f.vx)+.6;
+  }
+  for(var i=0;i<5;i++) spawn(false);
+  var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function tick(){
+    for(var i=0;i<flies.length;i++){var f=flies[i];
+      f.s+=.02; f.vx+=Math.sin(f.s)*.012; f.vy+=Math.cos(f.s*1.3)*.010;
+      var dx=f.x-mx,dy=f.y-my,dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<130&&dist>0){f.vx+=dx/dist*.55; f.vy+=dy/dist*.55;}
+      var sp=Math.sqrt(f.vx*f.vx+f.vy*f.vy),max=2.6; if(sp>max){f.vx*=max/sp;f.vy*=max/sp;}
+      if(sp<.7){f.vx*=1.03;f.vy*=1.03;}
+      f.x+=f.vx; f.y+=f.vy;
+      if(f.x<8){f.x=8;f.vx=Math.abs(f.vx)} if(f.x>innerWidth-44){f.x=innerWidth-44;f.vx=-Math.abs(f.vx)}
+      if(f.y<8){f.y=8;f.vy=Math.abs(f.vy)} if(f.y>innerHeight-44){f.y=innerHeight-44;f.vy=-Math.abs(f.vy)}
+      f.el.style.transform='translate('+f.x+'px,'+f.y+'px) rotate('+(f.vx*7)+'deg)';
+    }
+    if(!reduced) requestAnimationFrame(tick);
+  }
+  tick();
+})();
+</script>
 </body>
 </html>
