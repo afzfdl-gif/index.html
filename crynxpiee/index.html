@@ -25,7 +25,7 @@
   /* interactive butterflies */
   #bfly-layer{position:absolute;inset:0;z-index:40;pointer-events:none}
   #bfly-back{position:absolute;inset:0;z-index:1;pointer-events:none}
-  .fly.back{pointer-events:none;opacity:.8;filter:blur(1.1px) drop-shadow(0 3px 6px rgba(0,0,0,.35))}
+  .fly.back{opacity:.8;filter:blur(1.1px) drop-shadow(0 3px 6px rgba(0,0,0,.35))}
   .perch{position:absolute;top:-14px;left:12px;font-size:22px;z-index:6;pointer-events:none;animation:sway 3.4s ease-in-out infinite;line-height:1}
   .perch i{font-style:normal;display:inline-block;animation:flap .5s ease-in-out infinite alternate}
   .perch.in{top:8px;left:auto;right:10px}
@@ -259,6 +259,7 @@
     var f={el:el,x:Math.random()*DW()*.9+20, y:200, vx:0, vy:0, s:Math.random()*6.28, dir:Math.random()<.5?-1:1, r:46+flies.length*26, ai:Math.random()*6.28, as:.010+Math.random()*.014, back:false, baseY:0, amp:80, freq:.006, phase:0, speed:2, held:false, drag:null};
     newPath(f); f.y=f.baseY;
     el.addEventListener('pointerdown',function(e){
+      if(f.back) setDepth(f,false);
       f.held=true; f.drag={dx:e.pageX-f.x, dy:e.pageY-f.y, sx:e.pageX, sy:e.pageY, moved:false};
     });
     flies.push(f); setDepth(f, Math.random()<.4);
