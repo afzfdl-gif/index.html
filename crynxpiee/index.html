@@ -26,6 +26,11 @@
   #bfly-layer{position:absolute;inset:0;z-index:40;pointer-events:none}
   #bfly-back{position:absolute;inset:0;z-index:1;pointer-events:none}
   .fly.back{pointer-events:none;opacity:.8;filter:blur(1.1px) drop-shadow(0 3px 6px rgba(0,0,0,.35))}
+  .perch{position:absolute;top:-14px;left:12px;font-size:22px;z-index:6;pointer-events:none;animation:sway 3.4s ease-in-out infinite;line-height:1}
+  .perch i{font-style:normal;display:inline-block;animation:flap .5s ease-in-out infinite alternate}
+  .perch.in{top:8px;left:auto;right:10px}
+  @keyframes sway{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(6deg) translateY(-2px)}}
+
   .fly{position:absolute;left:0;top:0;font-size:27px;pointer-events:auto;cursor:pointer;user-select:none;-webkit-user-select:none;will-change:transform;filter:drop-shadow(0 4px 9px rgba(0,0,0,.45));line-height:1}
   .fly .w{display:inline-block;animation:flap .26s ease-in-out infinite alternate}
   @keyframes flap{from{transform:scaleX(1) rotate(-4deg)}to{transform:scaleX(.5) rotate(4deg)}}
@@ -83,7 +88,7 @@
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.grid{grid-template-columns:1fr}}
-  .card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.25s;backdrop-filter:blur(6px)}
+  .card{position:relative;display:block;background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.25s;backdrop-filter:blur(6px)}
   .card:hover{transform:translateY(-5px);border-color:var(--rose);box-shadow:0 18px 40px rgba(0,0,0,.45)}
   .thumb{aspect-ratio:9/10.5;display:flex;flex-direction:column;justify-content:flex-end;padding:15px;position:relative}
   .thumb .play{position:absolute;top:13px;right:13px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;font-size:13px}
@@ -118,7 +123,7 @@
   /* drama list */
   .dramas{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
   @media(max-width:720px){.dramas{grid-template-columns:1fr}}
-  .drama{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;display:flex;gap:16px;align-items:center;backdrop-filter:blur(6px)}
+  .drama{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;display:flex;gap:16px;align-items:center;backdrop-filter:blur(6px)}
   .drama .no{font-size:30px;font-weight:900;color:var(--pink);min-width:44px}
   .drama h3{font-size:17.5px;line-height:1.3}
   .drama p{color:var(--mut);font-size:13.5px}
@@ -147,10 +152,10 @@
     <span class="rule">❗ Don't reupload my video — hargai editornya, ya.</span>
     <div style="margin-top:13px;color:var(--mut);font-size:13px">Psst… pencet layar di mana aja, kupu-kupunya bakal nyamperin. Tangkap kalau bisa! 🦋</div>
     <div class="stats">
-      <div class="stat igcard"><span class="plogo iglogo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="#fff" stroke="none"/></svg></span><b>20,6 RB</b><small>Followers Instagram</small></div>
-      <div class="stat igcard2"><span class="plogo iglogo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="#fff" stroke="none"/></svg></span><b>163</b><small>Postingan edit</small></div>
-      <div class="stat ttcard"><span class="plogo ttlogo">♪</span><b>2 JT+</b><small>Views video TikTok teratas</small></div>
-      <div class="stat"><span class="plogo goldlogo">✦</span><b>Tiap hari</b><small>Edit baru tayang</small></div>
+      <div class="stat igcard"><span class="perch"><i>🦋</i></span><span class="plogo iglogo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="#fff" stroke="none"/></svg></span><b>20,6 RB</b><small>Followers Instagram</small></div>
+      <div class="stat igcard2"><span class="perch"><i>🦋</i></span><span class="plogo iglogo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="#fff" stroke="none"/></svg></span><b>163</b><small>Postingan edit</small></div>
+      <div class="stat ttcard"><span class="perch"><i>🦋</i></span><span class="plogo ttlogo">♪</span><b>2 JT+</b><small>Views video TikTok teratas</small></div>
+      <div class="stat"><span class="perch"><i>🦋</i></span><span class="plogo goldlogo">✦</span><b>Tiap hari</b><small>Edit baru tayang</small></div>
     </div>
 
     <div class="hub">
@@ -171,9 +176,9 @@
     <h2>Baru tayang di Instagram Piee</h2>
     <p class="sub">Video aslinya — bisa langsung diputar di sini. Tiga edit dengan interaksi tertinggi di Instagram Piee.</p>
     <div class="grid">
-      <div class="card"><div class="embed"><iframe src="https://www.instagram.com/reel/Dev2sFitptR/embed" loading="lazy" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen="true" title="Reel @crynxpiee — Mba Xiwei langganan ditarik naik ke kuda"></iframe></div><div class="meta"><span>Where The Mask Ends</span><b>2.604 likes · 💬 28</b></div></div>
-      <div class="card"><div class="embed"><iframe src="https://www.instagram.com/reel/De8wcgsByDN/embed" loading="lazy" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen="true" title="Reel @crynxpiee — Salah cari musuh sih"></iframe></div><div class="meta"><span>Where The Mask Ends</span><b>Yan An &amp; Tian Xiwei · 💬 26</b></div></div>
-      <div class="card"><div class="embed"><iframe src="https://www.instagram.com/reel/De9iQGtpbcr/embed" loading="lazy" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen="true" title="Reel @crynxpiee — Kan bukan siapa-siapa"></iframe></div><div class="meta"><span>Where The Mask Ends</span><b>Youku &amp; Netflix · 💬 22</b></div></div>
+      <div class="card"><span class="perch in" style="animation-delay:-0.0s"><i>🦋</i></span><div class="embed"><iframe src="https://www.instagram.com/reel/Dev2sFitptR/embed" loading="lazy" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen="true" title="Reel @crynxpiee — Mba Xiwei langganan ditarik naik ke kuda"></iframe></div><div class="meta"><span>Where The Mask Ends</span><b>2.604 likes · 💬 28</b></div></div>
+      <div class="card"><span class="perch in" style="animation-delay:-0.7s"><i>🦋</i></span><div class="embed"><iframe src="https://www.instagram.com/reel/De8wcgsByDN/embed" loading="lazy" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen="true" title="Reel @crynxpiee — Salah cari musuh sih"></iframe></div><div class="meta"><span>Where The Mask Ends</span><b>Yan An &amp; Tian Xiwei · 💬 26</b></div></div>
+      <div class="card"><span class="perch in" style="animation-delay:-1.4s"><i>🦋</i></span><div class="embed"><iframe src="https://www.instagram.com/reel/De9iQGtpbcr/embed" loading="lazy" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen="true" title="Reel @crynxpiee — Kan bukan siapa-siapa"></iframe></div><div class="meta"><span>Where The Mask Ends</span><b>Youku &amp; Netflix · 💬 22</b></div></div>
     </div>
   </div>
 </section>
@@ -184,10 +189,10 @@
     <h2>Drama lain yang pernah diedit Piee</h2>
     <p class="sub">Judul-judul yang editannya meledak — lengkap dengan tempat nonton resminya.</p>
     <div class="dramas">
-      <div class="drama"><div class="no">01</div><div><h3>Generation to Generation</h3><p>Zhou Yiran &amp; Li Yunrui · kisah tragis 5 tahun dikurung</p></div><div class="views"><b>2 JT</b><small>views TikTok</small></div></div>
-      <div class="drama"><div class="no">02</div><div><h3>Overdo (2026)</h3><p>Zhang Linghe &amp; Wang Churan · iQIYI &amp; WeTV</p></div><div class="views"><b>18 RB</b><small>likes IG</small></div></div>
-      <div class="drama"><div class="no">03</div><div><h3>Never Ending Summer</h3><p>Zhou Keyu &amp; Bao Shangen · cowok gentleman idaman</p></div><div class="views"><b>97 RB</b><small>likes IG</small></div></div>
-      <div class="drama"><div class="no">04</div><div><h3>Speed and Love</h3><p>Esther Yu &amp; He Yu · “GILAKKK SEGACOR INI!!!!”</p></div><div class="views"><b>967 RB</b><small>views TikTok</small></div></div>
+      <div class="drama"><span class="perch"><i>🦋</i></span><div class="no">01</div><div><h3>Generation to Generation</h3><p>Zhou Yiran &amp; Li Yunrui · kisah tragis 5 tahun dikurung</p></div><div class="views"><b>2 JT</b><small>views TikTok</small></div></div>
+      <div class="drama"><span class="perch" style="left:auto;right:14px;font-size:19px;animation-delay:-1.1s"><i>🦋</i></span><div class="no">02</div><div><h3>Overdo (2026)</h3><p>Zhang Linghe &amp; Wang Churan · iQIYI &amp; WeTV</p></div><div class="views"><b>18 RB</b><small>likes IG</small></div></div>
+      <div class="drama"><span class="perch" style="font-size:25px;animation-delay:-2s"><i>🦋</i></span><div class="no">03</div><div><h3>Never Ending Summer</h3><p>Zhou Keyu &amp; Bao Shangen · cowok gentleman idaman</p></div><div class="views"><b>97 RB</b><small>likes IG</small></div></div>
+      <div class="drama"><span class="perch" style="left:auto;right:20px;font-size:21px;animation-delay:-.6s"><i>🦋</i></span><div class="no">04</div><div><h3>Speed and Love</h3><p>Esther Yu &amp; He Yu · “GILAKKK SEGACOR INI!!!!”</p></div><div class="views"><b>967 RB</b><small>views TikTok</small></div></div>
     </div>
     <div class="chips" style="margin-top:26px"><span class="chip">Nonton resmi di:</span><a class="chip" href="https://www.youku.com" target="_blank" rel="noopener">Youku ↗</a><a class="chip" href="https://www.netflix.com" target="_blank" rel="noopener">Netflix ↗</a><a class="chip" href="https://www.iqiyi.com" target="_blank" rel="noopener">iQIYI ↗</a><a class="chip" href="https://wetv.vip" target="_blank" rel="noopener">WeTV ↗</a></div>
   </div>
@@ -252,7 +257,7 @@
     p.animate([{transform:'translate(-50%,-50%) scale(.7)',opacity:0},{transform:'translate(-50%,-90%) scale(1.05)',opacity:1,offset:.25},{transform:'translate(-50%,-190%) scale(1)',opacity:0}],{duration:1500,easing:'ease-out'}).onfinish=function(){p.remove()};
     f.x = f.dir>0? -70 : DW()+70; f.baseY=Math.max(60,Math.min(DH()-60,y)); f.phase=-f.x*f.freq; gatherUntil=0;
   }
-  for(var i=0;i<6;i++) spawn();
+  for(var i=0;i<10;i++) spawn();
   var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   function tick(){
     var now=performance.now(), gathering=now<gatherUntil, W=DW(), H=DH();
