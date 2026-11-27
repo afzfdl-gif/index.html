@@ -21,7 +21,7 @@ tailwind.config = { theme: { extend: {
   .reveal.in{opacity:1;transform:none}
   a.u-line{background-image:linear-gradient(currentColor,currentColor);background-size:0% 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .35s ease}
   a.u-line:hover{background-size:100% 1px}
-  @keyframes kb{from{transform:scale(1)}to{transform:scale(1.12)}}
+  @keyframes kb{from{transform:scale(1)}to{transform:scale(1.06)}}
   .kenburns{animation:kb 18s ease-in-out infinite alternate}
   @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   .marquee-track{display:flex;width:max-content;animation:mq 28s linear infinite}
@@ -29,7 +29,7 @@ tailwind.config = { theme: { extend: {
   .lift:hover{transform:translateY(-5px);box-shadow:0 18px 40px -18px rgba(40,33,26,.35)}
   .chip-save{display:inline-block;background:#B4552D;color:#FAF5EC;font-size:11.5px;letter-spacing:.05em;padding:3px 10px;border-radius:999px;margin-left:10px;vertical-align:2px}
   .stars{color:#E9A13B;letter-spacing:.25em;font-size:15px}
-  .hero-chip{display:inline-flex;align-items:center;gap:7px;background:rgba(250,245,236,.14);border:1px solid rgba(250,245,236,.35);backdrop-filter:blur(4px);padding:7px 14px;border-radius:999px;font-size:13px}
+  .hero-chip{display:inline-flex;align-items:center;gap:7px;background:rgba(23,19,16,.42);border:1px solid rgba(250,245,236,.45);backdrop-filter:blur(6px);padding:7px 14px;border-radius:999px;font-size:13px}
   .add-mini{margin-top:5px;background:#28211A;color:#FAF5EC;font-size:12px;padding:5px 13px;border-radius:999px;letter-spacing:.02em;cursor:pointer}
   .add-mini:active{transform:scale(.96)}
   .add-btn{cursor:pointer}
@@ -57,15 +57,16 @@ tailwind.config = { theme: { extend: {
 
 <!-- HERO -->
 <section class="relative min-h-screen flex items-end">
-  <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80&auto=format&fit=crop" alt="Hidangan Nusantara di meja kayu Arunika" class="absolute inset-0 w-full h-full object-cover kenburns">
-  <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/25 to-ink/10"></div>
-  <div class="relative max-w-6xl mx-auto px-6 pb-24 pt-40 w-full text-cream">
-    <p class="text-sm tracking-[0.25em] uppercase text-cream/80 mb-5 reveal">Kopi & Dapur Nusantara — Dago, Bandung</p>
-    <h1 class="font-serif text-5xl md:text-7xl leading-[1.05] max-w-3xl reveal">Makan enak nggak harus antre.</h1>
-    <p class="mt-6 text-lg text-cream/85 max-w-xl reveal">Menu dan harga tampil semua di sini. Pilih, klik, pesan lewat WhatsApp — makananmu disiapkan sebelum kamu sampai.</p>
+  <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80&auto=format&fit=crop" alt="Hidangan Nusantara di meja kayu Arunika" class="absolute inset-0 w-full h-full object-cover object-[50%_72%] brightness-[.92] kenburns">
+  <div class="absolute inset-0 bg-gradient-to-t from-[#171310]/92 via-[#171310]/55 to-[#171310]/20"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-[#171310]/40 via-transparent to-transparent"></div>
+  <div class="relative max-w-6xl mx-auto px-6 pb-16 pt-32 md:pb-24 md:pt-40 w-full text-cream">
+    <p class="text-[13px] md:text-sm tracking-[0.25em] uppercase text-cream mb-5 reveal [text-shadow:0_1px_16px_rgba(0,0,0,.6)]">Kopi & Dapur Nusantara — Dago, Bandung</p>
+    <h1 class="font-serif text-[2.55rem] md:text-7xl leading-[1.08] md:leading-[1.05] max-w-3xl reveal [text-shadow:0_2px_34px_rgba(0,0,0,.5)]">Makan enak nggak harus antre.</h1>
+    <p class="mt-6 text-lg text-cream/90 max-w-xl reveal [text-shadow:0_1px_16px_rgba(0,0,0,.55)]">Menu dan harga tampil semua di sini. Pilih, klik, pesan lewat WhatsApp — makananmu disiapkan sebelum kamu sampai.</p>
     <div class="mt-9 flex flex-wrap gap-4 reveal">
       <a href="#makanan" class="bg-cream text-ink px-7 py-3.5 rounded-full text-sm font-medium hover:bg-white transition-colors">Lihat Menu</a>
-      <button onclick="openKasir()" class="border border-cream/60 text-cream px-7 py-3.5 rounded-full text-sm hover:bg-cream/10 transition-colors">Buat Pesanan</button>
+      <button onclick="openKasir()" class="border border-cream/60 text-cream bg-ink/30 backdrop-blur-sm px-7 py-3.5 rounded-full text-sm hover:bg-cream/10 transition-colors">Buat Pesanan</button>
     </div>
     <div class="mt-8 flex flex-wrap gap-3 reveal">
       <span class="hero-chip">★ 4.9 — 320+ ulasan Google</span>
