@@ -66,9 +66,9 @@ header.site{position:sticky;top:0;z-index:60;background:rgba(250,246,239,.94);ba
 .chip:hover{background:var(--crema)}
 .chip[aria-pressed="true"]{background:var(--espresso);color:var(--paper)}
 /* product grid */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding-bottom:10px;min-height:60vh}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding-bottom:10px;align-content:start}
 #menu{scroll-margin-top:118px}
-.card .desc{min-height:2.6em}
+.card .desc{flex:1}
 @media(min-width:700px){.grid{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
@@ -165,12 +165,11 @@ footer.site .wrap{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-betw
 }
 .wm{position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.05}
 .wm::after{content:"DEMO — B&Z   DEMO — B&Z   DEMO — B&Z";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:700 3rem var(--sans);letter-spacing:.3em;color:#2b1a12;transform:rotate(-24deg);white-space:nowrap}
-.wm-badge{position:fixed;left:12px;top:74px;z-index:65;background:rgba(43,26,18,.88);color:#faf6ef;font-size:.72rem;font-weight:600;padding:6px 12px;border-radius:999px;pointer-events:none}
+.wm-badge{display:block;width:fit-content;margin:22px auto 0;background:rgba(43,26,18,.88);color:#faf6ef;font-size:.72rem;font-weight:600;padding:6px 12px;border-radius:999px}
 </style>
 </head>
 <body>
 <div class="wm" aria-hidden="true"></div>
-<div class="wm-badge">DEMO · B&Z Web Studio · @bz_devweb</div>
 
 <header class="site">
   <div class="wrap topbar">
@@ -244,6 +243,8 @@ footer.site .wrap{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-betw
   </div>
 </footer>
 
+<div class="wm-badge">DEMO · B&Z Web Studio · @bz_devweb</div>
+
 <!-- CART BAR -->
 <div class="cartbar" id="cartBar" hidden>
   <button id="openCart" aria-haspopup="dialog">
@@ -307,9 +308,9 @@ const CONTENT = {
   tagline: "Pesan dari HP, datang tinggal ambil. Tanpa antre.",
   // TODO: ganti daftar toko + alamat asli
   stores: [
-    { id:"serang", label:"Rindu Serang — Jl. Kenangan", address:"Jl. Kenangan No. 8, Serang, Banten", mapsQuery:"kopi+kenangan+serang" },
-    { id:"cilegon", label:"Rindu Cilegon — Jl. Merdeka", address:"Jl. Merdeka No. 21, Cilegon, Banten", mapsQuery:"cilegon" },
-    { id:"tangerang", label:"Rindu Tangerang — Gading Serpong", address:"Ruko Gading Serpong Blok B2, Tangerang, Banten", mapsQuery:"gading+serpong" }
+    { id:"serang", label:"Rindu Serang", address:"Jl. Kenangan No. 8, Serang, Banten", mapsQuery:"kopi+kenangan+serang" },
+    { id:"cilegon", label:"Rindu Cilegon", address:"Jl. Merdeka No. 21, Cilegon, Banten", mapsQuery:"cilegon" },
+    { id:"tangerang", label:"Rindu Tangerang", address:"Ruko Gading Serpong Blok B2, Tangerang, Banten", mapsQuery:"gading+serpong" }
   ],
   // TODO: ganti nomor WhatsApp toko (format internasional tanpa +)
   whatsapp: "6282117488321",
