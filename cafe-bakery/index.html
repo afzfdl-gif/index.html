@@ -23,7 +23,7 @@
   --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{background:var(--paper);color:var(--espresso);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:96px}
 img{display:block;max-width:100%}
 button{font:inherit;cursor:pointer}
@@ -78,9 +78,11 @@ header.site{position:sticky;top:0;z-index:60;background:rgba(250,246,239,.94);ba
 .card h3{font-family:var(--sans);font-size:1rem;font-weight:800}
 .card .desc{color:var(--muted);font-size:.85rem;flex:1}
 .card .tag{align-self:flex-start;background:#fdeeda;color:var(--accent-d);font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
-.card .foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.card .foot{display:flex;flex-direction:column;align-items:stretch;gap:9px;margin-top:10px}
+.card .foot .price{white-space:nowrap;font-size:1.02rem}
+.card [data-ctrl]{display:block}
 .price{font-weight:800;color:var(--espresso)}
-.addbtn{background:var(--espresso);color:#fff;border:none;border-radius:999px;padding:9px 16px;font-weight:700;font-size:.88rem}
+.addbtn{width:100%;background:var(--espresso);color:#fff;border:none;border-radius:999px;padding:11px 10px;font-weight:700;font-size:.92rem;white-space:nowrap;text-align:center}
 .addbtn:hover{background:var(--accent-d)}
 .addbtn:active{transform:scale(.94)}
 .chip:active{transform:scale(.95)}
@@ -90,7 +92,7 @@ header.site{position:sticky;top:0;z-index:60;background:rgba(250,246,239,.94);ba
 .cartbar button{animation:slideup .25s ease}
 @keyframes slideup{from{transform:translateY(16px);opacity:0}to{transform:none;opacity:1}}
 .checkout-btn:active,.promo-row button:active{transform:scale(.98)}
-.stepper{display:inline-flex;align-items:center;gap:2px;border:2px solid var(--espresso);border-radius:999px;overflow:hidden}
+.stepper{display:flex;align-items:center;justify-content:space-between;gap:2px;border:2px solid var(--espresso);border-radius:999px;overflow:hidden;width:100%}
 .stepper button{background:#fff;border:none;width:34px;height:36px;font-size:1.05rem;font-weight:800;color:var(--espresso)}
 .stepper button:hover{background:var(--crema)}
 .stepper .qty{min-width:26px;text-align:center;font-weight:800}
@@ -127,6 +129,7 @@ table.hours td{text-align:right;font-variant-numeric:tabular-nums}
 .citem .info strong{display:block;font-size:.95rem}
 .citem .info span{color:var(--muted);font-size:.83rem}
 .citem .line-total{font-weight:800;white-space:nowrap}
+.citem .stepper{width:auto;justify-content:flex-start}
 .empty{color:var(--muted);text-align:center;padding:26px 0}
 .promo-row{display:flex;gap:8px;margin:16px 0 6px}
 .promo-row input{flex:1;font:inherit;border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;text-transform:uppercase}
